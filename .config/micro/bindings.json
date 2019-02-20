@@ -1,0 +1,13 @@
+{
+    "CtrlUp": "MoveLinesUp",
+    "CtrlDown": "MoveLinesDown",
+    "CtrlLeft": "WordLeft",
+    "CtrlRight": "WordRight",
+    "CtrlShiftY": "Redo",
+    "F1": "CommandMode",
+    "Alt.": "command:reload",
+    "Alt,": "command:hsplit ~/.config/micro/settings.json",
+    "CtrlP": "command:fzf",
+    "CtrlUnderscore": "comment.comment",
+    "CtrlShiftK": "DeleteLine"
+}
