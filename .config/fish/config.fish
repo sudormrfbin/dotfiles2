@@ -1,0 +1,1 @@
+/home/gokul/.dotfiles/config.fish
