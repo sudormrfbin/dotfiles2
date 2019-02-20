@@ -1,0 +1,38 @@
+[
+	{
+		"name": "clid",
+		"rootPath": "/mnt/MyStuff/Projects/clid",
+		"paths": [],
+		"group": "Mine"
+	},
+	{
+		"name": "stagger",
+		"rootPath": "/mnt/MyStuff/Projects/stagger",
+		"paths": [],
+		"group": "Contributing"
+	},
+	{
+		"name": "musiclib",
+		"rootPath": "/mnt/MyStuff/Projects/musiclib",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "fuzzyfinder",
+		"rootPath": "/mnt/MyStuff/Projects/fuzzyfinder",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "dotfiles",
+		"rootPath": "$home/.dotfiles",
+		"paths": [],
+		"group": ""
+	},
+	{
+		"name": "toasts",
+		"rootPath": "/mnt/MyStuff/Projects/toasts",
+		"paths": [],
+		"group": ""
+	}
+]

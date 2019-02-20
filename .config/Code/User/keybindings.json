@@ -1,0 +1,158 @@
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+j",
+        "command": "-workbench.action.togglePanel"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "editor.action.joinLines"
+    },
+    {
+        "key": "insert",
+        "command": "editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+k ctrl+i",
+        "command": "-editor.action.showHover",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+insert",
+        "command": "workbench.action.openSnippets"
+    },
+    {
+        "key": "f9",
+        "command": "workbench.action.gotoLine"
+    },
+    {
+        "key": "ctrl+g",
+        "command": "-workbench.action.gotoLine"
+    },
+    {
+        "key": "ctrl+alt+pagedown",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+k ctrl+right",
+        "command": "-workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+alt+pageup",
+        "command": "workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "ctrl+k ctrl+left",
+        "command": "-workbench.action.focusPreviousGroup"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-expandLineSelection",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+insert",
+        "command": "bookmarks.toggle",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+k",
+        "command": "-bookmarks.toggle",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+f2",
+        "command": "editor.action.changeAll",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+f2",
+        "command": "-editor.action.changeAll",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+f2",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "f2",
+        "command": "-editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "f2",
+        "command": "bookmarks.jumpToNext",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+l",
+        "command": "-bookmarks.jumpToNext",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+f2",
+        "command": "bookmarks.jumpToPrevious",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+j",
+        "command": "-bookmarks.jumpToPrevious",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+f9",
+        "command": "editor.debug.action.toggleBreakpoint",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "f9",
+        "command": "-editor.debug.action.toggleBreakpoint",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+k ctrl+l",
+        "command": "python.runLinting"
+    },
+    {
+        "key": "ctrl+k ctrl+p",
+        "command": "workbench.actions.view.problems"
+    },
+    {
+        "key": "ctrl+shift+m",
+        "command": "-workbench.actions.view.problems"
+    },
+    {
+        "key": "ctrl+,",
+        "command": "workbench.action.openSettingsJson"
+    },
+    {
+        "key": "alt+;",
+        "command": "metaGo.gotoBefore",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+;",
+        "command": "-metaGo.gotoBefore",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+alt+;",
+        "command": "metaGo.goto",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+;",
+        "command": "-metaGo.goto",
+        "when": "editorTextFocus"
+    }
+]

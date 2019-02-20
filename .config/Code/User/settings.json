@@ -1,0 +1,104 @@
+{
+    "atomKeymap.promptV3Features": true,
+
+    "bookmarks.saveBookmarksInProject": true,
+
+    "breadcrumbs.enabled": true,
+
+    "bracket-pair-colorizer-2.colors": [
+        "Gold",
+        "Orchid",
+        "LightSkyBlue",
+    ],
+
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.fontSize": 17.5,
+    "editor.fontFamily": "'mononoki'",
+    "editor.minimap.showSlider": "always",
+    "editor.minimap.renderCharacters": false,
+    "editor.find.autoFindInSelection": true,
+    "editor.wordWrap": "on",
+    "editor.wrappingIndent": "indent",
+    "editor.snippetSuggestions": "inline",
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.rulers": [79, 85],
+    "editor.suggest.localityBonus": true,
+
+    "explorer.confirmDragAndDrop": false,
+
+    "extensions.ignoreRecommendations": false,
+
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 500,
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/.cache": true,
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.pytest_cache": true,
+        "**/.svn": true,
+        "**/.vscode": true,
+        "**/*.pyc": true,
+        "**/*.sublime*": true,
+        "**/CVS": true,
+        "**/.idea": true,
+        "**/.env": true,
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+
+    "metaGo.decoration.width": 14,
+    "metaGo.decoration.height": 18,
+    "metaGo.decoration.fontSize": 17,
+    "metaGo.decoration.fontFamily": "monospace",
+    "metaGo.decoration.backgroundOpacity": "0.9",
+    "metaGo.decoration.backgroundColor": "white,yellow",
+    "metaGo.bookmark.saveBookmarksInProject": true,
+
+    // "python.pythonPath": "/usr/bin/python3",
+    // "python.jediPath": "/usr/local/lib/python3.5/dist-packages/jedi",
+    "python.autoComplete.addBrackets": true,
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.pyTestPath": "python3 -m pytest",
+    "python.linting.lintOnSave": false,
+    "python.linting.pylintCategorySeverity.refactor": "Information",
+    "python.linting.pylintCategorySeverity.convention": "Hint",
+
+    "terminal.external.linuxExec": "lxterminal",
+    "terminal.integrated.rendererType": "dom",
+
+    "vsicons.dontShowNewVersionMessage": true,
+
+    "window.titleBarStyle": "custom",
+
+    "workbench.editor.revealIfOpen": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "One Dark Pro",
+    // "workbench.activityBar.visible": false,
+    "workbench.sideBar.location": "right",
+    "workbench.commandPalette.preserveInput": true,
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#007ACC",
+        "statusBar.foreground": "#FFFFFF",
+        "statusBarItem.hoverBackground": "#4997eb",
+        "editor.background": "#161821ec",
+        "editor.lineHighlightBackground": "#101119be",
+        "editorHoverWidget.background": "#111111",
+    },
+    "workbench.settings.editor": "json",
+    "workbench.settings.openDefaultSettings": true,
+    "workbench.settings.useSplitJSON": true,
+
+    "zenMode.hideLineNumbers": false,
+    "zenMode.centerLayout": false,
+    "workbench.activityBar.visible": true,
+    "workbench.editor.showTabs": false,
+    "editor.minimap.enabled": false,
+}

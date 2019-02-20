@@ -1,0 +1,84 @@
+{
+/*
+	// Place your snippets for MagicPython here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	"Print to console": {
+		"prefix": "log",
+		"body": [
+			"console.log('$1');",
+			"$2"
+		],
+		"description": "Log output to console"
+	}
+*/
+
+	"Shebang": {
+		"prefix": "p3e",
+		"body": "#!/usr/bin/env python3",
+		"description": "Shebang line for python3"
+		},
+
+	"Self": {
+		"prefix": ".",
+		"body": "self.",
+		"description": "Insert self. when . is pressed"
+		},
+
+	"TODO": {
+		"prefix": "td",
+		"body": "# TODO: $0",
+		"description": "TODO"
+		},
+
+	"NOTE": {
+		"prefix": "nt",
+		"body": "# NOTE: $0",
+		"description": "NOTE"
+		},
+
+	"Method": {
+		"prefix": "dec",
+		"body": [
+			"def ${1:method}(self$2):",
+			"    ${3:body}"
+		],
+		"description": "Snippet for class method"
+		},
+
+	"From Import": {
+		"prefix": "fim",
+		"body": "from ${1:.} import ${2:mod}",
+		"description": "Snippet for from import"
+		},
+
+	"Comment": {
+		"prefix": "cm",
+		"body": "  # ",
+		"description": "Snippet for inserting comment"
+		},
+
+	"Method Self": {
+		"prefix": "(",
+		"body":  "(self$1",
+		"description": "Snippet for inserting self whe defining a method"
+		},
+
+	"Args and Kwargs": {
+		"prefix": "ak",
+		"body": "*args, **kwargs",
+		"description": "Snippet for pasting *args, **kwargs"
+		},
+
+	"Super Method": {
+		"prefix": "supdec",
+		"body": [
+			"def ${1:meth}(self, ${2:args}):",
+			"    super().$1($2)",
+			"    $0"
+		],
+		"description": "Snippet for method with super call"
+		},
+}
