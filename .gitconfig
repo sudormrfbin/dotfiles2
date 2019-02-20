@@ -1,0 +1,7 @@
+[user]
+	name = Gokul
+	email = gokulps15@gmail.com
+[push]
+	default = simple
+[core]
+        editor = nvim
