@@ -23,3 +23,14 @@ set -x LESS_TERMCAP_us (printf "\e[01;32m")
 set -x LESS_TERMCAP_mb (printf "\033[01;31m")
 set -x LESS_TERMCAP_md (printf "\033[01;31m")
 set -x LESS_TERMCAP_so (printf "\033[00;47;30m")
+
+# ---------- Fisher
+
+set -g fisher_path ~/.config/fish/fisher
+
+set fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..-1]
+set fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_complete_path[2..-1]
+
+for file in $fisher_path/conf.d/*.fish
+    builtin source $file 2> /dev/null
+end
