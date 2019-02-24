@@ -383,9 +383,9 @@
       <action name="Execute">
         <startupnotify>
           <enabled>false</enabled>
-          <name>Lock screen</name>
+          <name>Turn off screen</name>
         </startupnotify>
-        <command>bl-lock</command>
+        <command>xset dpms force off</command>
       </action>
     </keybind>
     <keybind key="W-h">
