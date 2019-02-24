@@ -1,5 +1,11 @@
 # Fish Config File
 
+# X
+
+if [ -z $DISPLAY ] && [ (tty) = /dev/tty1 ]
+    startx
+end
+
 # ---------- Keybindings
 
 bind \e/ toggle-comment  # Alt-/
