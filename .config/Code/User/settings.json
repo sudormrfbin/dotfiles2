@@ -70,6 +70,7 @@
     "python.linting.lintOnSave": false,
     "python.linting.pylintCategorySeverity.refactor": "Information",
     "python.linting.pylintCategorySeverity.convention": "Hint",
+    "python.jediEnabled": false,
 
     "terminal.external.linuxExec": "lxterminal",
     "terminal.integrated.rendererType": "dom",
