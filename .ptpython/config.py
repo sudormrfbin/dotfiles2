@@ -136,9 +136,9 @@ def configure(repl):
         event.cli.key_processor.feed(KeyPress(Keys.Escape))
 
 
-    @repl.add_key_binding(Keys.F9)
+    @repl.add_key_binding("`")
     def _(event):
-        " F9 as alias for right key for completing auto suggest "
+        " '`' as alias for right key for completing auto suggest "
         if repl.enable_auto_suggest:
             event.cli.key_processor.feed(KeyPress(Keys.Right))
 
