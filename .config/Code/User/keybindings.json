@@ -154,5 +154,15 @@
         "key": "alt+;",
         "command": "-metaGo.goto",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+n",
+        "command": "metaGo.currentLineToCenter",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+m",
+        "command": "-metaGo.currentLineToCenter",
+        "when": "editorTextFocus"
     }
 ]
