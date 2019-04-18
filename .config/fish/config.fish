@@ -9,7 +9,7 @@ end
 # ---------- Keybindings
 
 bind \e/ toggle-comment  # Alt-/
-bind -k ic __fish_man_page  # Insert
+bind -k ic show-man-page  # Insert
 bind "`" accept-autosuggestion
 bind "L:" "commandline -a '| less'"
 bind \e1 forward-word
