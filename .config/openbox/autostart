@@ -70,7 +70,7 @@ bl-tint2-session
 pnmixer &
 
 ## Start the Conky session (the default conkyrc will run if no sessions have been set)
-bl-conky-session --autostart &
+## bl-conky-session --autostart &
 
 ## Start Clipboard manager
 clipit &
