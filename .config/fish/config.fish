@@ -12,6 +12,7 @@ bind \e/ toggle-comment  # Alt-/
 bind -k ic __fish_man_page  # Insert
 bind "`" accept-autosuggestion
 bind "L:" "commandline -a '| less'"
+bind \e1 forward-word
 bind \x1B\x1B insert-or-remove-sudo  # Esc-Esc
 
 # ---------- Variables
