@@ -1,5 +1,0 @@
-rofi.theme: /usr/share/rofi/themes/gruvbox-dark.rasi
-rofi.show-icons: true
-rofi.modi: window,run,ssh,drun
-rofi.sort: true
-rofi.levenshtein-sort: false
