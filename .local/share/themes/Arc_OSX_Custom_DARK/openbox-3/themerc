@@ -126,7 +126,7 @@ menu.title.text.justify: center
 #menu.title.text.font: text shadow
 
 ### OSD
-osd.border.width: 2
+osd.border.width: 0
 
 #osd.border.color: #00CE99
 
