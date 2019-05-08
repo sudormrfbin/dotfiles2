@@ -4,4 +4,6 @@
 [push]
 	default = simple
 [core]
-        editor = nvim
+  editor = nvim
+[http]
+	postBuffer = 1048576000
