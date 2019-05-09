@@ -24,6 +24,7 @@ semicolon warp,end
 Return click 1,end
 
 e windowzoom
+q history-back
 
 1 cell-select 1
 2 cell-select 2
