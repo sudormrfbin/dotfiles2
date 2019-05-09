@@ -1,0 +1,33 @@
+clear
+
+Super_L+semicolon start
+Escape end
+
+w cut-up
+a cut-left
+s cut-down
+d cut-right
+
+h move-left       
+j move-down       
+k move-up         
+l move-right
+
+y cut-left,cut-up
+u cut-right,cut-up
+b cut-left,cut-down
+n cut-right,cut-down
+
+space warp,click 1,end
+Shift_L+space warp,click 3,end
+semicolon warp,end
+
+t windowzoom
+
+1 cell-select 1
+2 cell-select 2
+3 cell-select 3
+4 cell-select 4
+
+v sh "xdotool search --name ' - Vivaldi' windowactivate",end
+b sh "xdotool search --name ' - byobu' windowactivate",end
