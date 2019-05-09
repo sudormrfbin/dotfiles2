@@ -23,7 +23,7 @@ Shift_L+space warp,click 3,end
 semicolon warp,end
 Return click 1,end
 
-t windowzoom
+e windowzoom
 
 1 cell-select 1
 2 cell-select 2
