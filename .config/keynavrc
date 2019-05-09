@@ -21,6 +21,7 @@ n cut-right,cut-down
 space warp,click 1,end
 Shift_L+space warp,click 3,end
 semicolon warp,end
+Return click 1,end
 
 t windowzoom
 
