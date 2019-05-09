@@ -30,4 +30,4 @@ t windowzoom
 4 cell-select 4
 
 v sh "xdotool search --name ' - Vivaldi' windowactivate",end
-b sh "xdotool search --name ' - byobu' windowactivate",end
+t sh "xdotool search --name ' - byobu' windowactivate",end
