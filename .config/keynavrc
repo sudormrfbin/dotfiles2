@@ -22,6 +22,7 @@ space warp,click 1,end
 Shift_L+space warp,click 3,end
 semicolon warp,end
 Return click 1,end
+Shift_L+Return click 3,end
 
 e windowzoom
 q history-back
