@@ -18,11 +18,11 @@ u cut-right,cut-up
 b cut-left,cut-down
 n cut-right,cut-down
 
-space warp,click 1,end
-Shift_L+space warp,click 3,end
+f warp,click 1,end
+Shift_L+f warp,click 3,end
 semicolon warp,end
-Return click 1,end
-Shift_L+Return click 3,end
+g click 1,end
+Shift_L+g click 3,end
 
 e windowzoom
 q history-back
