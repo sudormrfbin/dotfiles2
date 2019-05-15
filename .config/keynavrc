@@ -8,24 +8,23 @@ a cut-left
 s cut-down
 d cut-right
 
-h move-left       
-j move-down       
-k move-up         
-l move-right
+shift+a move-left
+shift+s move-down
+shift+w move-up
+shift+d move-right
 
-y cut-left,cut-up
-u cut-right,cut-up
-b cut-left,cut-down
-n cut-right,cut-down
+q cut-left,cut-up
+e cut-right,cut-up
+z cut-left,cut-down
+c cut-right,cut-down
+
+x history-back
 
 f warp,click 1,end
 Shift_L+f warp,click 3,end
 semicolon warp,end
 g click 1,end
 Shift_L+g click 3,end
-
-e windowzoom
-q history-back
 
 v sh "xdotool search --name ' - Vivaldi' windowactivate",end
 t sh "xdotool search --name ' - byobu' windowactivate",end
