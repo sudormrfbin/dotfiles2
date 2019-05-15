@@ -27,13 +27,8 @@ Shift_L+g click 3,end
 e windowzoom
 q history-back
 
-1 cell-select 1
-2 cell-select 2
-3 cell-select 3
-4 cell-select 4
-
 v sh "xdotool search --name ' - Vivaldi' windowactivate",end
 t sh "xdotool search --name ' - byobu' windowactivate",end
-r sh "xdotool search --name ' - byobu' windowactivate && tmux select-window -t dashboard && tmux select-pane -t:.1 && tmux send-keys R",end
-c sh "xdotool search --name ' - byobu' windowactivate && tmux select-window -t dashboard && tmux select-pane -t:.0",end 
+2 sh "xdotool search --name ' - byobu' windowactivate && tmux select-window -t dashboard && tmux select-pane -t:.1 && tmux send-keys R",end
+1 sh "xdotool search --name ' - byobu' windowactivate && tmux select-window -t dashboard && tmux select-pane -t:.0",end 
 
