@@ -22,7 +22,7 @@ x history-back
 
 f warp,click 1,end
 Shift_L+f warp,click 3,end
-semicolon warp,end
+space warp,end
 g click 1,end
 Shift_L+g click 3,end
 
