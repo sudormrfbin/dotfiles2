@@ -134,3 +134,4 @@ bind -f common { vol -1% -0
 bind -f common } vol -0 -1%
 bind -f common ~ help
 bind -f library R run rm
+bind -f common S shell python3 ~/.local/bin/cmus_queue_shuffle.py
