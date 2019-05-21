@@ -133,3 +133,4 @@ bind -f common z player-prev
 bind -f common { vol -1% -0
 bind -f common } vol -0 -1%
 bind -f common ~ help
+bind -f library R run rm
