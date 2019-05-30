@@ -14,6 +14,7 @@ bind "`" power-key
 bind "L:" "commandline -a '| less'"
 bind \e1 forward-word
 bind \x1B\x1B insert-or-remove-sudo  # Esc-Esc
+bind \e, up-or-search
 
 # ---------- Variables
 
