@@ -64,7 +64,6 @@
 
     "python.autoComplete.addBrackets": true,
     "python.unitTest.pyTestEnabled": true,
-    "python.unitTest.pyTestPath": "python3 -m pytest",
     "python.linting.lintOnSave": false,
     "python.linting.pylintCategorySeverity.refactor": "Information",
     "python.linting.pylintCategorySeverity.convention": "Hint",
@@ -93,4 +92,7 @@
 
     "zenMode.hideLineNumbers": false,
     "zenMode.centerLayout": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "terminal.integrated.rendererType": "dom",
 }
