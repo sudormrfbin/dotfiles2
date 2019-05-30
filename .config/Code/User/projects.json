@@ -3,36 +3,42 @@
 		"name": "clid",
 		"rootPath": "/mnt/MyStuff/Projects/clid",
 		"paths": [],
-		"group": "Mine"
+		"group": "Mine",
+		"enabled": true
 	},
 	{
 		"name": "stagger",
 		"rootPath": "/mnt/MyStuff/Projects/stagger",
 		"paths": [],
-		"group": "Contributing"
+		"group": "Contributing",
+		"enabled": true
 	},
 	{
 		"name": "musiclib",
 		"rootPath": "/mnt/MyStuff/Projects/musiclib",
 		"paths": [],
-		"group": ""
+		"group": "",
+		"enabled": true
 	},
 	{
 		"name": "fuzzyfinder",
 		"rootPath": "/mnt/MyStuff/Projects/fuzzyfinder",
 		"paths": [],
-		"group": ""
-	},
-	{
-		"name": "dotfiles",
-		"rootPath": "$home/.dotfiles",
-		"paths": [],
-		"group": ""
+		"group": "",
+		"enabled": true
 	},
 	{
 		"name": "toasts",
 		"rootPath": "/mnt/MyStuff/Projects/toasts",
 		"paths": [],
-		"group": ""
+		"group": "",
+		"enabled": true
+	},
+	{
+		"name": "ghstar",
+		"rootPath": "/mnt/MyStuff/Projects/ghstar",
+		"paths": [],
+		"group": "",
+		"enabled": true
 	}
 ]
