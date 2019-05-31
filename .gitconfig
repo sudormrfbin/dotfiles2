@@ -5,3 +5,8 @@
 	default = simple
 [core]
   editor = nvim
+[alias]
+	unstage = reset --
+	fixup = commit --amend --no-edit
+	stash-all = stash push --no-keep-index --include-untracked --all
+	stash-temp = stash push --no-keep-index --include-untracked --all -m temp
