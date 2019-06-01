@@ -72,10 +72,8 @@ nnoremap <right> <nop>
 map <leader>bn :bnext<CR>
 map <leader>bp :bprev<CR>
 map <leader>bc :bd<CR>
-" NerdTree
-map <leader>tt :NERDTreeToggle<CR>
-map <leader>to :NERDTree<CR>
-map <leader>tc :NERDTreeClose<CR>
+" File Explorer
+map <leader>t :Texplore<CR>
 " Buffer switching
 map <leader>1 <Plug>lightline#bufferline#go(1)
 map <leader>2 <Plug>lightline#bufferline#go(2)
@@ -91,19 +89,15 @@ map <leader>0 <Plug>lightline#bufferline#go(10)
 " Vim Plug
 call plug#begin('~/.vim/plugged')
 
-Plug 'Shougo/deoplete.nvim'
+Plug 'ervandew/supertab'
+
+Plug 'Yggdroot/indentLine'
 
 Plug 'joshdick/onedark.vim'
 
 Plug 'itchyny/lightline.vim'
 
-Plug 'ervandew/supertab'
-
-Plug 'scrooloose/nerdtree'
-
 Plug 'mengelbrecht/lightline-bufferline'
-
-Plug 'Yggdroot/indentLine'
 
 call plug#end()
 
