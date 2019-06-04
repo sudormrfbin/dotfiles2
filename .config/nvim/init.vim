@@ -9,10 +9,7 @@ set noshowmode          " Do not show current mode as lightline will do so
 set ruler               " Show the line and column numbers of the cursor.
 set number              " Show the line numbers on the left side.
 set relativenumber      " Show relative line numbers
-set formatoptions+=o    " Continue comment marker in new lines.
-set textwidth=0         " Hard-wrap long lines as you type them.
 set expandtab           " Insert spaces when TAB is pressed.
-set guicursor=          " Fix bug where wierd chars are shown when pressing i, :, etc
 set hlsearch            " Highlight search results
 
 set noerrorbells        " No beeps.
