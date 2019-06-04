@@ -54,6 +54,7 @@ endif
 
 " Misc
 nnoremap ; :
+nnoremap : ;
 nnoremap j gj
 nnoremap k gk
 inoremap jk <esc>
