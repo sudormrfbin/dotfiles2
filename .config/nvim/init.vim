@@ -77,16 +77,16 @@ nnoremap <leader>bc :bd<CR>
 " File Explorer
 nnoremap <leader>t :Texplore<CR>
 " Buffer switching
-nnoremap <leader>1 <Plug>lightline#bufferline#go(1)
-nnoremap <leader>2 <Plug>lightline#bufferline#go(2)
-nnoremap <leader>3 <Plug>lightline#bufferline#go(3)
-nnoremap <leader>4 <Plug>lightline#bufferline#go(4)
-nnoremap <leader>5 <Plug>lightline#bufferline#go(5)
-nnoremap <leader>6 <Plug>lightline#bufferline#go(6)
-nnoremap <leader>7 <Plug>lightline#bufferline#go(7)
-nnoremap <leader>8 <Plug>lightline#bufferline#go(8)
-nnoremap <leader>9 <Plug>lightline#bufferline#go(9)
-nnoremap <leader>0 <Plug>lightline#bufferline#go(10)
+map <leader>1 <Plug>lightline#bufferline#go(1)
+map <leader>2 <Plug>lightline#bufferline#go(2)
+map <leader>3 <Plug>lightline#bufferline#go(3)
+map <leader>4 <Plug>lightline#bufferline#go(4)
+map <leader>5 <Plug>lightline#bufferline#go(5)
+map <leader>6 <Plug>lightline#bufferline#go(6)
+map <leader>7 <Plug>lightline#bufferline#go(7)
+map <leader>8 <Plug>lightline#bufferline#go(8)
+map <leader>9 <Plug>lightline#bufferline#go(9)
+map <leader>0 <Plug>lightline#bufferline#go(10)
 
 " Vim Plug
 call plug#begin('~/.vim/plugged')
