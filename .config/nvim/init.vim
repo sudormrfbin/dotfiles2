@@ -64,7 +64,8 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>/ :set invhlsearch<CR>
-" Arrows
+" Disabled
+inoremap <esc> <nop>
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
