@@ -57,11 +57,11 @@ nnoremap ; :
 nnoremap j gj
 nnoremap k gk
 inoremap jk <esc>
-map <leader>z :set wrap!<CR>
-map <leader>w :wq<CR>
-map <leader>q :q<CR>
-map <leader>e :edit ~/.config/nvim/init.vim<CR>
-map <leader>r :source ~/.config/nvim/init.vim<CR>
+nnoremap <leader>z :set wrap!<CR>
+nnoremap <leader>w :wq<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
+nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>/ :set invhlsearch<CR>
 " Arrows
 nnoremap <up> <nop>
@@ -69,22 +69,22 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 " Buffers
-map <leader>bn :bnext<CR>
-map <leader>bp :bprev<CR>
-map <leader>bc :bd<CR>
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
+nnoremap <leader>bc :bd<CR>
 " File Explorer
-map <leader>t :Texplore<CR>
+nnoremap <leader>t :Texplore<CR>
 " Buffer switching
-map <leader>1 <Plug>lightline#bufferline#go(1)
-map <leader>2 <Plug>lightline#bufferline#go(2)
-map <leader>3 <Plug>lightline#bufferline#go(3)
-map <leader>4 <Plug>lightline#bufferline#go(4)
-map <leader>5 <Plug>lightline#bufferline#go(5)
-map <leader>6 <Plug>lightline#bufferline#go(6)
-map <leader>7 <Plug>lightline#bufferline#go(7)
-map <leader>8 <Plug>lightline#bufferline#go(8)
-map <leader>9 <Plug>lightline#bufferline#go(9)
-map <leader>0 <Plug>lightline#bufferline#go(10)
+nnoremap <leader>1 <Plug>lightline#bufferline#go(1)
+nnoremap <leader>2 <Plug>lightline#bufferline#go(2)
+nnoremap <leader>3 <Plug>lightline#bufferline#go(3)
+nnoremap <leader>4 <Plug>lightline#bufferline#go(4)
+nnoremap <leader>5 <Plug>lightline#bufferline#go(5)
+nnoremap <leader>6 <Plug>lightline#bufferline#go(6)
+nnoremap <leader>7 <Plug>lightline#bufferline#go(7)
+nnoremap <leader>8 <Plug>lightline#bufferline#go(8)
+nnoremap <leader>9 <Plug>lightline#bufferline#go(9)
+nnoremap <leader>0 <Plug>lightline#bufferline#go(10)
 
 " Vim Plug
 call plug#begin('~/.vim/plugged')
