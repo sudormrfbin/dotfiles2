@@ -55,6 +55,12 @@ function! WriteVimConfig()
         endif
 endfunction
 
+function! SurroundWith(openchar, closechar)
+        " Surround [previously] visually selected text
+        execute "normal! gv\<esc>a" . a:closechar . "\<esc>"
+        execute "normal! gvo\<esc>i" . a:openchar . "\<esc>"
+endfunction
+
 " Autocommands
 
 autocmd BufReadPost * call GoToLastCursorLocation()
@@ -73,6 +79,14 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>r :call WriteVimConfig()<CR> :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>/ :set invhlsearch<CR>
+" Surround
+vnoremap <leader>" :call SurroundWith('"', '"')<CR>
+vnoremap <leader>' :call SurroundWith("'", "'")<CR>
+vnoremap <leader>* :call SurroundWith("*", "*")<CR>
+vnoremap <leader>( :call SurroundWith("(", ")")<CR>
+vnoremap <leader>[ :call SurroundWith("[", "]")<CR>
+vnoremap <leader>{ :call SurroundWith("{", "}")<CR>
+vnoremap <leader>< :call SurroundWith("<", ">")<CR>
 " Disabled
 inoremap <esc> <nop>
 nnoremap <up> <nop>
