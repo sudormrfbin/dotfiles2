@@ -49,6 +49,11 @@ function! GoToLastCursorLocation()
         endif
 endfunction
 
+function! WriteVimConfig()
+        if bufname("") ==# "/home/gokul/.config/nvim/init.vim"
+                write
+        endif
+endfunction
 
 " Autocommands
 
@@ -66,7 +71,7 @@ nnoremap <leader>z :set wrap!<CR>
 nnoremap <leader>w :wq<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
-nnoremap <leader>r :source ~/.config/nvim/init.vim<CR>
+nnoremap <leader>r :call WriteVimConfig()<CR> :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>/ :set invhlsearch<CR>
 " Disabled
 inoremap <esc> <nop>
