@@ -40,12 +40,19 @@ set list                " Show problematic characters.
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$\|\t/
 
-" Open file at same line number
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
-endif
 
+" Functions
+
+function! GoToLastCursorLocation()
+        if line("'\"") > 0 && line("'\"") <= line("$")
+                normal! g'"
+        endif
+endfunction
+
+
+" Autocommands
+
+autocmd BufReadPost * call GoToLastCursorLocation()
 
 " Keymaps
 
