@@ -50,7 +50,7 @@ function! GoToLastCursorLocation()
 endfunction
 
 function! WriteVimConfig()
-        if bufname("") ==# "/home/gokul/.config/nvim/init.vim"
+        if expand("%:p") ==# "/home/gokul/.config/nvim/init.vim"
                 write
         endif
 endfunction
