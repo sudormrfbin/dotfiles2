@@ -11,6 +11,7 @@ set number              " Show the line numbers on the left side.
 set relativenumber      " Show relative line numbers
 set expandtab           " Insert spaces when TAB is pressed.
 set hlsearch            " Highlight search results
+set hidden              " Keep changes in buffer when switching
 
 set noerrorbells        " No beeps.
 set modeline            " Enable modeline.
@@ -28,7 +29,6 @@ set nostartofline       " Do not jump to first character with page commands.
 
 set ignorecase          " Make searching case insensitive
 set smartcase           " ... unless the query has capital letters.
-set gdefault            " Use 'g' flag by default with :s/foo/bar/.
 set magic               " Use 'magic' patterns (extended regular expressions).
 
 " Tell Vim which characters to show for expanded TABs,
