@@ -61,6 +61,17 @@ function! SurroundWith(openchar, closechar)
         execute "normal! gvo\<esc>i" . a:openchar . "\<esc>"
 endfunction
 
+function! ToggleComment(comment_char)
+        let l:comment_char = trim(a:comment_char)
+        normal! _
+        if getline(".")[col(".") - 1] ==# l:comment_char
+                normal! dw
+        else
+                execute "normal! I" . l:comment_char . " "
+        endif
+endfunction
+
+
 " Autocommands
 
 autocmd BufReadPost * call GoToLastCursorLocation()
@@ -76,6 +87,7 @@ inoremap jk <esc>
 nnoremap <leader>z :set wrap!<CR>
 nnoremap <leader>w :wq<CR>
 nnoremap <leader>q :q<CR>
+nnoremap <leader>c :call ToggleComment(split(&commentstring, "%s")[0])<CR>
 nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>r :call WriteVimConfig()<CR> :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>/ :set invhlsearch<CR>
