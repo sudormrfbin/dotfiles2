@@ -55,10 +55,11 @@ function! WriteVimConfig()
         endif
 endfunction
 
-function! SurroundWith(openchar, closechar)
+function! SurroundWith(openchar, closechar) range
         " Surround [previously] visually selected text
-        execute "normal! gv\<esc>a" . a:closechar . "\<esc>"
-        execute "normal! gvo\<esc>i" . a:openchar . "\<esc>"
+        " without range option function is executed for all lines in range
+        execute "normal! `>a" . a:closechar . "\<esc>"
+        execute "normal! `<i" . a:openchar . "\<esc>"
 endfunction
 
 function! ToggleComment(comment_char)
