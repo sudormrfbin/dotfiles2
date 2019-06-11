@@ -14,7 +14,6 @@ set hlsearch            " Highlight search results
 set hidden              " Keep changes in buffer when switching
 
 set noerrorbells        " No beeps.
-set modeline            " Enable modeline.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 
 set splitbelow          " Horizontal split below current.
