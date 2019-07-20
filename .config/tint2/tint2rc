@@ -87,8 +87,8 @@ scale_relative_to_screen_height = 0
 
 #-------------------------------------
 # Taskbar
-taskbar_mode = single_desktop
-taskbar_hide_if_empty = 0
+taskbar_mode = multi_desktop
+taskbar_hide_if_empty = 1
 taskbar_padding = 0 0 2
 taskbar_background_id = 0
 taskbar_active_background_id = 0
@@ -154,6 +154,7 @@ launcher_item_app = /usr/share/applications/exo-terminal-emulator.desktop
 launcher_item_app = /usr/share/applications/vivaldi-stable.desktop
 launcher_item_app = /usr/share/applications/deluge.desktop
 launcher_item_app = /usr/share/applications/xfce4-notifyd-config.desktop
+launcher_item_app = /usr/share/applications/youtube-dlg.desktop
 
 #-------------------------------------
 # Clock
