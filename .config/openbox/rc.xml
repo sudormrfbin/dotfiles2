@@ -491,7 +491,7 @@
           <enabled>false</enabled>
           <name>rofi</name>
         </startupnotify>
-        <command>rofi -show drun</command>
+        <command>rofi -show combi -combi-modi "drun,emoji:~/.local/bin/rofiemoji.sh" -modi combi</command>
       </action>
     </keybind>
     <keybind key="W-c">
