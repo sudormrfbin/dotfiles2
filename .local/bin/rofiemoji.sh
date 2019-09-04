@@ -10,6 +10,7 @@ if [ ! -r $FILE ]
 then
   if [ ! -d $DIR ]; then mkdir $DIR; fi
   curl $URL | cut -f1,4,5 --output-delimiter ' ' > $FILE
+  sed -i "/skin tone/d" $FILE
 fi
 
 if [ "$@" ]
