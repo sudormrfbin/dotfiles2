@@ -370,15 +370,6 @@
         <command>x-terminal-emulator</command>
       </action>
     </keybind>
-    <keybind key="W-w">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>true</enabled>
-          <name>Web Browser</name>
-        </startupnotify>
-        <command>x-www-browser</command>
-      </action>
-    </keybind>
     <keybind key="W-l">
       <action name="Execute">
         <startupnotify>
@@ -485,13 +476,40 @@
       <action name="Move"/>
     </keybind>
     <!-- Custom keybindings -->
+    <keybind key="W-F4">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>dmenu-shutdown</name>
+        </startupnotify>
+        <command>/mnt/MyStuff/Scripts/shutdown.fish</command>
+      </action>
+    </keybind>
     <keybind key="W-space">
       <action name="Execute">
         <startupnotify>
           <enabled>false</enabled>
           <name>rofi</name>
         </startupnotify>
-        <command>rofi -show combi -combi-modi "drun,emoji:~/.local/bin/rofiemoji.sh" -modi combi</command>
+        <command>j4-dmenu-desktop --usage-log=/home/gokul/.cache/j4dd</command>
+      </action>
+    </keybind>
+    <keybind key="W-w">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>rofi</name>
+        </startupnotify>
+        <command>rofi -lines 9 -modi emoji:~/.local/bin/rofiemoji.sh -show emoji</command>
+      </action>
+    </keybind>
+    <keybind key="A-3">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>dmenu-todo</name>
+        </startupnotify>
+        <command>/mnt/MyStuff/Scripts/selist.fish</command>
       </action>
     </keybind>
     <keybind key="W-c">
