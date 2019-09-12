@@ -1,0 +1,4 @@
+unbind-key j
+unbind-key k
+bind-key j down
+bind-key k up
