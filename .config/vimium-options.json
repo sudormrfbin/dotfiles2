@@ -9,7 +9,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "unmap i\nmap i focusInput\nmap I enterInsertMode",
+  "keyMappings": "unmap i\nunmap gt\nunmap gT\n\nmap i focusInput\nmap I enterInsertMode\nmap gt previousTab\nmap gb nextTab\n\n#Vimium mappings replaced by native Vivaldi mappings:\n#open new tab\nunmap t\n#go back/forward in history \nunmap H\nunmap L\n#go one tab left/right\nunmap J\nunmap K\n#close tab, restore tab\nunmap x\nunmap X?\n#refresh page, find on page, pin tab\nunmap r\nunmap <a-p>\n#scroll page to bottom\nunmap G",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
