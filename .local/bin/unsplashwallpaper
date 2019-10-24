@@ -1,0 +1,9 @@
+#!/bin/sh
+
+WORKDIR=$HOME'/.local/share/wallpapers/'
+RANT=$(date +%s)
+mkdir -p $WORKDIR
+
+wget -O ${WORKDIR}${RANT}'.jpg' -q https://source.unsplash.com/1280x800/daily
+
+nitrogen --set-auto ${WORKDIR}${RANT}'.jpg'
