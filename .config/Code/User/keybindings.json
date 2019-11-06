@@ -164,5 +164,9 @@
         "key": "alt+m",
         "command": "-metaGo.currentLineToCenter",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+.",
+        "command": "metaGo.gotoAfter"
     }
 ]
