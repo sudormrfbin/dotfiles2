@@ -93,3 +93,6 @@ keynav 'loadconfig ~/.config/keynavrc,daemonize'
 
 # Start tray
 bash /mnt/MyStuff/Scripts/tray/run.sh &
+
+# daily wallpaper
+~/.local/bin/unsplashwallpaper &
