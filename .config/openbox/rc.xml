@@ -500,7 +500,7 @@
           <enabled>false</enabled>
           <name>rofi</name>
         </startupnotify>
-        <command>rofi -lines 9 -modi emoji:~/.local/bin/rofiemoji.sh -show emoji</command>
+        <command>rofi -lines 9 -modi emoji:~/.local/bin/rofiemoji.sh -show emoji -font 'mononoki 40'</command>
       </action>
     </keybind>
     <keybind key="A-3">
