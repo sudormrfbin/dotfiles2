@@ -361,15 +361,6 @@
         <command>bl-file-manager</command>
       </action>
     </keybind>
-    <keybind key="W-t">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>false</enabled>
-          <name>Terminal</name>
-        </startupnotify>
-        <command>x-terminal-emulator</command>
-      </action>
-    </keybind>
     <keybind key="W-l">
       <action name="Execute">
         <startupnotify>
@@ -476,6 +467,15 @@
       <action name="Move"/>
     </keybind>
     <!-- Custom keybindings -->
+    <keybind key="A-space">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>false</enabled>
+          <name>STerm</name>
+        </startupnotify>
+        <command>st</command>
+      </action>
+    </keybind>
     <keybind key="W-F4">
       <action name="Execute">
         <startupnotify>
