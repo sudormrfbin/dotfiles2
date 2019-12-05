@@ -44,10 +44,10 @@ xcape -e 'Super_L=Super_L|space'
 
 ## Configure touchpad. See 'man synaptics' for more info.
 ## (Now might be using libinput instead of synaptics.)
-synclient VertEdgeScroll=1 HorizEdgeScroll=1 TapButton1=1 2>/dev/null
+# synclient VertEdgeScroll=1 HorizEdgeScroll=1 TapButton1=1 2>/dev/null
 
 ## Disable touchpad while typing
-syndaemon -i .5 -K -t -R -d &
+# syndaemon -i .5 -K -t -R -d &
 
 ### TOUCHPAD END
 
@@ -83,7 +83,7 @@ clipit &
 
 ## bl-welcome - post-installation script, will not run in a live session and
 ## only runs once. Safe to remove.
-(sleep 10; bl-welcome --firstrun) &
+# (sleep 10; bl-welcome --firstrun) &
 
 ## bl-fortune - have the system come up with a little adage (not yet enabled)
 #(sleep 120; bl-fortune) &
