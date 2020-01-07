@@ -22,6 +22,7 @@ set splitright          " Vertical split to right of current.
 
 set cursorline          " Highlight current line
 set showtabline=2       " Always show tabline
+set wildoptions=tagfile " Disable vertical completion by removing pum option
 
 set scrolloff=3         " Show next 3 lines while scrolling.
 set sidescrolloff=5     " Show next 5 columns while side-scrolling.
