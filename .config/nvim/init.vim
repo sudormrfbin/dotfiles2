@@ -10,6 +10,7 @@ set ruler               " Show the line and column numbers of the cursor.
 set number              " Show the line numbers on the left side.
 set relativenumber      " Show relative line numbers
 set expandtab           " Insert spaces when TAB is pressed.
+set shiftwidth=4        " Set tab to 4 spaces
 set hlsearch            " Highlight search results
 set hidden              " Keep changes in buffer when switching
 
