@@ -25,7 +25,8 @@ set -x PATH ~/.local/bin/ ~/go/bin/ $PATH
 
 set -x Z_CMD "j"
 set -x FZF_LEGACY_KEYBINDINGS 0
-set -x FZF_DEFAULT_OPTS '--bind "ctrl-c:execute-silent(echo -n {} | xclip -selection clipboard)+abort"'
+# {+} expands to space seperated list of multi selected items or current item
+set -x FZF_DEFAULT_OPTS '--bind "ctrl-c:execute-silent(echo -n {+} | xclip -selection clipboard)+abort" --height=20%'
 
 set -x LESS_TERMCAP_ue (printf "\e[0m")
 set -x LESS_TERMCAP_me (printf "\033[0m")
