@@ -16,6 +16,7 @@ bind \e1 forward-word
 bind \x1B\x1B insert-or-remove-sudo  # Esc-Esc
 bind \e, up-or-search
 bind "<>" pathget-key
+bind "><" paste-path-from-prev-command
 
 # Variables
 
