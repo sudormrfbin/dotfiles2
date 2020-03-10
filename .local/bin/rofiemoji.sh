@@ -5,6 +5,8 @@
 URL="https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis.txt"
 DIR="$HOME/.local/share"
 FILE="$DIR/emoji.txt"
+FRECEFILE="$HOME/.cache/emojihist.txt"
+FRECECOMMAND="$HOME/.local/bin/frece"
 
 if [ ! -r $FILE ]
 then
@@ -15,9 +17,10 @@ fi
 
 if [ "$@" ]
 then
+  $FRECECOMMAND increment $FRECEFILE "$@"
   smiley=$(echo $@ | cut -d' ' -f1)
   echo -n "$smiley" | xsel -bi
   exit 0
 fi
 
-cat $FILE
+$FRECECOMMAND print $FRECEFILE
