@@ -61,7 +61,7 @@ nitrogen --restore
 
 ## Compton
 ## NOTE: composition must be started before tint2
-bl-compositor --start
+# bl-compositor --start
 
 ## Start the tint2 session (the default tint2 will run if no sessions have been set)
 bl-tint2-session
@@ -95,4 +95,4 @@ keynav 'loadconfig ~/.config/keynavrc,daemonize'
 bash /mnt/MyStuff/Scripts/tray/run.sh &
 
 # daily wallpaper
-~/.local/bin/unsplashwallpaper &
+# ~/.local/bin/unsplashwallpaper &
