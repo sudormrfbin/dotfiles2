@@ -139,6 +139,8 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'mengelbrecht/lightline-bufferline'
 
+Plug 'blankname/vim-fish'
+
 call plug#end()
 
 colorscheme onedark
