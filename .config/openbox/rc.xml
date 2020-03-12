@@ -467,11 +467,17 @@
       <action name="Move"/>
     </keybind>
     <!-- Custom keybindings -->
+    <keybind key="Menu">
+      <action name="Execute">
+        <command>sh -c 'xdotool key "alt+2" "4" "alt+2" "3"'</command>
+      </action>
+    </keybind>
     <keybind key="A-space">
       <action name="Execute">
         <startupnotify>
           <enabled>false</enabled>
           <name>STerm</name>
+          <icon>terminal</icon>
         </startupnotify>
         <command>st</command>
       </action>
@@ -501,15 +507,6 @@
           <name>rofi</name>
         </startupnotify>
         <command>rofi -lines 9 -modi emoji:~/.local/bin/rofiemoji.sh -show emoji -font 'mononoki 40'</command>
-      </action>
-    </keybind>
-    <keybind key="A-3">
-      <action name="Execute">
-        <startupnotify>
-          <enabled>false</enabled>
-          <name>dmenu-todo</name>
-        </startupnotify>
-        <command>/mnt/MyStuff/Scripts/selist.fish</command>
       </action>
     </keybind>
     <keybind key="W-c">
