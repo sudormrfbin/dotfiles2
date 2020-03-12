@@ -9,7 +9,7 @@ end
 # Keybindings
 
 bind \e/ toggle-comment  # Alt-/
-bind -k ic show-man-page  # Insert
+bind -k f12 show-man-page  # Insert
 bind "`" power-key
 bind "L:" "commandline -a ' --color=always| less -R'"
 bind \e1 forward-word
@@ -17,6 +17,7 @@ bind \x1B\x1B insert-or-remove-sudo  # Esc-Esc
 bind \e, up-or-search
 bind "<>" pathget-key
 bind "><" paste-path-from-prev-command
+bind \e3 __fzf_reverse_isearch
 
 # Variables
 
