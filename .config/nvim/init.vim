@@ -13,6 +13,7 @@ set expandtab           " Insert spaces when TAB is pressed.
 set shiftwidth=4        " Set tab to 4 spaces
 set hlsearch            " Highlight search results
 set hidden              " Keep changes in buffer when switching
+set tabstop=4           " Width of tab character
 
 set noerrorbells        " No beeps.
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
