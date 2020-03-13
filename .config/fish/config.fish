@@ -49,3 +49,8 @@ set fish_complete_path $fish_complete_path[1] $fisher_path/completions $fish_com
 for file in $fisher_path/conf.d/*.fish
     builtin source $file 2> /dev/null
 end
+
+# Disable ^R for fzf; alt-3 already bound
+# These commands must be run after the fzf plugin is loaded
+bind -e \cr
+bind -M insert -e \cr
