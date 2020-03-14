@@ -19,6 +19,28 @@ bind "<>" pathget-key
 bind "><" paste-path-from-prev-command
 bind \e3 __fzf_reverse_isearch
 
+# Abbreviations
+
+abbr -a -g ga 'git add'
+abbr -a -g gl 'git log'
+abbr -a -g gb 'git branch'
+abbr -a -g gs 'git status'
+abbr -a -g gc 'git commit -m'
+abbr -a -g gd 'git diff --word-diff=color'
+abbr -a -g gco 'git checkout'
+abbr -a -g gsp 'git stash pop'
+abbr -a -g gca 'git commit -am'
+abbr -a -g gss 'git stash push --include-untracked --message'
+
+abbr -a -g ta 'task add'
+abbr -a -g td 'task done'
+abbr -a -g tl 'task list'
+
+abbr -a -g y 'yadm status'
+abbr -a -g ya 'yadm add'
+abbr -a -g yd 'yadm diff'
+abbr -a -g yc 'yadm commit -m'
+
 # Variables
 
 set -x EDITOR "nvim"
@@ -37,7 +59,7 @@ set -x LESS_TERMCAP_mb (printf "\033[01;31m")
 set -x LESS_TERMCAP_md (printf "\033[01;31m")
 set -x LESS_TERMCAP_so (printf "\033[00;47;30m")
 
-set SPACEFISH_PROMPT_ORDER dir exec_time line_sep exit_code char
+set SPACEFISH_PROMPT_ORDER dir exec_time vi_mode line_sep exit_code char
 
 # Fisher
 
