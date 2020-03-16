@@ -1,5 +1,5 @@
 function n
-    set -l selection (command ls ~/notes/ | fzf --print-query --preview="cat $HOME/notes/{}")
+    set -l selection (command ls ~/notes/ | fzf --print-query --preview="cat $HOME/notes/{}" --height=100%)
     if test $status -eq 130
         return 1 # exit by esc or ctrl-c
     end
