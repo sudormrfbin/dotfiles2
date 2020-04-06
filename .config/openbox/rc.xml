@@ -467,6 +467,11 @@
       <action name="Move"/>
     </keybind>
     <!-- Custom keybindings -->
+    <keybind key="C-A-h">
+      <action name="Execute">
+          <command>sh -c 'clipmenu -i -fn mononoki-14 -l 10'</command>
+      </action>
+    </keybind>
     <keybind key="A-4">
       <action name="Execute">
           <command>bash ~/.local/bin/bukudmenu.sh</command>
