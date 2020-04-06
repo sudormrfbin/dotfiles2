@@ -467,6 +467,11 @@
       <action name="Move"/>
     </keybind>
     <!-- Custom keybindings -->
+    <keybind key="A-4">
+      <action name="Execute">
+          <command>bash ~/.local/bin/bukudmenu.sh</command>
+      </action>
+    </keybind>
     <keybind key="Menu">
       <action name="Execute">
         <command>sh -c 'xdotool key "alt+2" "4" "alt+2" "3"'</command>
