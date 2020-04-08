@@ -1,13 +1,14 @@
 #!/bin/bash
 
-dmenucmd='dmenu -fn mononoki-15'
+dmenucmd='dmenu -fn mononoki-14'
+bukudb="$HOME/.local/share/buku/bookmarks.db"
 
 function open-bookmark {
-    # credited to: https://gitlab.com/benoliver999/buku-dmenu
-    buku --print --format=4 |  # show url, title, tags; refer -f option in buku
-        sed 's/\t/ /g' 2>/dev/null |       # convert tabs to spaces
-        $dmenucmd -i -l 10 |   # case insensitive, vertical
-        cut -d ' ' -f 1 |      # select url index
+    # adapted from: https://gitlab.com/benoliver999/buku-dmenu
+    # using buku to print urls is slow; directly access the database
+    sqlite3 -separator ' ▪ ' "$bukudb" 'select id, url, metadata, desc from bookmarks' |
+        $dmenucmd -i -l 10 |          # case insensitive, vertical
+        cut -d ' ' -f 1 |             # select url index
         xargs --no-run-if-empty buku -o
 }
 
@@ -18,10 +19,10 @@ then
     # text in clipboard is a url; prompt to bookmark
 
     # full urls are usually long, so use domain name in prompt
-    prompt=$(echo "$url" | cut -d/ -f3)
+    prompt="Bookmark $(echo "$url" | cut -d/ -f3)"
 
     # echo -n to have dmenu show no selection items
-    if bukuargs=$(echo -n | $dmenucmd -p "Bookmark $prompt")
+    if bukuargs=$(echo -n | $dmenucmd -p "$prompt")
     then
         bukuoutput=$(buku --nc --add "$url" "$bukuargs")
         notify-send 'Bookmark addded' "'$bukuoutput'"
