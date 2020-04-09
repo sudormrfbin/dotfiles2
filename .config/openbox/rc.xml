@@ -419,11 +419,6 @@
         <menu>client-list-combined-menu</menu>
       </action>
     </keybind>
-    <keybind key="W-space">
-      <action name="ShowMenu">
-        <menu>root-menu</menu>
-      </action>
-    </keybind>
     <keybind key="A-C-q">
       <action name="ShowMenu">
         <menu>root-menu</menu>
