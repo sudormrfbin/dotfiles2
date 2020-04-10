@@ -13,7 +13,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "unmap i\nunmap gt\nunmap gT\nunmap F\n\nmap i focusInput\nmap I enterInsertMode\nmap gt previousTab\nmap gb nextTab\nmap s LinkHints.activateModeToOpenInNewTab\nmap S LinkHints.activateModeToOpenInNewForegroundTab",
+  "keyMappings": "unmap i\nunmap gt\nunmap gT\nunmap F\nunmap /\n\nmap i focusInput\nmap I enterInsertMode\nmap gt previousTab\nmap gb nextTab\nmap s LinkHints.activateModeToOpenInNewTab\nmap S LinkHints.activateModeToOpenInNewForegroundTab",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
