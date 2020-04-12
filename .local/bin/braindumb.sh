@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dmenucmd='dmenu -fn mononoki-14'
+dmenucmd='dmenu -fn mononoki-14 -i'
 
 # https://stackoverflow.com/questions/46131727/printing-multiple-values-on-the-same-line
 # https://stackoverflow.com/questions/28164849/using-jq-to-parse-and-display-multiple-fields-in-a-json-serially

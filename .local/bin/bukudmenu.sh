@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dmenucmd='dmenu -fn mononoki-14'
+dmenucmd='dmenu -fn mononoki-14 -i'
 bukudb="$HOME/.local/share/buku/bookmarks.db"
 
 function open-bookmark {
