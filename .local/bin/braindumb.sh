@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dmenucmd='dmenu -fn mononoki-14 -l 10'
+dmenucmd='dmenu -fn mononoki-14'
 
 # https://stackoverflow.com/questions/46131727/printing-multiple-values-on-the-same-line
 # https://stackoverflow.com/questions/28164849/using-jq-to-parse-and-display-multiple-fields-in-a-json-serially
@@ -8,7 +8,7 @@ dmenucmd='dmenu -fn mononoki-14 -l 10'
 
 tasklist=$(task +braindump +READY export | jq -r '.[] | "\(.id) ▪ \(.description)"')
 
-if selected=$(echo "$tasklist" | $dmenucmd)
+if selected=$(echo "$tasklist" | $dmenucmd -l $(echo "$tasklist" | wc -l))
 then
     if id=$(echo $selected | grep -oP '^\d+')
     then
