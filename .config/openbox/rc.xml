@@ -503,7 +503,7 @@
           <enabled>false</enabled>
           <name>rofi</name>
         </startupnotify>
-        <command>j4-dmenu-desktop --usage-log=/home/gokul/.cache/j4dd</command>
+        <command>j4-dmenu-desktop --usage-log=/home/gokul/.cache/j4dd --dmenu 'dmenu -fn mononoki-13 -i'</command>
       </action>
     </keybind>
     <keybind key="W-w">
