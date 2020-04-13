@@ -1,6 +1,7 @@
 #!/bin/bash
 
 dmenucmd='dmenu -fn mononoki-14 -i'
+notifycmd='notify-send -u low -t 1000'  # low priority, 1 second
 bukudb="$HOME/.local/share/buku/bookmarks.db"
 
 function open-bookmark {
@@ -25,7 +26,7 @@ then
     if bukuargs=$(echo -n | $dmenucmd -p "$prompt")
     then
         bukuoutput=$(buku --nc --add "$url" "$bukuargs")
-        notify-send 'Bookmark addded' "'$bukuoutput'"
+        $notifycmd 'Bookmark addded' "'$bukuoutput'"
     else
         # esc or ctrl-c
         # user might've wanted to open a bookmark, but clipboard had a url
