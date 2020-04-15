@@ -2,15 +2,16 @@
 
 dmenucmd='dmenu -fn mononoki-14 -i'
 notifycmd='notify-send -u low -t 1000'  # low priority, 1 second
+browsercmd='firefox'
 bukudb="$HOME/.local/share/buku/bookmarks.db"
 
 function open-bookmark {
     # adapted from: https://gitlab.com/benoliver999/buku-dmenu
     # using buku to print urls is slow; directly access the database
     sqlite3 -separator ' ▪ ' "$bukudb" 'select id, url, metadata, desc from bookmarks' |
-        $dmenucmd -i -l 10 |          # case insensitive, vertical
-        cut -d ' ' -f 1 |             # select url index
-        xargs --no-run-if-empty buku -o
+        $dmenucmd -i -l 10 |                   # case insensitive, vertical
+        cut -d ' ' -f 3 |                      # select url index
+        xargs --no-run-if-empty $browsercmd    # faster than using buku -o
 }
 
 url=$(xclip -o -selection clipboard)  # could be other copied text
