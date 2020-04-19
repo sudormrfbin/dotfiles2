@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dmenucmd='dmenu -fn mononoki-14 -i'
+dmenucmd='dmenu -fn mononoki-14 -i -F'
 notifycmd='notify-send -u low -t 1000'  # low priority, 1 second
 browsercmd='firefox'
 bukudb="$HOME/.local/share/buku/bookmarks.db"
