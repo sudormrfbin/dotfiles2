@@ -96,3 +96,6 @@ bash /mnt/MyStuff/Scripts/tray/run.sh &
 
 # daily wallpaper
 # ~/.local/bin/unsplashwallpaper &
+
+# swap ctrl and capslock
+setxkbmap -option ctrl:swapcaps
