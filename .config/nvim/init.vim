@@ -103,11 +103,15 @@ vnoremap <leader>[ :call SurroundWith("[", "]")<CR>
 vnoremap <leader>{ :call SurroundWith("{", "}")<CR>
 vnoremap <leader>< :call SurroundWith("<", ">")<CR>
 " Disabled
-inoremap <esc> <nop>
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
+inoremap <esc>   <nop>
+nnoremap <up>    <nop>
+nnoremap <down>  <nop>
+nnoremap <left>  <nop>
 nnoremap <right> <nop>
+inoremap <up>    <nop>
+inoremap <down>  <nop>
+inoremap <left>  <nop>
+inoremap <right> <nop>
 " Buffers
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
