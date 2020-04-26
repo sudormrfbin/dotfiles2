@@ -116,6 +116,11 @@ inoremap <right> <nop>
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
 nnoremap <leader>bc :bdelete<CR>
+" Splits
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
 " File Explorer
 nnoremap <leader>t :Texplore<CR>
 " Buffer switching
