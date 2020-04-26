@@ -115,7 +115,7 @@ inoremap <right> <nop>
 " Buffers
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
-nnoremap <leader>bc :bd<CR>
+nnoremap <leader>bc :bdelete<CR>
 " File Explorer
 nnoremap <leader>t :Texplore<CR>
 " Buffer switching
