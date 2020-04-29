@@ -33,6 +33,8 @@ set ignorecase          " Make searching case insensitive
 set smartcase           " ... unless the query has capital letters.
 set magic               " Use 'magic' patterns (extended regular expressions).
 
+set undofile            " Persistent undo
+
 " Tell Vim which characters to show for expanded TABs,
 " trailing whitespace, and end-of-lines. VERY useful!
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
