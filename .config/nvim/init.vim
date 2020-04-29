@@ -90,15 +90,23 @@ nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>r :call WriteVimConfig()<CR> :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>/ :set invhlsearch<CR>
 " Disabled
-inoremap <esc>   <nop>
-nnoremap <up>    <nop>
-nnoremap <down>  <nop>
-nnoremap <left>  <nop>
-nnoremap <right> <nop>
-inoremap <up>    <nop>
-inoremap <down>  <nop>
-inoremap <left>  <nop>
-inoremap <right> <nop>
+nnoremap <up>       <nop>
+nnoremap <down>     <nop>
+nnoremap <left>     <nop>
+nnoremap <right>    <nop>
+nnoremap <PageUp>   <nop>
+nnoremap <PageDown> <nop>
+nnoremap <Home>     <nop>
+nnoremap <End>      <nop>
+inoremap <esc>      <nop>
+inoremap <up>       <nop>
+inoremap <down>     <nop>
+inoremap <left>     <nop>
+inoremap <right>    <nop>
+inoremap <PageUp>   <nop>
+inoremap <PageDown> <nop>
+inoremap <Home>     <nop>
+inoremap <End>      <nop>
 " Buffers
 nnoremap <leader>bn :bnext<CR>
 nnoremap <leader>bp :bprev<CR>
