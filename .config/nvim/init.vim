@@ -57,13 +57,6 @@ function! WriteVimConfig()
         endif
 endfunction
 
-function! SurroundWith(openchar, closechar) range
-        " Surround [previously] visually selected text
-        " without range option function is executed for all lines in range
-        execute "normal! `>a" . a:closechar . "\<esc>"
-        execute "normal! `<i" . a:openchar . "\<esc>"
-endfunction
-
 function! ToggleComment(comment_char)
         let l:comment_char = trim(a:comment_char)
         normal! _
@@ -94,14 +87,6 @@ nnoremap <leader>c :call ToggleComment(split(&commentstring, "%s")[0])<CR>
 nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>r :call WriteVimConfig()<CR> :source ~/.config/nvim/init.vim<CR>
 nnoremap <silent> <leader>/ :set invhlsearch<CR>
-" Surround
-vnoremap <leader>" :call SurroundWith('"', '"')<CR>
-vnoremap <leader>' :call SurroundWith("'", "'")<CR>
-vnoremap <leader>* :call SurroundWith("*", "*")<CR>
-vnoremap <leader>( :call SurroundWith("(", ")")<CR>
-vnoremap <leader>[ :call SurroundWith("[", "]")<CR>
-vnoremap <leader>{ :call SurroundWith("{", "}")<CR>
-vnoremap <leader>< :call SurroundWith("<", ">")<CR>
 " Disabled
 inoremap <esc>   <nop>
 nnoremap <up>    <nop>
@@ -149,6 +134,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 
 Plug 'blankname/vim-fish'
+
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
