@@ -28,6 +28,7 @@ set wildoptions=tagfile " Disable vertical completion by removing pum option
 set scrolloff=3         " Show next 3 lines while scrolling.
 set sidescrolloff=5     " Show next 5 columns while side-scrolling.
 set nostartofline       " Do not jump to first character with page commands.
+set conceallevel=0      " Do not hide characters for eg. when editing md
 
 set ignorecase          " Make searching case insensitive
 set smartcase           " ... unless the query has capital letters.
@@ -73,6 +74,7 @@ endfunction
 " Autocommands
 
 autocmd BufReadPost * call GoToLastCursorLocation()
+autocmd BufWritePost *.go !go fmt %
 
 " Keymaps
 
@@ -83,8 +85,6 @@ nnoremap j gj
 nnoremap k gk
 inoremap jk <esc>
 nnoremap <leader>z :set wrap!<CR>
-nnoremap <leader>w :wq<CR>
-nnoremap <leader>q :q<CR>
 nnoremap <leader>c :call ToggleComment(split(&commentstring, "%s")[0])<CR>
 nnoremap <leader>e :edit ~/.config/nvim/init.vim<CR>
 nnoremap <leader>r :call WriteVimConfig()<CR> :source ~/.config/nvim/init.vim<CR>
@@ -143,7 +143,9 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'mengelbrecht/lightline-bufferline'
 
-Plug 'blankname/vim-fish'
+Plug 'blankname/vim-fish', { 'for': 'fish' }
+
+Plug 'justinmk/vim-sneak'
 
 Plug 'tpope/vim-surround'
 
@@ -157,3 +159,8 @@ let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 let g:lightline#bufferline#show_number  = 2
+
+nmap : <Plug>Sneak_;
+nmap <Tab> <Plug>Sneak_s
+nmap <S-Tab> <Plug>Sneak_S
+let g:sneak#label = 1
