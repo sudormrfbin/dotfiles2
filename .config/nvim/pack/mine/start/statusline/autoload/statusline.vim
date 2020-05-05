@@ -48,3 +48,44 @@ function! statusline#set_mode_color(mode)
         highlight link StatusLineModeColor StatusLineReplaceMode
     endif
 endfunction
+
+function! statusline#get_bufferline()
+    let l:current_buffer = bufnr('%')
+    let l:bufferlist = getbufinfo({'buflisted': 1})  " only buffers listed in :ls
+
+    let l:bl = '%#StatusLineTab#'
+    let l:bl .= ' B:' . len(l:bufferlist) . ' '  " total number of buffers
+
+    let l:counter = 0
+    for l:ibuffer in l:bufferlist
+        let l:counter += 1
+        let l:this_buffer = ' ' . l:counter . ' ' . statusline#get_short_fname(l:ibuffer['name']) . ' '
+
+        if l:current_buffer == l:ibuffer['bufnr']  " highlight current buffer
+            let l:this_buffer  = '%#StatusLineTabSel#' . l:this_buffer
+            let l:this_buffer .= '%*'  " reset color
+            let l:this_buffer .= '%#StatusLineTab#'
+        endif
+
+        let l:bl .= l:this_buffer
+    endfor
+
+    let l:bl .= '%*'  " reset color
+    let l:bl .= '%#StatusLineTabFill#'  " end buffer items
+
+    let l:tablist  = '%='  " right align
+    let l:tablist .= '%#StatusLineTab# '
+    let l:tablist .= join(range(1, tabpagenr('$'))) . ' '  " total tabs, numbered
+    let l:tablist  = substitute(l:tablist, tabpagenr(), '[\0]', '')  " add a [ ] around the current tab
+
+    return l:bl . l:tablist
+endfunction
+
+function! statusline#get_short_fname(long_name)
+    if a:long_name == ''
+        return '[No Name]'
+    else
+"        return pathshorten(fnamemodify(a:long_name, ':.'))
+        return fnamemodify(a:long_name, ':t')
+    endif
+endfunction
