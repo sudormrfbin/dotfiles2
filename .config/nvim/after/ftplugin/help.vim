@@ -5,7 +5,12 @@ nnoremap <buffer> k <C-Y>
 nnoremap <buffer> l <C-F>
 nnoremap <buffer> <BS> <C-O>
 
-" Jump to next tag and follow it
+nnoremap <buffer> <C-B> h
+nnoremap <buffer> <C-E> j
+nnoremap <buffer> <C-Y> k
+nnoremap <buffer> <C-F> l
+
+" Jump to next tagnd fo  llow it
 " BUGS: - If there is no match but the word under the cursor is a valid
 "       tag, it is followd
 "       - If cursor is on a valid tag but another tag exist after it,
