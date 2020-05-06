@@ -195,36 +195,6 @@ packadd! onedark.vim
 colorscheme onedark
 " }}}
 
-" lightline.vim {{{
-Pack 'itchyny/lightline.vim'
-
-let g:lightline = {'colorscheme': 'onedark'}
-" }}}
-
-" lightline-bufferline {{{
-Pack 'mengelbrecht/lightline-bufferline', { 'type': 'opt' }
-
-packadd! lightline-bufferline
-
-nnoremap <leader>1 <Plug>lightline#bufferline#go(1)
-nnoremap <leader>2 <Plug>lightline#bufferline#go(2)
-nnoremap <leader>3 <Plug>lightline#bufferline#go(3)
-nnoremap <leader>4 <Plug>lightline#bufferline#go(4)
-nnoremap <leader>5 <Plug>lightline#bufferline#go(5)
-nnoremap <leader>6 <Plug>lightline#bufferline#go(6)
-nnoremap <leader>7 <Plug>lightline#bufferline#go(7)
-nnoremap <leader>8 <Plug>lightline#bufferline#go(8)
-nnoremap <leader>9 <Plug>lightline#bufferline#go(9)
-nnoremap <leader>0 <Plug>lightline#bufferline#go(10)
-
-let g:lightline.tabline          = { 'left': [['buffers']] }
-let g:lightline.component_expand = { 'buffers': 'lightline#bufferline#buffers' }
-let g:lightline.component_type   = { 'buffers': 'tabsel' }
-
-let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline#bufferline#show_number  = 2
-" }}}
-
 call plugpac#end()
 
 " }}}1
