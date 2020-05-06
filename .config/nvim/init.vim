@@ -151,21 +151,25 @@ call plugpac#begin()
 
 Pack 'k-takata/minpac', { 'type': 'opt' }
 
-Pack 'rbong/vim-crystalline'
+Pack 'ryvnf/readline.vim'
 
-Pack 'tweekmonster/startuptime.vim'
-
-Pack 'tpope/vim-rsi'
-
-Pack 'tpope/vim-surround'
-
-Pack 'tpope/vim-commentary'
+Pack 'manasthakur/vim-commentor'
 
 Pack 'tpope/vim-unimpaired'
 
+Pack 'tommcdo/vim-lion'
+
+" TODO: replace with mucomplete
 Pack 'ajh17/VimCompletesMe'
 
 Pack 'blankname/vim-fish', { 'for': 'fish' }
+
+" vim-sandwich {{{
+Pack 'machakann/vim-sandwich', { 'type': 'opt' }
+
+packadd! vim-sandwich
+runtime macros/sandwich/keymap/surround.vim
+" }}}
 
 " vim-sneak {{{
 Pack 'justinmk/vim-sneak'
