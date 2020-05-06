@@ -8,11 +8,14 @@ function! statusline#get_statusline()
     let l:sl .= '%r '                     " readonly
     let l:sl .= '%t '                     " filename
     let l:sl .= '%m '                     " modified
+    let l:sl .= '%<'                      " truncate here if too long
     let l:sl .= '%#StatusLineFill#'
-    let l:sl .= '%= '                     " right align
+    let l:sl .= '%='                      " right align
     let l:sl .= 'w:%{winnr()} '           " current window number
     let l:sl .= 'b:%n '                   " current buffer number
     let l:sl .= '%y '                     " filetype
+    let l:sl .= '%#StatusLineTabSel#'
+    let l:sl .= '%{statusline#get_reg_recording()}'
     let l:sl .= '%*'                      " reset color
     let l:sl .= '%4p%% '                  " percent of file
     let l:sl .= '%#StatusLineModeColor#'
@@ -20,6 +23,15 @@ function! statusline#get_statusline()
     let l:sl .= '%*'                      " reset color
 
     return l:sl
+endfunction
+
+function! statusline#get_reg_recording()
+    let l:current_reg = reg_recording()
+    if l:current_reg ==# ''
+        return ''
+    else
+        return ' rec: ' . l:current_reg . ' '
+    endif
 endfunction
 
 function! statusline#get_mode_label(mode)
