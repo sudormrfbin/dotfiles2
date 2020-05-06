@@ -57,10 +57,10 @@ endfunction
 
 function! s:ReloadVimConfig()
     let l:vimrc = $MYVIMRC
-    if expand("%:p") ==# vimrc
+    if expand("%:p") ==# l:vimrc
         write
     endif
-    source vimrc
+    source l:vimrc
 endfunction
 
 " }}}1
