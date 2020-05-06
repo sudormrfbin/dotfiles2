@@ -171,6 +171,14 @@ packadd! vim-sandwich
 runtime macros/sandwich/keymap/surround.vim
 " }}}
 
+" vim-oldfiles {{{
+Pack 'gpanders/vim-oldfiles'
+
+nnoremap <leader>o :Oldfiles 
+
+let g:oldfiles_blacklist = ['vim/runtime/doc']
+" }}}
+
 " vim-sneak {{{
 Pack 'justinmk/vim-sneak'
 
