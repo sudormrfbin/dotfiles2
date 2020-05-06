@@ -159,6 +159,8 @@ Pack 'tpope/vim-unimpaired'
 
 Pack 'tommcdo/vim-lion'
 
+Pack 'wellle/targets.vim'
+
 " TODO: replace with mucomplete
 Pack 'ajh17/VimCompletesMe'
 
