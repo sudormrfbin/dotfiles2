@@ -64,6 +64,8 @@ endfunction
 function! statusline#get_bufferline()
     let l:current_buffer = bufnr('%')
     let l:bufferlist = getbufinfo({'buflisted': 1})  " only buffers listed in :ls
+    " dict to map displayed buffer number to actual buffer number
+    let g:bufferline_bufnr_map = {}
 
     let l:bl = '%#StatusLineTab#'
     let l:bl .= ' B:' . len(l:bufferlist) . ' '  " total number of buffers
@@ -71,6 +73,8 @@ function! statusline#get_bufferline()
     let l:counter = 0
     for l:ibuffer in l:bufferlist
         let l:counter += 1
+        let g:bufferline_bufnr_map[l:counter] = l:ibuffer['bufnr']
+
         let l:this_buffer = ' ' . l:counter . ' ' . statusline#get_short_fname(l:ibuffer['name']) . ' '
 
         if l:current_buffer == l:ibuffer['bufnr']  " highlight current buffer
