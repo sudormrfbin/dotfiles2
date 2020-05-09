@@ -5,9 +5,9 @@ function! statusline#get_statusline()
     let l:sl .= '%#StatusLineModeColor#'
     let l:sl .= ' %{statusline#get_mode_label(mode())} '     " mode
     let l:sl .= '%* '                     " reset color
-    let l:sl .= '%r '                     " readonly
+    let l:sl .= &readonly ? '%r ' : ''
     let l:sl .= '%t '                     " filename
-    let l:sl .= '%m '                     " modified
+    let l:sl .= !&modifiable ? '[-] ' : &modified ? '[+] ' : ''
     let l:sl .= '%<'                      " truncate here if too long
     let l:sl .= '%#StatusLineFill#'
     let l:sl .= '%='                      " right align
