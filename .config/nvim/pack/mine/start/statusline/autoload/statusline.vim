@@ -61,6 +61,8 @@ function! statusline#set_mode_color(mode)
     endif
 endfunction
 
+let s:circled_bufnr = ['❶', '❷', '❸', '❹', '❺', '❻', '❼', '❽', '❾', '❿', '⓫', '⓬', '⓭', '⓮', '⓯', '⓰', '⓱', '⓲', '⓳', '⓴',]
+
 function! statusline#get_bufferline()
     let l:current_buffer = bufnr('%')
     let l:bufferlist = getbufinfo({'buflisted': 1})  " only buffers listed in :ls
@@ -75,7 +77,9 @@ function! statusline#get_bufferline()
         let l:counter += 1
         let g:bufferline_bufnr_map[l:counter] = l:ibuffer['bufnr']
 
-        let l:this_buffer = ' ' . l:counter . ' ' . statusline#get_short_fname(l:ibuffer['name']) . ' '
+        let l:this_buffer  = ' ' . s:circled_bufnr[l:counter - 1]
+        let l:this_buffer .= ' ' . statusline#get_short_fname(l:ibuffer['name']) . ' '
+        let l:this_buffer .= l:ibuffer['changed'] == 1 ? '+ ' : ''
 
         if l:current_buffer == l:ibuffer['bufnr']  " highlight current buffer
             let l:this_buffer  = '%#StatusLineTabSel#' . l:this_buffer
