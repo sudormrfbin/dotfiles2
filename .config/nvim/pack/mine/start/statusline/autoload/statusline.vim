@@ -70,7 +70,7 @@ function! statusline#get_bufferline()
     let g:bufferline_bufnr_map = {}
 
     let l:bl = '%#StatusLineTab#'
-    let l:bl .= ' B:' . len(l:bufferlist) . ' '  " total number of buffers
+"    let l:bl .= ' B:' . len(l:bufferlist) . ' '  " total number of buffers
 
     let l:counter = 0
     for l:ibuffer in l:bufferlist
