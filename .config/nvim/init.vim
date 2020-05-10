@@ -76,6 +76,7 @@ augroup END
 
 " Always open help in new bottom window
 " cabbrev h botright help
+cabbrev <expr> %% expand('%:h')
 
 " }}}1
 
