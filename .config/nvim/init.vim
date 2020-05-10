@@ -123,7 +123,7 @@ xnoremap : ;
 " }}}
 
 " Buffer {{{
-nnoremap <leader>by gg"+yG<C-O>
+nnoremap <leader>by gg"+yG
 nnoremap <leader>bw :set wrap!<CR>
 nnoremap <leader>bd :bdelete<CR>
 " }}}
