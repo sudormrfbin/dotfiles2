@@ -139,8 +139,10 @@ nnoremap <leader>sd <C-W>c
 " }}}
 
 " Config File {{{
-nnoremap <leader>e :edit $MYVIMRC<CR>
-nnoremap <leader>r :call <SID>ReloadVimConfig()<CR>
+nnoremap <leader>ee :edit $MYVIMRC<CR>
+nnoremap <leader>er :call <SID>ReloadVimConfig()<CR>
+nnoremap <leader>ef :edit ~/.config/nvim/after/ftplugin/<CR>
+nnoremap <leader>es :edit ~/.config/nvim/pack/mine/start/statusline/<CR>
 " }}}
 
 " }}}1
