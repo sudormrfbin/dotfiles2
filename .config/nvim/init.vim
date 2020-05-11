@@ -156,7 +156,7 @@ Pack 'k-takata/minpac', { 'type': 'opt' }
 
 Pack 'ryvnf/readline.vim'
 
-Pack 'manasthakur/vim-commentor'
+Pack 'tpope/vim-commentary'
 
 Pack 'tpope/vim-unimpaired'
 
