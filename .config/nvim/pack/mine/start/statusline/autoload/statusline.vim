@@ -8,13 +8,15 @@ function! statusline#get_statusline()
     let l:sl .= &readonly ? '%r ' : ''
     let l:sl .= '%t '                     " filename
     let l:sl .= !&modifiable ? '[-] ' : &modified ? '[+] ' : ''
+    let l:sl .= '%#StatusLineTabSel#'     " for lessmode
+    let l:sl .= lessmode#is_enabled() ? ' lessmode ' : ''
     let l:sl .= '%<'                      " truncate here if too long
     let l:sl .= '%#StatusLineFill#'
     let l:sl .= '%='                      " right align
     let l:sl .= 'w:%{winnr()} '           " current window number
     let l:sl .= 'b:%n '                   " current buffer number
     let l:sl .= '%y '                     " filetype
-    let l:sl .= '%#StatusLineTabSel#'
+    let l:sl .= '%#StatusLineTabSel#'     " for register
     let l:sl .= '%{statusline#get_reg_recording()}'
     let l:sl .= '%*'                      " reset color
     let l:sl .= '%4p%% '                  " percent of file
