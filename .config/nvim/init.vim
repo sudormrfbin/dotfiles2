@@ -86,6 +86,8 @@ let mapleader="\<SPACE>"
 
 noremap Y y$
 nnoremap zV zMzv
+nnoremap <C-P> R<C-R>0<ESC>
+
 inoremap jk <ESC>
 
 nnoremap <leader><leader> :botright help 
