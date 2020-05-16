@@ -10,6 +10,7 @@ function! statusline#get_statusline()
     let l:sl .= !&modifiable ? '[-] ' : &modified ? '[+] ' : ''
     let l:sl .= '%#StatusLineTabSel#'     " for lessmode
     let l:sl .= lessmode#is_enabled() ? ' lessmode ' : ''
+    let l:sl .= '%*'                      " reset color
     let l:sl .= '%<'                      " truncate here if too long
     let l:sl .= '%#StatusLineFill#'
     let l:sl .= '%='                      " right align

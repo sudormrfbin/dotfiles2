@@ -1,5 +1,5 @@
 highlight StatusLine            guifg=#abb2bf guibg=#3e4452 ctermfg=145 ctermbg=236
-highlight StatusLineFill        guifg=#abb2bf guibg=#282c34 ctermfg=114 ctermbg=236
+highlight StatusLineFill        guifg=#abb2bf guibg=#2c323c ctermfg=114 ctermbg=236
 highlight StatusLineInactive    guifg=#282c34 guibg=#abb2bf ctermfg=235 ctermbg=145
 highlight StatusLineTab         guifg=#abb2bf guibg=#3e4452 ctermfg=145 ctermbg=236
 highlight StatusLineTabFill     guifg=#98c379 guibg=#282c34 ctermfg=114 ctermbg=236
