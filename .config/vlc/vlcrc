@@ -1,5 +1,5 @@
 ﻿###
-###  vlc 3.0.6
+###  vlc 3.0.8
 ###
 
 ###
@@ -240,6 +240,14 @@
 
 # Bar Height in pixel (integer)
 #audiobargraph_v-barHeight=400
+
+[spatialaudio] # Ambisonics renderer and binauralizer
+
+# Headphones mode (binaural) (boolean)
+#spatialaudio-headphones=0
+
+# HRTF file for the binauralization (string)
+#hrtf-file=
 
 [stereo_widen] # Simple stereo widening effect
 
@@ -566,6 +574,9 @@
 # Advanced options (string)
 #sout-avformat-options=
 
+# Reset timestamps (boolean)
+#sout-avformat-reset-ts=0
+
 [mod] # MOD demuxer (libmodplug)
 
 # Noise reduction (boolean)
@@ -783,7 +794,7 @@
 #sout-avi-subject=
 
 # Encoder (string)
-#sout-avi-encoder=VLC Media Player - 3.0.6 Vetinari
+#sout-avi-encoder=VLC Media Player - 3.0.8 Vetinari
 
 # Keywords (string)
 #sout-avi-keywords=
@@ -1073,6 +1084,33 @@
 # Open GL/GLES hardware converter (string)
 #glconv=
 
+# Rendering intent for color conversion (integer)
+#rendering-intent=1
+
+# Display primaries (integer)
+#target-prim=0
+
+# Display gamma / transfer function (integer)
+#target-trc=0
+
+# Tone-mapping algorithm (integer)
+#tone-mapping=3
+
+# Tone-mapping parameter (float)
+#tone-mapping-param=0.000000
+
+# Tone-mapping desaturation coefficient (float)
+#tone-mapping-desat=0.500000
+
+# Highlight clipped pixels (boolean)
+#tone-mapping-warn=0
+
+# Dithering algorithm (integer)
+#dither-algo=-1
+
+# Dither depth override (0 = framebuffer depth) (integer)
+#dither-depth=0
+
 [yuv] # YUV video output
 
 # device, fifo or filename (string)
@@ -1115,6 +1153,33 @@
 
 # Open GL/GLES hardware converter (string)
 #glconv=
+
+# Rendering intent for color conversion (integer)
+#rendering-intent=1
+
+# Display primaries (integer)
+#target-prim=0
+
+# Display gamma / transfer function (integer)
+#target-trc=0
+
+# Tone-mapping algorithm (integer)
+#tone-mapping=3
+
+# Tone-mapping parameter (float)
+#tone-mapping-param=0.000000
+
+# Tone-mapping desaturation coefficient (float)
+#tone-mapping-desat=0.500000
+
+# Highlight clipped pixels (boolean)
+#tone-mapping-warn=0
+
+# Dithering algorithm (integer)
+#dither-algo=-1
+
+# Dither depth override (0 = framebuffer depth) (integer)
+#dither-depth=0
 
 [vdummy] # Dummy video output
 
@@ -1393,7 +1458,7 @@
 [postproc] # Video post processing filter
 
 # Post processing quality (integer)
-#postproc-q=6
+postproc-q=3
 
 # FFmpeg post processing filter chains (string)
 #postproc-name=default
@@ -1592,7 +1657,7 @@
 #prefetch-buffer-size=16384
 
 # Read size (integer)
-#prefetch-read-size=16384
+#prefetch-read-size=16777216
 
 # Seek threshold (integer)
 #prefetch-seek-threshold=16384
@@ -2188,6 +2253,23 @@
 # Metacube (boolean)
 #sout-http-metacube=0
 
+[access_output_srt] # SRT stream output
+
+# SRT chunk size (bytes) (integer)
+#chunk-size=1316
+
+# Return poll wait after timeout milliseconds (-1 = infinite) (integer)
+#poll-timeout=100
+
+# SRT latency (ms) (integer)
+#latency=125
+
+# Password for stream encryption (string)
+#passphrase=
+
+# Crypto key length in bytes (integer)
+#key-length=16
+
 [access_output_shout] # IceCAST output
 
 # Stream name (string)
@@ -2372,6 +2454,23 @@ qt-privacy-ask=0
 
 # When to raise the interface (integer)
 #qt-auto-raise=1
+
+[skins2] # Skinnable Interface
+
+# Skin to use (string)
+skins2-last=/home/gokul/.local/share/vlc/skins2/MinimalX_VLC_3.0.0.vlt
+
+# Config of last used skin (string)
+skins2-config=["MainWindow" "MainFrame" -2 132 1000 569 1]["PlaylistWindow" "PlaylistFrame" 190 117 900 566 0]["SettingsWindow" "SettingsFrame" 190 117 900 566 1]["VolumeWindow" "VolumeFrame" 190 117 900 566 0]["bottom" "bottom_0" 0 0 650 360 0]["cinema" "cinema_on" 0 0 650 360 0]["color" "color_1" 0 0 1 1 0]["first" "first_off" 0 0 1 1 0]["fullscreenController" "fswindow" 0 716 1280 60 0]["hint01" "hint01_off" 0 0 650 360 0]["playlisticons" "playlisticons_1" 0 0 1 1 0]["posbar" "posbar_big" 0 0 1 1 0]["sett" "sett_1" 0 0 1 1 0]["titlebar" "titlebar_on" 0 0 650 360 0]["ver_300" "version_300" 0 0 1 1 0]["video" "video_0" 0 0 1 1 0]
+
+# Enable transparency effects (boolean)
+#skins2-transparency=0
+
+# Use a skinned playlist (boolean)
+#skinned-playlist=1
+
+# Display video in a skinned window if any (boolean)
+#skinned-video=1
 
 [ncurses] # Ncurses interface
 
@@ -2756,7 +2855,7 @@ qt-privacy-ask=0
 #avcodec-fast=0
 
 # Skip the loop filter for H.264 decoding (integer)
-#avcodec-skiploopfilter=0
+avcodec-skiploopfilter=4
 
 # Debug mask (integer)
 #avcodec-debug=0
@@ -2765,7 +2864,7 @@ qt-privacy-ask=0
 #avcodec-codec=
 
 # Hardware decoding (string)
-#avcodec-hw=any
+avcodec-hw=none
 
 # Threads (integer)
 #avcodec-threads=0
@@ -3076,10 +3175,10 @@ qt-privacy-ask=0
 #sout-x264-stats=x264_2pass.log
 
 # Default preset setting used (string)
-#sout-x264-preset=
+sout-x264-preset=veryfast
 
 # Default tune setting used (string)
-#sout-x264-tune=
+sout-x264-tune=film
 
 # x264 advanced options (string)
 #sout-x264-options=
@@ -3207,7 +3306,245 @@ qt-privacy-ask=0
 # Encoding Y coordinate (integer)
 #sout-dvbsub-y=-1
 
+[x26410b] # H.264/MPEG-4 Part 10/AVC encoder (x264 10-bit)
+
+# Maximum GOP size (integer)
+#sout-x26410b-keyint=250
+
+# Minimum GOP size (integer)
+#sout-x26410b-min-keyint=25
+
+# Use recovery points to close GOPs (boolean)
+#sout-x26410b-opengop=0
+
+# Enable compatibility hacks for Blu-ray support (boolean)
+#sout-x26410b-bluray-compat=0
+
+# Extra I-frames aggressivity (integer)
+#sout-x26410b-scenecut=40
+
+# B-frames between I and P (integer)
+#sout-x26410b-bframes=3
+
+# Adaptive B-frame decision (integer)
+#sout-x26410b-b-adapt=1
+
+# Influence (bias) B-frames usage (integer)
+#sout-x26410b-b-bias=0
+
+# Keep some B-frames as references (string)
+#sout-x26410b-bpyramid=normal
+
+# CABAC (boolean)
+#sout-x26410b-cabac=1
+
+# Use fullrange instead of TV colorrange (boolean)
+#sout-x26410b-fullrange=0
+
+# Number of reference frames (integer)
+#sout-x26410b-ref=3
+
+# Skip loop filter (boolean)
+#sout-x26410b-nf=0
+
+# Loop filter AlphaC0 and Beta parameters alpha:beta (string)
+#sout-x26410b-deblock=0:0
+
+# Strength of psychovisual optimization, default is "1.0:0.0" (string)
+#sout-x26410b-psy-rd=1.0:0.0
+
+# Use Psy-optimizations (boolean)
+#sout-x26410b-psy=1
+
+# H.264 level (string)
+#sout-x26410b-level=0
+
+# H.264 profile (string)
+#sout-x26410b-profile=high
+
+# Interlaced mode (boolean)
+#sout-x26410b-interlaced=0
+
+# Frame packing (integer)
+#sout-x26410b-frame-packing=-1
+
+# Force number of slices per frame (integer)
+#sout-x26410b-slices=0
+
+# Limit the size of each slice in bytes (integer)
+#sout-x26410b-slice-max-size=0
+
+# Limit the size of each slice in macroblocks (integer)
+#sout-x26410b-slice-max-mbs=0
+
+# HRD-timing information (string)
+#sout-x26410b-hrd=none
+
+# Set QP (integer)
+#sout-x26410b-qp=-1
+
+# Quality-based VBR (integer)
+#sout-x26410b-crf=23
+
+# Min QP (integer)
+#sout-x26410b-qpmin=10
+
+# Max QP (integer)
+#sout-x26410b-qpmax=51
+
+# Max QP step (integer)
+#sout-x26410b-qpstep=4
+
+# Average bitrate tolerance (float)
+#sout-x26410b-ratetol=1.000000
+
+# Max local bitrate (integer)
+#sout-x26410b-vbv-maxrate=0
+
+# VBV buffer (integer)
+#sout-x26410b-vbv-bufsize=0
+
+# Initial VBV buffer occupancy (float)
+#sout-x26410b-vbv-init=0.900000
+
+# QP factor between I and P (float)
+#sout-x26410b-ipratio=1.400000
+
+# QP factor between P and B (float)
+#sout-x26410b-pbratio=1.300000
+
+# QP difference between chroma and luma (integer)
+#sout-x26410b-chroma-qp-offset=0
+
+# Multipass ratecontrol (integer)
+#sout-x26410b-pass=0
+
+# QP curve compression (float)
+#sout-x26410b-qcomp=0.600000
+
+# Reduce fluctuations in QP (float)
+#sout-x26410b-cplxblur=20.000000
+
+# Reduce fluctuations in QP (float)
+#sout-x26410b-qblur=0.500000
+
+# How AQ distributes bits (integer)
+#sout-x26410b-aq-mode=1
+
+# Strength of AQ (float)
+#sout-x26410b-aq-strength=1.000000
+
+# Partitions to consider (string)
+#sout-x26410b-partitions=normal
+
+# Direct MV prediction mode (string)
+#sout-x26410b-direct=spatial
+
+# Direct prediction size (integer)
+#sout-x26410b-direct-8x8=1
+
+# Weighted prediction for B-frames (boolean)
+#sout-x26410b-weightb=1
+
+# Weighted prediction for P-frames (integer)
+#sout-x26410b-weightp=2
+
+# Integer pixel motion estimation method (string)
+#sout-x26410b-me=hex
+
+# Maximum motion vector search range (integer)
+#sout-x26410b-merange=16
+
+# Maximum motion vector length (integer)
+#sout-x26410b-mvrange=-1
+
+# Minimum buffer space between threads (integer)
+#sout-x26410b-mvrange-thread=-1
+
+# Subpixel motion estimation and partition decision quality (integer)
+#sout-x26410b-subme=7
+
+# Decide references on a per partition basis (boolean)
+#sout-x26410b-mixed-refs=1
+
+# Chroma in motion estimation (boolean)
+#sout-x26410b-chroma-me=1
+
+# Adaptive spatial transform size (boolean)
+#sout-x26410b-8x8dct=1
+
+# Trellis RD quantization (integer)
+#sout-x26410b-trellis=1
+
+# Framecount to use on frametype lookahead (integer)
+#sout-x26410b-lookahead=40
+
+# Use Periodic Intra Refresh (boolean)
+#sout-x26410b-intra-refresh=0
+
+# Use mb-tree ratecontrol (boolean)
+#sout-x26410b-mbtree=1
+
+# Early SKIP detection on P-frames (boolean)
+#sout-x26410b-fast-pskip=1
+
+# Coefficient thresholding on P-frames (boolean)
+#sout-x26410b-dct-decimate=1
+
+# Noise reduction (integer)
+#sout-x26410b-nr=0
+
+# Inter luma quantization deadzone (integer)
+#sout-x26410b-deadzone-inter=21
+
+# Intra luma quantization deadzone (integer)
+#sout-x26410b-deadzone-intra=11
+
+# Non-deterministic optimizations when threaded (boolean)
+#sout-x26410b-non-deterministic=0
+
+# CPU optimizations (boolean)
+#sout-x26410b-asm=1
+
+# PSNR computation (boolean)
+#sout-x26410b-psnr=0
+
+# SSIM computation (boolean)
+#sout-x26410b-ssim=0
+
+# Quiet mode (boolean)
+#sout-x26410b-quiet=0
+
+# SPS and PPS id numbers (integer)
+#sout-x26410b-sps-id=0
+
+# Access unit delimiters (boolean)
+#sout-x26410b-aud=0
+
+# Statistics (boolean)
+#sout-x26410b-verbose=0
+
+# Filename for 2 pass stats file (string)
+#sout-x26410b-stats=x264_2pass.log
+
+# Default preset setting used (string)
+#sout-x26410b-preset=
+
+# Default tune setting used (string)
+#sout-x26410b-tune=
+
+# x264 advanced options (string)
+#sout-x26410b-options=
+
 [svcdsub] # Philips OGT (SVCD subtitle) decoder
+
+[aribsub] # ARIB subtitles decoder
+
+# Ignore ruby (furigana) (boolean)
+#aribsub-ignore-ruby=0
+
+# Use Core Text renderer (boolean)
+#aribsub-use-coretext=0
 
 [dca] # DTS Coherent Acoustics audio decoder
 
@@ -3418,7 +3755,7 @@ qt-privacy-ask=0
 #deinterlace-mode=auto
 
 # Video output module (string)
-#vout=
+vout=any
 
 # Video filter module (string)
 #video-filter=
@@ -3433,7 +3770,7 @@ qt-privacy-ask=0
 #osd=1
 
 # Text rendering module (string)
-#text-renderer=
+text-renderer=any
 
 # Use subtitle file (string)
 #sub-file=
@@ -3691,7 +4028,7 @@ qt-privacy-ask=0
 #packetizer=
 
 # VoD server module (string)
-#vod-server=
+vod-server=any
 
 # Use a plugins cache (boolean)
 #plugins-cache=1
