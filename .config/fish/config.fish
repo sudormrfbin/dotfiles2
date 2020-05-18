@@ -46,6 +46,7 @@ abbr -a -g yc 'yadm commit -m'
 
 set -x EDITOR "nvim"
 set -x PATH ~/.local/bin/ ~/go/bin/ $PATH
+set -x BROWSER /mnt/MyStuff/Downloads/firefox/firefox
 
 set -x Z_CMD "j"
 set -x FZF_LEGACY_KEYBINDINGS 0
