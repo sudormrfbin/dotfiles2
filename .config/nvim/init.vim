@@ -158,6 +158,8 @@ Pack 'k-takata/minpac', { 'type': 'opt' }
 
 Pack 'ryvnf/readline.vim'
 
+Pack 'romainl/vim-cool'
+
 Pack 'tpope/vim-commentary'
 
 Pack 'tpope/vim-unimpaired'
