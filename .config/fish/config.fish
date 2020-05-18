@@ -54,6 +54,8 @@ set -x FZF_LEGACY_KEYBINDINGS 0
 # use printf to properly quote selections "\'%s\'"
 set -x FZF_DEFAULT_OPTS '--bind "ctrl-c:execute-silent(printf %s {+} | xclip -selection clipboard)+abort" --height=20% --cycle'
 
+set -gx LESSHISTFILE "$HOME/.cache/.lesshist"
+
 set -x LESS_TERMCAP_ue (printf "\e[0m")
 set -x LESS_TERMCAP_me (printf "\033[0m")
 set -x LESS_TERMCAP_se (printf "\033[0m")
