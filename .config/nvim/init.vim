@@ -157,6 +157,9 @@ call plugpac#begin()
 
 Pack 'k-takata/minpac', { 'type': 'opt' }
 
+" packadd firenvim | call firenvim#install(0)
+Pack 'glacambre/firenvim', { 'type': 'opt' }
+
 Pack 'ryvnf/readline.vim'
 
 Pack 'romainl/vim-cool'
@@ -219,3 +222,12 @@ colorscheme onedark
 call plugpac#end()
 
 " }}}1
+
+" Firenvim Handling {{{
+if exists('g:started_by_firenvim')
+    packadd firenvim
+    execute 'source ' . expand('%:p:h') . '/firenvim.vim'
+    finish
+endif
+" }}}
+
