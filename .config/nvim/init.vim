@@ -14,6 +14,7 @@ set tabstop=4              " Width of tab character
 set foldmarker=\ {{{,\ }}} " String to use as fold delimiters
 
 set lazyredraw             " Make macros faster by not redrawing screen
+set mouse=a                " Enable mouse
 set hidden                 " Keep changes in buffer when switching
 set splitbelow             " Horizontal split below current.
 set splitright             " Vertical split to right of current.
