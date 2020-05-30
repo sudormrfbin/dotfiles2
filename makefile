@@ -26,6 +26,9 @@ emoji:
 	sed -i "/skin tone/d" ${EMOJIFILE}
 
 fzf:
+	if [ ! -d ${HOME}/.fzf ]; then \
+		git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf; \
+	fi
 	git -C ${HOME}/.fzf pull
 	${HOME}/.fzf/install --bin
 
