@@ -1,12 +1,12 @@
 [PNMixer]
 DisplayTextVolume=true
-TextVolumePosition=3
+TextVolumePosition=1
 MouseScrollStep=3
 HotkeyVolumeStep=2
 MiddleClickAction=0
 CustomCommand=
 VolMuteKey=121
-VolUpKey=123
+VolUpKey=-1
 VolDownKey=122
 AlsaCard=(default)
 IconTheme=Paper-Bunsen
@@ -24,7 +24,11 @@ HotkeyNotifications=true
 MouseNotifications=true
 PopupNotifications=false
 ExternalNotifications=false
-NotificationTimeout=1500
+NotificationTimeout=500
+SliderOrientation=vertical
+SystemTheme=true
+ScrollStep=5
+FineScrollStep=1
 
 [(default)]
 Channel=Master
