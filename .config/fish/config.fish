@@ -68,6 +68,13 @@ set SPACEFISH_PROMPT_ORDER dir exec_time vi_mode line_sep exit_code char
 
 # Fisher
 
+if not functions -q fisher
+    echo -n "Installing fisher...\n"
+    set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+    fish -c fisher
+end
+
 set -g fisher_path ~/.config/fish/fisher
 
 set fish_function_path $fish_function_path[1] $fisher_path/functions $fish_function_path[2..-1]
