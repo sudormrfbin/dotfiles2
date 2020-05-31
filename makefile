@@ -7,6 +7,7 @@ SOURCEDIR = /mnt/MyStuff/Source
 PROJECTDIR =
 EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis.txt"
 EMOJIFILE = "${HOME}/.local/share/emoji.txt"
+PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior redshift redshift-gtk
 
 pip:
 	pip install --user -U pip
@@ -39,3 +40,8 @@ xseticon:
 
 frece:
 	fish -c "frece update --purge-old ~/.cache/yadm-files.txt (yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' | psub)"
+
+newdist:
+	sudo apt update
+	sudo apt full-upgrade -y
+	sudo apt install ${PACKAGES}
