@@ -7,7 +7,8 @@ SOURCEDIR = /mnt/MyStuff/Source
 PROJECTDIR =
 EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis.txt"
 EMOJIFILE = "${HOME}/.local/share/emoji.txt"
-PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior redshift redshift-gtk
+PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
+	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl
 
 pip:
 	pip install --user -U pip
