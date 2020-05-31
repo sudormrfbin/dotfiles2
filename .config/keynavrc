@@ -33,4 +33,3 @@ t sh "xdotool search --name ' - byobu' windowactivate",end
 h sh "xdotool search --name ' - byobu' windowactivate && tmux select-window -t dashboard && tmux select-pane -t:.3",end 
 
 3 cut-up 0.01,warp,end
-4 cut-up 0.05,cut-right 0.20,warp,click 1,end
