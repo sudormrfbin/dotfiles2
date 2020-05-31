@@ -8,7 +8,8 @@ PROJECTDIR =
 EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis.txt"
 EMOJIFILE = "${HOME}/.local/share/emoji.txt"
 PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
-	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl
+	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl \
+	fonts-noto-color-emoji
 
 pip:
 	pip install --user -U pip
@@ -27,10 +28,15 @@ emoji:
 	curl ${EMOJIURL} | cut -f1,4,5 --output-delimiter ' ' > ${EMOJIFILE}
 	sed -i "/skin tone/d" ${EMOJIFILE}
 
-fzf:
+frece-emoji:
+	frece init ${HOME}/.cache/emojihist.txt ${EMOJIFILE}
+
+install-fzf:
 	if [ ! -d ${HOME}/.fzf ]; then \
 		git clone --depth 1 https://github.com/junegunn/fzf.git ${HOME}/.fzf; \
 	fi
+
+fzf: install-fzf
 	git -C ${HOME}/.fzf pull
 	${HOME}/.fzf/install --bin
 
@@ -49,7 +55,7 @@ install-frece:
 		-C ~/.local/bin \
 		frece-1.0.4-x86_64-unknown-linux-gnu/frece
 
-newdist:
+apt-packages:
 	sudo apt update
 	sudo apt full-upgrade -y
 	sudo apt install ${PACKAGES}
