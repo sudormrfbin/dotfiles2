@@ -3,7 +3,7 @@
 # X
 
 if [ -z $DISPLAY ] && [ (tty) = /dev/tty1 ]
-    startx
+    exec startx
 end
 
 # Keybindings
