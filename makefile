@@ -39,8 +39,15 @@ xseticon:
 	git -C ${PROJECTDIR} pull origin master
 	make -C ${PROJECTDIR} xseticon PREFIX=~/.local/ install
 
-frece:
+frece-yadm:
 	fish -c "frece update --purge-old ~/.cache/yadm-files.txt (yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' | psub)"
+
+install-frece:
+	wget -P /tmp/ https://github.com/YodaEmbedding/frece/releases/download/1.0.4/frece-1.0.4-x86_64-unknown-linux-gnu.tar.gz
+	tar xf /tmp/frece-1.0.4-x86_64-unknown-linux-gnu.tar.gz \
+		--strip-components=1 \
+		-C ~/.local/bin \
+		frece-1.0.4-x86_64-unknown-linux-gnu/frece
 
 newdist:
 	sudo apt update
