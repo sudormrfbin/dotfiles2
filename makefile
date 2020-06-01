@@ -57,6 +57,24 @@ install-frece:
 			frece-1.0.4-x86_64-unknown-linux-gnu/frece; \
 	fi
 
+install-drive:
+	if [ ! -e ${HOME}/.local/bin/drive ]; then \
+		wget -O ${HOME}/.local/bin/drive https://github.com/odeke-em/drive/releases/download/v0.3.9/drive_linux; \
+		chmod +x ${HOME}/.local/bin/drive; \
+		if [ ! -d ${HOME}/gdrive ]; then \
+			drive init ${HOME}/gdrive; \
+			cd ${HOME}/gdrive; \
+			drive pull; \
+		fi
+	fi
+
+install-buku:
+	cd /tmp; \
+		git clone https://github.com/jarun/buku; \
+		cd buku; \
+		sudo make install; \
+		cp auto-completion/fish/buku.fish ${HOME}/.config/fish/completions
+
 apt-packages:
 	sudo apt update
 	sudo apt full-upgrade -y
