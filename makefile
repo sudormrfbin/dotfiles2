@@ -30,8 +30,8 @@ emoji:
 	curl ${EMOJIURL} | cut -f1,4,5 --output-delimiter ' ' > ${EMOJIFILE}
 	sed -i "/skin tone/d" ${EMOJIFILE}
 
-frece-emoji:
-	frece init ~/.cache/emojihist.txt ${EMOJIFILE}
+frece-emoji: install-frece emoji
+	frece update --purge-old ~/.cache/emojihist.txt ${EMOJIFILE}
 
 install-fzf:
 	if [ ! -d ~/.fzf ]; then
@@ -47,10 +47,6 @@ xseticon:
 	git -C ${PROJECTDIR} pull origin master
 	make -C ${PROJECTDIR} xseticon PREFIX=~/.local/ install
 
-frece-yadm:
-	yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' > /tmp/yf.txt
-	frece update --purge-old ~/.cache/yadm-files.txt /tmp/yf.txt
-
 install-frece:
 	if [ ! -e ~/.local/bin/frece ]; then
 		wget -P /tmp/ https://github.com/YodaEmbedding/frece/releases/download/1.0.4/frece-1.0.4-x86_64-unknown-linux-gnu.tar.gz
@@ -59,6 +55,10 @@ install-frece:
 			-C ~/.local/bin \
 			frece-1.0.4-x86_64-unknown-linux-gnu/frece
 	fi
+
+frece-yadm: install-frece
+	yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' > /tmp/yf.txt
+	frece update --purge-old ~/.cache/yadm-files.txt /tmp/yf.txt
 
 install-drive:
 	if [ ! -e ~/.local/bin/drive ]; then
