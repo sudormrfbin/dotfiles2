@@ -18,6 +18,7 @@ bind \e, up-or-search
 bind "<>" pathget-key
 bind "><" paste-path-from-prev-command
 bind \e3 __fzf_reverse_isearch
+bind \e- 'commandline -i ~/.config/'
 
 # Abbreviations
 
