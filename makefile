@@ -48,7 +48,8 @@ xseticon:
 	make -C ${PROJECTDIR} xseticon PREFIX=~/.local/ install
 
 frece-yadm:
-	fish -c "frece update --purge-old ~/.cache/yadm-files.txt (yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' | psub)"
+	yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' > /tmp/yf.txt
+	frece update --purge-old ~/.cache/yadm-files.txt /tmp/yf.txt
 
 install-frece:
 	if [ ! -e ~/.local/bin/frece ]; then
