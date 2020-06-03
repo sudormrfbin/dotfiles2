@@ -9,7 +9,7 @@ EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis
 EMOJIFILE = "~/.local/share/emoji.txt"
 PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
 	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl \
-	fonts-noto-color-emoji
+	fonts-noto-color-emoji sqlite3
 
 .ONESHELL:
 
@@ -75,6 +75,9 @@ install-drive:
 			drive init ~/gdrive
 			cd ~/gdrive
 			drive pull
+	
+			mkdir -p ~/.local/share/buku
+			ln -s ~/gdrive/Backups/bookmarks.db ~/.local/share/buku/bookmarks.db
 		fi
 	fi
 
