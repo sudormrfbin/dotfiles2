@@ -56,8 +56,15 @@ install-frece:
 			frece-1.0.4-x86_64-unknown-linux-gnu/frece
 	fi
 
-frece-yadm: install-frece
+frece-quick-edit: install-frece
 	yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' > /tmp/yf.txt
+	
+	cat >> /tmp/yf.txt << EOF
+	/home/gokul/gdrive/Backups/books.txt
+	/home/gokul/gdrive/Backups/cringe.txt
+	/home/gokul/gdrive/Backups/movies.txt
+	EOF
+	
 	frece update --purge-old ~/.cache/yadm-files.txt /tmp/yf.txt
 
 install-drive:
