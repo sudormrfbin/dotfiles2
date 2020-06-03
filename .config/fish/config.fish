@@ -8,17 +8,29 @@ end
 
 # Keybindings
 
-bind \e/ toggle-comment  # Alt-/
-bind -k f12 show-man-page  # Insert
-bind "`" power-key
-bind "L:" "commandline -a ' --color=always| less -R'"
-bind \e1 forward-word
-bind \x1B\x1B insert-or-remove-sudo  # Esc-Esc
-bind \e, up-or-search
-bind "<>" pathget-key
-bind "><" paste-path-from-prev-command
-bind \e3 __fzf_reverse_isearch
-bind \e- 'commandline -i ~/.config/'
+set fish_cursor_default block
+set fish_cursor_insert line
+set fish_cursor_replace_one underscore
+
+# Add a way to switch from insert to normal (command) mode.
+# Note if we are paging, we want to stay in insert mode
+# See #2871 in fish-shell github issues
+bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint-mode; end"
+bind -M insert -e \e
+bind -M insert \e\b backward-kill-word
+
+
+bind -M insert \e/ toggle-comment  # Alt-/
+bind -M insert -k f12 show-man-page  # Insert
+bind -M insert "`" power-key
+bind -M insert "L:" "commandline -a ' --color=always| less -R'"
+bind -M insert \e1 forward-word
+bind -M insert \x1B\x1B insert-or-remove-sudo  # Esc-Esc
+bind -M insert \e, up-or-search
+bind -M insert "<>" pathget-key
+bind -M insert "><" paste-path-from-prev-command
+bind -M insert \e3 __fzf_reverse_isearch
+bind -M insert \e- 'commandline -i ~/.config/'
 
 # Abbreviations
 
