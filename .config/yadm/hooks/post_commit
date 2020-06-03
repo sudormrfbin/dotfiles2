@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Added (A), Copied (C), Deleted (D), Renamed (R)
+update_required=$(yadm diff --name-only --diff-filter=ACDR HEAD~ HEAD)
+
+if [ -n "$update_required" ]; then
+    yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' > /tmp/yf.txt
+    frece update --purge-old ~/.cache/yadm-files.txt /tmp/yf.txt
+fi
