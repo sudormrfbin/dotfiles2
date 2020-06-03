@@ -57,6 +57,7 @@ abbr -a -g tl 'task list'
 abbr -a -g y 'yadm status'
 abbr -a -g ya 'yadm add'
 abbr -a -g yd 'yadm diff'
+abbr -a -g yp 'yadm push'
 abbr -a -g yc 'yadm commit -m'
 
 # Variables
