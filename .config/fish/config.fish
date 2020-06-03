@@ -45,6 +45,10 @@ abbr -a -g gsp 'git stash pop'
 abbr -a -g gca 'git commit -am'
 abbr -a -g gss 'git stash push --include-untracked --message'
 
+abbr -a -g pa 'pluck add'
+abbr -a -g pg 'pluck export | grep'
+abbr -a -g pgp 'pluck export | grep \#'
+
 abbr -a -g t 'task'
 abbr -a -g ta 'task add'
 abbr -a -g td 'task done'
