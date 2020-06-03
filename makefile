@@ -82,6 +82,7 @@ install-drive:
 	fi
 
 install-buku:
+	sudo apt install python3-certifi python3-urllib3 python3-bs4
 	git clone https://github.com/jarun/buku /tmp/buku
 	sudo make -C /tmp/buku install
 	cp /tmp/buku/auto-completion/fish/buku.fish ~/.config/fish/completions
