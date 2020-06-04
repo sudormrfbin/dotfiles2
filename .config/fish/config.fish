@@ -44,6 +44,7 @@ abbr -a -g gco 'git checkout'
 abbr -a -g gsp 'git stash pop'
 abbr -a -g gca 'git commit -am'
 abbr -a -g gss 'git stash push --include-untracked --message'
+abbr -a -g gcl 'git clone --depth=1 --shallow-submodules --recursive'
 
 abbr -a -g pa 'pluck add'
 abbr -a -g pg 'pluck export | grep'
