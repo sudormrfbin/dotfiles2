@@ -42,6 +42,7 @@ set nomagic                " Use 'magic' patterns (extended regular expressions)
 set hlsearch               " Highlight search results
 
 set undofile               " Persistent undo
+set backupskip=/tmp/*      " Do not back up temporary files.
 
 set list                   " Show special characters for tabs, trailing whitespace, etc
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
