@@ -32,6 +32,9 @@ fisher:
 	fish -c "fisher"
 
 emoji:
+	if ! dpkg-query -W fonts-noto-color-emoji  > /dev/null 2>&1; then
+		sudo apt install fonts-noto-color-emoji
+	fi
 	curl ${EMOJIURL} | cut -f1,4,5 --output-delimiter ' ' > ${EMOJIFILE}
 	sed -i "/skin tone/d" ${EMOJIFILE}
 
