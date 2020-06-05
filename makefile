@@ -15,7 +15,7 @@ PIPXPACKAGES = subliminal howdoi youtube-dlA ghstar
 .ONESHELL:
 
 install-pip:
-	sudo apt install python3-pip
+	sudo apt upgrade python3-pip
 
 install-pipx: pip
 	pip3 install --user -U pipx
@@ -28,6 +28,10 @@ install-pipx-apps: install-pipx
 	pipx upgrade-all  # for previously installed packages
 
 fisher:
+	if ! fish -c "functions -q fisher"; then
+		curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
+		fish -c fisher
+	fi
 	fish -c "fisher self-update"
 	fish -c "fisher"
 
@@ -45,8 +49,6 @@ install-fzf:
 	if [ ! -d ~/.fzf ]; then
 		git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	fi
-
-fzf: install-fzf
 	git -C ~/.fzf pull
 	~/.fzf/install --bin
 
