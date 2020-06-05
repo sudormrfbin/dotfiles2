@@ -1,6 +1,6 @@
 # python?, st, surf, fish, grabc
 
-all: pipx-apps fisher emoji fzf xseticon frece
+all: fisher emoji fzf xseticon frece
 .PHONY: all
 
 SOURCEDIR = /mnt/MyStuff/Source
@@ -9,18 +9,23 @@ EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis
 EMOJIFILE = "~/.local/share/emoji.txt"
 PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
 	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl \
-	fonts-noto-color-emoji sqlite3
+	fonts-noto-color-emoji sqlite3 python3-pip
+PIPXPACKAGES = subliminal howdoi youtube-dlA ghstar
 
 .ONESHELL:
 
-pip:
-	pip install --user -U pip
+install-pip:
+	sudo apt install python3-pip
 
-pipx:
-	pip install --user -U pipx
+install-pipx: pip
+	pip3 install --user -U pipx
 
-pipx-apps: pip pipx
-	pipx upgrade-all
+install-pipx-apps: install-pipx
+	for pkg in ${PIPXPACKAGES}
+	do
+		pipx install $$pkg
+	done
+	pipx upgrade-all  # for previously installed packages
 
 fisher:
 	fish -c "fisher self-update"
