@@ -92,3 +92,13 @@ apt-packages:
 	sudo apt update
 	sudo apt full-upgrade -y
 	sudo apt install ${PACKAGES}
+
+install-fish:
+	sudo apt install build-essential cmake ncurses-dev \
+		libncurses5-dev libpcre2-dev gettext
+	git clone --depth=1 https://github.com/fish-shell/fish-shell /tmp/fish
+	mkdir /tmp/fish/build
+	cd /tmp/fish/build
+	cmake ..
+	make
+	sudo make install
