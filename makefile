@@ -116,3 +116,6 @@ install-fish: build-deps
 	cmake ..
 	make
 	sudo make install
+
+fish-man-page-compls:
+	fish -c 'fish_update_completions'
