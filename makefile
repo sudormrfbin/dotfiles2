@@ -11,7 +11,14 @@ PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
 	neomutt
 PIPXPACKAGES = subliminal howdoi youtube-dl ghstar mps-youtube
 
+BUILDDEPS =  # for target specific build (package) dependencies
+
 .ONESHELL:
+
+build-deps:
+	if ! dpkg-query -W ${BUILDDEPS} 1> /dev/null; then
+		sudo apt install ${BUILDDEPS}
+	fi
 
 install-pip:
 	sudo apt upgrade python3-pip
@@ -34,10 +41,8 @@ fisher:
 	fish -c "fisher self-update"
 	fish -c "fisher"
 
-emoji:
-	if ! dpkg-query -W fonts-noto-color-emoji  > /dev/null 2>&1; then
-		sudo apt install fonts-noto-color-emoji
-	fi
+emoji: BUILDDEPS = fonts-noto-color-emoji
+emoji: build-deps
 	curl ${EMOJIURL} | cut -f1,4,5 --output-delimiter ' ' > ${EMOJIFILE}
 	sed -i "/skin tone/d" ${EMOJIFILE}
 
@@ -51,11 +56,9 @@ install-fzf:
 	git -C ~/.fzf pull
 	~/.fzf/install --bin
 
-xseticon:
+xseticon: BUILDDEPS = libxmu-headers libgd-dev libxmu-dev libglib2.0-dev
+xseticon: build-deps
 	git clone --depth=1 https://github.com/xeyownt/xseticon /tmp/xseticon
-	if ! dpkg-query -W libxmu-headers libgd-dev libxmu-dev libglib2.0-dev 1> /dev/null; then
-		sudo apt install libxmu-headers libgd-dev libxmu-dev libglib2.0-dev
-	fi
 	make -C /tmp/xseticon xseticon PREFIX=~/.local/ install
 
 install-frece:
@@ -92,9 +95,9 @@ install-drive:
 		fi
 	fi
 
-install-buku:
-	sudo apt install python3-certifi python3-urllib3 \
-		python3-bs4 ca-certificates python3-cryptography python3-html5lib
+install-buku: BUILDDEPS = python3-certifi python3-urllib3 \
+	python3-bs4 ca-certificates python3-cryptography python3-html5lib
+install-buku: build-deps
 	git clone --depth=1 https://github.com/jarun/buku /tmp/buku
 	sudo make -C /tmp/buku install
 	cp /tmp/buku/auto-completion/fish/buku.fish ~/.config/fish/completions
@@ -104,9 +107,9 @@ apt-packages:
 	sudo apt full-upgrade -y
 	sudo apt install ${PACKAGES}
 
-install-fish:
-	sudo apt install build-essential cmake ncurses-dev \
-		libncurses5-dev libpcre2-dev gettext
+install-fish: BUILDDEPS = build-essential cmake ncurses-dev \
+	libncurses5-dev libpcre2-dev gettext
+install-fish: build-deps
 	git clone --depth=1 https://github.com/fish-shell/fish-shell /tmp/fish
 	mkdir /tmp/fish/build
 	cd /tmp/fish/build
