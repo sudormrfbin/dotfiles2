@@ -56,8 +56,8 @@ install-fzf:
 	git -C ~/.fzf pull
 	~/.fzf/install --bin
 
-xseticon: BUILDDEPS = libxmu-headers libgd-dev libxmu-dev libglib2.0-dev
-xseticon: build-deps
+install-xseticon: BUILDDEPS = libxmu-headers libgd-dev libxmu-dev libglib2.0-dev
+install-xseticon: build-deps
 	git clone --depth=1 https://github.com/xeyownt/xseticon /tmp/xseticon
 	make -C /tmp/xseticon xseticon PREFIX=~/.local/ install
 
