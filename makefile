@@ -5,6 +5,7 @@ all: fisher emoji fzf xseticon frece
 
 EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis.txt"
 EMOJIFILE = "~/.local/share/emoji.txt"
+GH-RELEASE = ~/.local/bin/gh-release.sh
 PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
 	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl \
 	fonts-noto-color-emoji sqlite3 python3-pip ffmpeg picard \
@@ -46,7 +47,7 @@ emoji: build-deps
 	curl ${EMOJIURL} | cut -f1,4,5 --output-delimiter ' ' > ${EMOJIFILE}
 	sed -i "/skin tone/d" ${EMOJIFILE}
 
-frece-emoji: install-frece emoji
+frece-emoji: emoji
 	frece update --purge-old ~/.cache/emojihist.txt ${EMOJIFILE}
 
 install-fzf:
@@ -62,15 +63,10 @@ install-xseticon: build-deps
 	make -C /tmp/xseticon xseticon PREFIX=~/.local/ install
 
 install-frece:
-	if [ ! -e ~/.local/bin/frece ]; then
-		wget -P /tmp/ https://github.com/YodaEmbedding/frece/releases/download/1.0.4/frece-1.0.4-x86_64-unknown-linux-gnu.tar.gz
-		tar xf /tmp/frece-1.0.4-x86_64-unknown-linux-gnu.tar.gz \
-			--strip-components=1 \
-			-C ~/.local/bin \
-			frece-1.0.4-x86_64-unknown-linux-gnu/frece
-	fi
+	curl -L $$(${GH-RELEASE} YodaEmbedding/frece linux) |
+		tar xz --strip-components=1 -C ~/.local/bin
 
-frece-quick-edit: install-frece
+frece-quick-edit:
 	yadm ls-tree -r master --name-only | sed 's*^*/home/gokul/*' > /tmp/yf.txt
 	
 	cat >> /tmp/yf.txt << EOF
@@ -82,17 +78,15 @@ frece-quick-edit: install-frece
 	frece update --purge-old ~/.cache/yadm-files.txt /tmp/yf.txt
 
 install-drive:
-	if [ ! -e ~/.local/bin/drive ]; then
-		wget -O ~/.local/bin/drive https://github.com/odeke-em/drive/releases/download/v0.3.9/drive_linux
-		chmod +x ~/.local/bin/drive
-		if [ ! -d ~/gdrive ]; then
-			drive init ~/gdrive
-			cd ~/gdrive
-			drive pull
+	curl -Lo ~/.local/bin/drive $$(${GH-RELEASE} odeke-em/drive linux)
+	chmod +x ~/.local/bin/drive
+	if [ ! -d ~/gdrive ]; then
+		drive init ~/gdrive
+		cd ~/gdrive
+		drive pull
 	
-			mkdir -p ~/.local/share/buku
-			ln -s ~/gdrive/Backups/bookmarks.db ~/.local/share/buku/bookmarks.db
-		fi
+		mkdir -p ~/.local/share/buku
+		ln -s ~/gdrive/Backups/bookmarks.db ~/.local/share/buku/bookmarks.db
 	fi
 
 install-buku: BUILDDEPS = python3-certifi python3-urllib3 \
