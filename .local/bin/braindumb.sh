@@ -1,4 +1,5 @@
 #!/bin/bash
+# deps: dmenu taskwarrior jq
 
 dmenucmd='dmenu -fn mononoki-14 -i'
 

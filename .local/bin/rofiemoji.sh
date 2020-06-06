@@ -1,4 +1,5 @@
 #!/bin/sh
+# deps: frece xsel
 
 # Modified from https://github.com/nkoehring/rofiemoji
 

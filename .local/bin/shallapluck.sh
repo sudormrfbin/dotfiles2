@@ -1,4 +1,5 @@
 #!/bin/bash
+# deps: pluckeye
 
 # Download url filter from shallalist.de and add sites to allow
 # and block list of pluckeye

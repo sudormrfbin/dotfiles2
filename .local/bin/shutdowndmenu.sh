@@ -1,4 +1,5 @@
 #!/bin/bash
+# deps: dmenu systemd
 
 dmenucmd='dmenu -fn mononoki-14 -i'
 

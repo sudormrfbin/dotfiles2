@@ -1,4 +1,5 @@
 #!/bin/bash
+# deps: dmenu firefox buku sqlite3 notify-send xclip
 
 dmenucmd='dmenu -fn mononoki-14 -i'
 notifycmd='notify-send -u low -t 1000'  # low priority, 1 second

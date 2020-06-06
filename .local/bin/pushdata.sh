@@ -1,4 +1,5 @@
 #!/bin/bash
+# deps: pluckeye yadm drive
 
 pushd $HOME/gdrive/
 pluck export > Backups/Pluckeye/pluckeye.plu
