@@ -3,8 +3,6 @@
 all: fisher emoji fzf xseticon frece
 .PHONY: all
 
-SOURCEDIR = /mnt/MyStuff/Source
-PROJECTDIR =
 EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis.txt"
 EMOJIFILE = "~/.local/share/emoji.txt"
 PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
@@ -52,10 +50,12 @@ install-fzf:
 	git -C ~/.fzf pull
 	~/.fzf/install --bin
 
-xseticon: PROJECTDIR = ${SOURCEDIR}/xseticon/
 xseticon:
-	git -C ${PROJECTDIR} pull origin master
-	make -C ${PROJECTDIR} xseticon PREFIX=~/.local/ install
+	git clone --depth=1 https://github.com/xeyownt/xseticon /tmp/xseticon
+	if ! dpkg-query -W libxmu-headers libgd-dev libxmu-dev libglib2.0-dev 1> /dev/null; then
+		sudo apt install libxmu-headers libgd-dev libxmu-dev libglib2.0-dev
+	fi
+	make -C /tmp/xseticon xseticon PREFIX=~/.local/ install
 
 install-frece:
 	if [ ! -e ~/.local/bin/frece ]; then
