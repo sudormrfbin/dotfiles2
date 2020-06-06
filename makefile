@@ -7,7 +7,8 @@ EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis
 EMOJIFILE = "~/.local/share/emoji.txt"
 PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
 	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl \
-	fonts-noto-color-emoji sqlite3 python3-pip ffmpeg picard
+	fonts-noto-color-emoji sqlite3 python3-pip ffmpeg picard \
+	neomutt
 PIPXPACKAGES = subliminal howdoi youtube-dl ghstar mps-youtube
 
 .ONESHELL:
