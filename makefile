@@ -6,7 +6,7 @@ all: fisher emoji fzf xseticon frece
 EMOJIURL = "https://raw.githubusercontent.com/Mange/rofi-emoji/master/all_emojis.txt"
 EMOJIFILE = "~/.local/share/emoji.txt"
 GH-RELEASE = ~/.local/bin/gh-release.sh
-PACKAGES = git cmus dunst build-essential yadm keynav taskwarrior \
+PACKAGES = git cmus dunst build-essential keynav taskwarrior \
 	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl \
 	fonts-noto-color-emoji sqlite3 python3-pip ffmpeg picard \
 	neomutt
@@ -113,3 +113,7 @@ install-fish: build-deps
 
 fish-man-page-compls:
 	fish -c 'fish_update_completions'
+
+install-yadm:
+	git clone --depth=1 https://github.com/TheLocehiliosan/yadm.git /tmp/yadm
+	sudo PREFIX=/usr/local make -C /tmp/yadm install
