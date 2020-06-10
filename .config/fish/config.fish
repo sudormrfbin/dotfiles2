@@ -84,7 +84,7 @@ set -x LESS_TERMCAP_mb (printf "\033[01;31m")
 set -x LESS_TERMCAP_md (printf "\033[01;31m")
 set -x LESS_TERMCAP_so (printf "\033[00;47;30m")
 
-set SPACEFISH_PROMPT_ORDER dir exec_time vi_mode line_sep exit_code char
+# set SPACEFISH_PROMPT_ORDER dir exec_time vi_mode line_sep exit_code char
 
 # Fisher
 
