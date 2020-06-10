@@ -4,7 +4,7 @@ function show-man-page
         __fish_man_page
         commandline -r ""
         commandline -f repaint
-    else if test (commandline -o)[1] = "sudo"
+    else if test (commandline -o)[1] = sudo
         man (commandline -o)[2]
     else
         __fish_man_page
