@@ -9,7 +9,7 @@ GH-RELEASE = ~/.local/bin/gh-release.sh
 PACKAGES = git cmus dunst build-essential keynav taskwarrior \
 	redshift redshift-gtk j4-dmenu-desktop libterm-readkey-perl \
 	fonts-noto-color-emoji sqlite3 python3-pip ffmpeg picard \
-	neomutt
+	neomutt progress
 PIPXPACKAGES = subliminal howdoi youtube-dl ghstar mps-youtube
 
 BUILDDEPS =  # for target specific build (package) dependencies
