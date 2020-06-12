@@ -35,6 +35,8 @@ bind -M insert \eo __fish_preview_current_file
 
 # Abbreviations
 
+abbr -a -g u 'upto'
+
 abbr -a -g fs 'funcsave'
 
 abbr -a -g wd 'wget -q --show-progress'
