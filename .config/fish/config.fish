@@ -19,6 +19,7 @@ bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind
 bind -M insert -e \e
 bind -M insert \e\x7F backward-kill-word
 
+bind -M insert . expand-dot-to-dir
 bind -M insert \e/ toggle-comment  # Alt-/
 bind -M insert -k f12 show-man-page  # Insert
 bind -M insert "`" power-key
