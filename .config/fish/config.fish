@@ -34,6 +34,10 @@ bind -M insert \eo __fish_preview_current_file
 
 # Abbreviations
 
+abbr -a -g fs 'funcsave'
+
+abbr -a -g wd 'wget -q --show-progress'
+
 abbr -a -g ga 'git add'
 abbr -a -g gl 'git log'
 abbr -a -g gb 'git branch'
