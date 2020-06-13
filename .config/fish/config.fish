@@ -20,6 +20,7 @@ bind -M insert -e \e
 bind -M insert \e\x7F backward-kill-word
 
 bind -M insert . expand-dot-to-dir
+bind -M insert \cx copy-to-clipboard
 bind -M insert \e/ toggle-comment  # Alt-/
 bind -M insert -k f12 show-man-page  # Insert
 bind -M insert "`" power-key
@@ -40,6 +41,7 @@ abbr -a -g u 'upto'
 abbr -a -g fs 'funcsave'
 
 abbr -a -g wd 'wget -q --show-progress'
+abbr -a -g xc 'xclip -sel clip'
 
 abbr -a -g ga 'git add'
 abbr -a -g gl 'git log'
@@ -80,7 +82,7 @@ set -x Z_CMD "j"
 set -x FZF_LEGACY_KEYBINDINGS 0
 # {+} expands to space seperated list of multi selected items or current item
 # use printf to properly quote selections "\'%s\'"
-set -x FZF_DEFAULT_OPTS '--bind "ctrl-c:execute-silent(printf \'%s \' {+} | xclip -selection clipboard)+abort" --height=20% --cycle'
+set -x FZF_DEFAULT_OPTS '--bind "ctrl-x:execute-silent(printf \'%s \' {+} | xclip -selection clipboard)+abort" --height=20% --cycle'
 
 set -gx LESSHISTFILE "$HOME/.cache/.lesshist"
 
