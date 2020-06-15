@@ -78,7 +78,7 @@ awful.layout.layouts = {
 
 -- {{{ Wibar
 -- Create a textclock widget
-textclock = wibox.widget.textclock('%I:%M:%S %p', 1)
+textclock = wibox.widget.textclock(' %I:%M:%S %p ', 1)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
