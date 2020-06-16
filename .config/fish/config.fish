@@ -20,11 +20,11 @@ bind -M insert -e \e
 bind -M insert \e\x7F backward-kill-word
 
 bind -M insert . expand-dot-to-dir
+bind -M insert \ep fish_paginate
 bind -M insert \cx copy-to-clipboard
 bind -M insert \e/ toggle-comment  # Alt-/
 bind -M insert -k f12 show-man-page  # Insert
 bind -M insert "`" power-key
-bind -M insert "L:" "commandline -a ' --color=always| less -R'"
 bind -M insert \e1 forward-word
 bind -M insert \x1B\x1B insert-or-remove-sudo  # Esc-Esc
 bind -M insert \e, up-or-search
