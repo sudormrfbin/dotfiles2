@@ -17,7 +17,8 @@ set fish_cursor_replace_one underscore
 # See #2871 in fish-shell github issues
 bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint-mode; end"
 bind -M insert -e \e
-bind -M insert \e\x7F backward-kill-word
+bind -M insert \e\x7F backward-kill-word  # alt-backspace
+bind -M insert \e\[P delete-char  # delete key
 
 bind -M insert . expand-dot-to-dir
 bind -M insert \ep fish_paginate
