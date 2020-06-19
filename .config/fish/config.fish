@@ -20,6 +20,8 @@ bind -M insert -e \e
 bind -M insert \e\x7F backward-kill-word  # alt-backspace
 bind -M insert \e\[P delete-char  # delete key
 
+bind -M insert \eu undo
+bind -M insert \eU redo
 bind -M insert . expand-dot-to-dir
 bind -M insert \ep fish_paginate
 bind -M insert \cx copy-to-clipboard
