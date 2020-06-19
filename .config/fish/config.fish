@@ -29,7 +29,6 @@ bind -M insert \e/ toggle-comment  # Alt-/
 bind -M insert -k f12 show-man-page  # Insert
 bind -M insert "`" power-key
 bind -M insert \e1 forward-word
-bind -M insert \x1B\x1B insert-or-remove-sudo  # Esc-Esc
 bind -M insert \e, up-or-search
 bind -M insert "<>" pathget-key
 bind -M insert "><" paste-path-from-prev-command
