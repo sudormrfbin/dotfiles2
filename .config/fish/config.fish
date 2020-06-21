@@ -82,6 +82,8 @@ set -x EDITOR  "nvim"
 set -x PATH    ~/.local/bin/ ~/go/bin/ $PATH
 set -x BROWSER /mnt/MyStuff/Downloads/firefox/firefox
 
+set __done_exclude $__done_exclude zathura feh
+
 set -x Z_CMD "j"
 set -x FZF_LEGACY_KEYBINDINGS 0
 # {+} expands to space seperated list of multi selected items or current item
