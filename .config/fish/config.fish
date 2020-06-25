@@ -41,6 +41,8 @@ bind -M insert \e\>   history-token-search-forward
 
 # Abbreviations
 
+abbr -a -g - 'cd -'
+
 abbr -a -g u 'upto'
 
 abbr -a -g fs 'funcsave'
