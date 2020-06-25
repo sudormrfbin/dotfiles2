@@ -36,7 +36,8 @@ bind -M insert "<>"   pathget-key
 bind -M insert "><"   paste-path-from-prev-command
 bind -M insert \e3    __fzf_reverse_isearch
 bind -M insert \e-    'commandline -i ~/.config/'
-bind -M insert \eo    __fish_preview_current_file
+bind -M insert \e0    __fish_preview_current_file
+bind -M insert \e\>   history-token-search-forward
 
 # Abbreviations
 
