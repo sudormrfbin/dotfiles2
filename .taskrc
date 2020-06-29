@@ -9,6 +9,19 @@
 #   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
 
 # Use the command 'task show' to see all defaults and overrides
+# task color rgb135 on rgb002 blue
+# task color rgb150 on rgb020
+# task color rgb510 on rgb200
+
+# Colors
+# color.alternate=inverse
+color.active=rgb510 on rgb200
+color.project.ff=rgb520 on rgb200 red
+color.project.fs=rgb135 on rgb002 blue
+color.project.dots=rgb150 on rgb020
+
+# Rules
+rule.color.merge=yes
 
 # Files
 data.location=~/.task
