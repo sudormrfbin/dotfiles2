@@ -30,6 +30,7 @@ bind -M insert \e/    toggle-comment
 bind -M insert -k f12 show-man-page
 bind -M insert "`"    power-key
 bind -M insert \e1    forward-word
+bind -M insert \e`    forward-bigword
 bind -M insert \e,    up-or-search
 bind -M insert \e\<   down-or-search
 bind -M insert "<>"   pathget-key
