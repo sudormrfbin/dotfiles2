@@ -4,7 +4,8 @@
 [push]
 	default = simple
 [core]
-  editor = nvim
+    editor = nvim
+    pager = delta --plus-color="#012800" --minus-color="#340001" --theme='OneHalfDark'
 [alias]
 	unstage = reset --
 	fixup = commit --amend --no-edit
@@ -12,3 +13,4 @@
 	stash-temp = stash push --no-keep-index --include-untracked --all -m temp
 [interactive]
 	singleKey = true
+    diffFilter = delta --color-only
