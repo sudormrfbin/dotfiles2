@@ -3,7 +3,7 @@
 # X
 
 if [ -z $DISPLAY ] && [ (tty) = /dev/tty1 ]
-    exec startx
+    exec startx /usr/bin/openbox-session
 end
 
 # Keybindings
@@ -45,14 +45,29 @@ bind -M insert \ej    task-id-insert
 
 # Abbreviations
 
-abbr -a -g - 'cd -'
+abbr -a -g m   'man'
+abbr -a -g v   'nvim'
+abbr -a -g c   'cmus'
+abbr -a -g py  'python3'
+abbr -a -g ppy 'ptpython3'
+
+abbr -a -g x   'chmod +x'
+abbr -a -g vv  'sudoedit'
+abbr -a -g imd 'systemctl poweroff'
+abbr -a -g ins 'sudo apt install'
+abbr -a -g upd 'sudo apt update'
+abbr -a -g upg 'sudo apt full-upgrade'
+
+abbr -a -g -  'cd -'
+abbr -a -g rl 'exec fish'
 
 abbr -a -g u 'upto'
 
 abbr -a -g fs 'funcsave'
 
-abbr -a -g wd 'wget -q --show-progress'
+abbr -a -g xo 'xdg-open'
 abbr -a -g xc 'xclip -sel clip'
+abbr -a -g wd 'wget -q --show-progress'
 
 abbr -a -g ga   'git add'
 abbr -a -g gl   'git log'
@@ -78,7 +93,7 @@ abbr -a -g pgp 'pluck export | grep \#'
 abbr -a -g t  'task'
 abbr -a -g ta 'task add'
 abbr -a -g td 'task done'
-abbr -a -g tl 'task list'
+abbr -a -g tl 'task ready'
 
 abbr -a -g y  'yadm status'
 abbr -a -g ya 'yadm add'
