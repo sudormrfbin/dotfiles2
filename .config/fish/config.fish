@@ -49,7 +49,7 @@ abbr -a -g m   'man'
 abbr -a -g v   'nvim'
 abbr -a -g c   'cmus'
 abbr -a -g py  'python3'
-abbr -a -g ppy 'ptpython3'
+abbr -a -g ppy 'ptpython'
 
 abbr -a -g x   'chmod +x'
 abbr -a -g vv  'sudoedit'
