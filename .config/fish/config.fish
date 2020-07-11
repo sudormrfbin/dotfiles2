@@ -42,6 +42,7 @@ bind -M insert \e-    'commandline -i ~/.config/'
 bind -M insert \e0    __fish_preview_current_file
 bind -M insert \e\>   history-token-search-forward
 bind -M insert \ej    task-id-insert
+bind -M insert \ck    kill-line
 
 # Abbreviations
 
@@ -57,6 +58,7 @@ abbr -a -g imd 'systemctl poweroff'
 abbr -a -g ins 'sudo apt install'
 abbr -a -g upd 'sudo apt update'
 abbr -a -g upg 'sudo apt full-upgrade'
+abbr -a -g xk  'setxkbmap -option ctrl:swapcaps'
 
 abbr -a -g -  'cd -'
 abbr -a -g rl 'exec fish'
