@@ -99,6 +99,9 @@ fast_add_abbr pa  'pluck add'
 fast_add_abbr pg  'pluck export | grep'
 fast_add_abbr pgp 'pluck export | grep \#'
 
+fast_add_abbr re  'crow -s en -t es'
+fast_add_abbr rs  'crow -s es -t en'
+
 fast_add_abbr t  'task'
 fast_add_abbr ta 'task add'
 fast_add_abbr td 'task done'
