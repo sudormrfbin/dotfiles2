@@ -46,62 +46,69 @@ bind -M insert \ck    kill-line
 
 # Abbreviations
 
-abbr -a -g m   'man'
-abbr -a -g v   'nvim'
-abbr -a -g c   'cmus'
-abbr -a -g py  'python3'
-abbr -a -g ppy 'ptpython'
+# A custom function is used instead of using `abbr` to speed up overall
+# load time by 50ms. Note that the custom function doesn't escape or
+# test the validness of abbr names. All abbrs are added in global scope.
+# See __fish_abbr_add
 
-abbr -a -g x   'chmod +x'
-abbr -a -g vv  'sudoedit'
-abbr -a -g imd 'systemctl poweroff'
-abbr -a -g ins 'sudo apt install'
-abbr -a -g upd 'sudo apt update'
-abbr -a -g upg 'sudo apt full-upgrade'
-abbr -a -g xk  'setxkbmap -option ctrl:swapcaps'
+# fast_add_abbr does _not_ escape non-alphanumeric characters in abbr names
+abbr -ag -  'cd -'
 
-abbr -a -g -  'cd -'
-abbr -a -g rl 'exec fish'
+fast_add_abbr m   'man'
+fast_add_abbr v   'nvim'
+fast_add_abbr c   'cmus'
+fast_add_abbr py  'python3'
+fast_add_abbr ppy 'ptpython'
 
-abbr -a -g u 'upto'
+fast_add_abbr x   'chmod +x'
+fast_add_abbr vv  'sudoedit'
+fast_add_abbr imd 'systemctl poweroff'
+fast_add_abbr ins 'sudo apt install'
+fast_add_abbr upd 'sudo apt update'
+fast_add_abbr upg 'sudo apt full-upgrade'
+fast_add_abbr xk  'setxkbmap -option ctrl:swapcaps'
 
-abbr -a -g fs 'funcsave'
+fast_add_abbr rl 'exec fish'
 
-abbr -a -g xo 'xdg-open'
-abbr -a -g xc 'xclip -sel clip'
-abbr -a -g wd 'wget -q --show-progress'
+fast_add_abbr u 'upto'
 
-abbr -a -g ga   'git add'
-abbr -a -g gl   'git log'
-abbr -a -g gb   'git branch'
-abbr -a -g gs   'git status'
-abbr -a -g gc   'git commit -m'
-abbr -a -g gd   'git diff'
-abbr -a -g gph  'git push'
-abbr -a -g gpl  'git pull'
-abbr -a -g gco  'git checkout'
-abbr -a -g gsp  'git stash pop'
-abbr -a -g gca  'git commit --amend'
-abbr -a -g gss  'git stash push --include-untracked --message'
-abbr -a -g gcl  'git clone --depth=1'
-abbr -a -g gcam 'git commit -am'
-abbr -a -g gpum 'git pull upstream master'
-abbr -a -g gcls 'git clone --depth=1 --shallow-submodules --recursive'
+fast_add_abbr fs 'funcsave'
 
-abbr -a -g pa  'pluck add'
-abbr -a -g pg  'pluck export | grep'
-abbr -a -g pgp 'pluck export | grep \#'
+fast_add_abbr xo 'xdg-open'
+fast_add_abbr xc 'xclip -sel clip'
+fast_add_abbr wd 'wget -q --show-progress'
 
-abbr -a -g t  'task'
-abbr -a -g ta 'task add'
-abbr -a -g td 'task done'
-abbr -a -g tl 'task ready'
+fast_add_abbr ga   'git add'
+fast_add_abbr gl   'git log'
+fast_add_abbr gb   'git branch'
+fast_add_abbr gs   'git status'
+fast_add_abbr gc   'git commit -m'
+fast_add_abbr gd   'git diff'
+fast_add_abbr gph  'git push'
+fast_add_abbr gpl  'git pull'
+fast_add_abbr gco  'git checkout'
+fast_add_abbr gsp  'git stash pop'
+fast_add_abbr gca  'git commit --amend'
+fast_add_abbr gss  'git stash push --include-untracked --message'
+fast_add_abbr gcl  'git clone --depth=1'
+fast_add_abbr gcam 'git commit -am'
+fast_add_abbr gpum 'git pull upstream master'
+fast_add_abbr gcls 'git clone --depth=1 --shallow-submodules --recursive'
 
-abbr -a -g y  'yadm status'
-abbr -a -g ya 'yadm add'
-abbr -a -g yd 'yadm diff'
-abbr -a -g yp 'yadm push'
-abbr -a -g yc 'yadm commit -m'
+fast_add_abbr pa  'pluck add'
+fast_add_abbr pg  'pluck export | grep'
+fast_add_abbr pgp 'pluck export | grep \#'
+
+fast_add_abbr t  'task'
+fast_add_abbr ta 'task add'
+fast_add_abbr td 'task done'
+fast_add_abbr tl 'task ready'
+
+fast_add_abbr y  'yadm status'
+fast_add_abbr ya 'yadm add'
+fast_add_abbr yd 'yadm diff'
+fast_add_abbr yp 'yadm push'
+fast_add_abbr yc 'yadm commit -m'
 
 # Variables
 
