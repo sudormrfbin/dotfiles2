@@ -43,6 +43,7 @@ bind -M insert \e0    __fish_preview_current_file
 bind -M insert \e\>   history-token-search-forward
 bind -M insert \ej    task-id-insert
 bind -M insert \ck    kill-line
+bind -M insert \cq    'commandline -rt ""'
 
 # Abbreviations
 
