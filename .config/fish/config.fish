@@ -35,8 +35,6 @@ bind -M insert \e1    forward-word
 bind -M insert \e`    forward-bigword
 bind -M insert \e,    up-or-search
 bind -M insert \e\<   down-or-search
-bind -M insert "<>"   pathget-key
-bind -M insert "><"   paste-path-from-prev-command
 bind -M insert \e3    __fzf_reverse_isearch
 bind -M insert \e-    'commandline -i ~/.config/'
 bind -M insert \e0    __fish_preview_current_file
