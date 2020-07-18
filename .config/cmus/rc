@@ -82,8 +82,8 @@ bind -f common M toggle play_library
 bind -f common N search-prev
 bind -f common P win-mv-before
 bind -f common U win-update-cache
-bind -f common [ vol -1%
-bind -f common ] vol +1%
+bind -f common [ vol -5%
+bind -f common ] vol +5%
 bind -f common ^B win-page-up
 bind -f common ^C echo Type :quit<enter> to exit cmus.
 bind -f common ^E win-scroll-down
@@ -130,8 +130,8 @@ bind -f common v player-stop
 bind -f common x player-play
 bind -f common y win-add-p
 bind -f common z player-prev
-bind -f common { vol -1% -0
-bind -f common } vol -0 -1%
+bind -f common { vol -1%
+bind -f common } vol +1%
 bind -f common ~ help
 bind -f library R run rm
 bind -f common S shell python3 ~/.local/bin/cmus_queue_shuffle.py
