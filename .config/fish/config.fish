@@ -118,6 +118,8 @@ set -x EDITOR  "nvim"
 set -x PATH    ~/.local/bin/ ~/go/bin/ $PATH
 set -x BROWSER /mnt/MyStuff/Downloads/firefox/firefox
 
+set -x F_EXCLUDE '^/tmp/.+' '\.out$'
+
 set __done_exclude $__done_exclude zathura feh
 
 set -x Z_CMD "j"
