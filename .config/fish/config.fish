@@ -65,6 +65,7 @@ abbr -ag -  'cd -'
 fast_add_abbr m   'man'
 fast_add_abbr v   'nvim'
 fast_add_abbr c   'cmus'
+fast_add_abbr d   'dnote'
 fast_add_abbr py  'python3'
 fast_add_abbr ppy 'ptpython'
 
@@ -74,7 +75,7 @@ fast_add_abbr imd 'systemctl poweroff'
 fast_add_abbr ins 'sudo apt install'
 fast_add_abbr upd 'sudo apt update'
 fast_add_abbr upg 'sudo apt full-upgrade'
-fast_add_abbr xk  'setxkbmap -option ctrl:swapcaps'
+fast_add_abbr xk  'setxkbmap -option ctrl:swapcaps; xset r rate 250 25'
 
 fast_add_abbr rl 'exec fish'
 
@@ -85,6 +86,9 @@ fast_add_abbr fs 'funcsave'
 fast_add_abbr xo 'xdg-open'
 fast_add_abbr xc 'xclip -sel clip'
 fast_add_abbr wd 'wget -q --show-progress'
+
+fast_add_abbr dpl 'drive pull'
+fast_add_abbr dph 'drive push'
 
 fast_add_abbr ga   'git add'
 fast_add_abbr gl   'git log'
