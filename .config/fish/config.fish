@@ -2,8 +2,17 @@
 
 # X
 
-if [ -z $DISPLAY ] && [ (tty) = /dev/tty1 ]
-    exec startx /usr/bin/openbox-session
+# if [ -z $DISPLAY ] && [ (tty) = /dev/tty1 ]
+#     exec startx /usr/bin/openbox-session
+# end
+
+if test -z $DISPLAY
+    switch (tty)
+        case "/dev/tty1"
+            exec startx /usr/bin/openbox-session
+        case "/dev/tty2"
+            exec bash ~/.local/bin/starthotspot.sh
+    end
 end
 
 # Keybindings
