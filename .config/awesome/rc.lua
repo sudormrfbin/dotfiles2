@@ -19,6 +19,11 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+local volumearc_widget = require("awesome-wm-widgets.volumearc-widget.volumearc")
+
+tbox_sep = wibox.widget.textbox("  ")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -49,7 +54,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "st"
+terminal = "alacritty"
 editor = "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -180,6 +185,17 @@ awful.screen.connect_for_each_screen(function(s)
         s.tasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            volumearc_widget({
+                height = 24,
+                thickness = 3,
+            }),
+            tbox_sep,
+            batteryarc_widget({
+                size = 25,
+                show_current_level = true,
+                arc_thickness = 3,
+                font = "mononoki 9",
+            }),
             wibox.widget.systray(),
             textclock,
             s.layoutbox,
