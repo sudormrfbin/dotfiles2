@@ -7,11 +7,17 @@
 # end
 
 if test -z $DISPLAY
-    switch (tty)
-        case "/dev/tty1"
-            exec startx /usr/bin/openbox-session
-        case "/dev/tty2"
-            exec bash ~/.local/bin/starthotspot.sh
+    if string match -qe 'archlinux' < /proc/version
+        if test (tty) = "/dev/tty1"
+            exec startx /usr/bin/awesome
+        end
+    else
+        switch (tty)
+            case "/dev/tty1"
+                exec startx /usr/bin/openbox-session
+            case "/dev/tty2"
+                exec bash ~/.local/bin/starthotspot.sh
+        end
     end
 end
 
@@ -128,7 +134,7 @@ fast_add_abbr yc 'yadm commit -m'
 # Variables
 
 set -x EDITOR  "nvim"
-set -x PATH    ~/.local/bin/ ~/go/bin/ $PATH
+set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ $PATH
 set -x BROWSER /mnt/MyStuff/Downloads/firefox/firefox
 
 set -x F_EXCLUDE '^/tmp/.+' '\.out$'
