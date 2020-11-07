@@ -12,8 +12,8 @@
     ],
 
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.fontSize": 17.5,
-    "editor.fontFamily": "'mononoki'",
+    "editor.fontSize": 19.5,
+    "editor.fontFamily": "'mononoki Nerd Font'",
     "editor.minimap.showSlider": "always",
     "editor.minimap.renderCharacters": false,
     "editor.find.autoFindInSelection": true,
@@ -76,7 +76,6 @@
 
     "workbench.editor.revealIfOpen": true,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "One Dark Pro",
     "workbench.sideBar.location": "right",
     "workbench.commandPalette.preserveInput": true,
     "workbench.colorCustomizations": {
@@ -97,4 +96,11 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terminal.integrated.rendererType": "dom",
     "telemetry.enableTelemetry": false,
+    "workbench.colorTheme": "One Dark Theme",
+    "rust-client.rustupPath": "~/.cargo/bin/rustup",
+    "rust-client.updateOnStartup": true,
+    "rust-client.engine": "rust-analyzer",
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/vscode.init.vim",
+    "editor.cursorBlinking": "solid",
 }
