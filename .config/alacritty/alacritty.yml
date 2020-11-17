@@ -1,0 +1,11 @@
+font:
+    normal:
+        family: mononoki Nerd Font
+
+    bold:
+        family: mononoki Nerd Font
+
+    italic:
+        family: mononoki Nerd Font
+
+    size: 11
