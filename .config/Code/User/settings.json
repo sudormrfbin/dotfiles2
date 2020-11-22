@@ -13,15 +13,15 @@
 
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.fontSize": 19.5,
-    "editor.fontFamily": "'mononoki Nerd Font'",
+    "editor.fontFamily": "mononoki Nerd Font Mono",
     "editor.minimap.showSlider": "always",
     "editor.minimap.renderCharacters": false,
-    "editor.find.autoFindInSelection": true,
+    "editor.find.autoFindInSelection": "multiline",
     "editor.wordWrap": "on",
     "editor.wrappingIndent": "indent",
-    "editor.snippetSuggestions": "inline",
+    "editor.snippetSuggestions": "bottom",
     "editor.acceptSuggestionOnEnter": "off",
-    "editor.tabCompletion": "onlySnippets",
+    "editor.tabCompletion": "on",
     "editor.quickSuggestions": {
         "other": true,
         "comments": true,
@@ -72,7 +72,7 @@
 
     "vsicons.dontShowNewVersionMessage": true,
 
-    "window.titleBarStyle": "custom",
+    "window.titleBarStyle": "native",
 
     "workbench.editor.revealIfOpen": true,
     "workbench.iconTheme": "material-icon-theme",
@@ -90,7 +90,7 @@
     "workbench.settings.openDefaultSettings": true,
     "workbench.settings.useSplitJSON": true,
 
-    "zenMode.hideLineNumbers": false,
+    "zenMode.hideLineNumbers": true,
     "zenMode.centerLayout": false,
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
@@ -103,4 +103,18 @@
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/vscode.init.vim",
     "editor.cursorBlinking": "solid",
+    "explorer.confirmDelete": false,
+    "zenMode.fullScreen": false,
+    "zenMode.hideStatusBar": false,
+    "window.menuBarVisibility": "toggle",
+    "rust-analyzer.updates.channel": "nightly",
+    "terminal.external.linuxExec": "alacritty",
+    "python.languageServer": "Microsoft",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "python.analysis.completeFunctionParens": true,
 }
