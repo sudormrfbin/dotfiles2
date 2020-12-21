@@ -2,3 +2,7 @@ unbind-key j
 unbind-key k
 bind-key j down
 bind-key k up
+unbind-key h
+unbind-key l
+bind-key h quit
+bind-key l open
