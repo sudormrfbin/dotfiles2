@@ -1,8 +1,8 @@
 *.py[cod]
 
 # Virtual Envs
-env
-.env
+venv
+.venv
 
 # VS Code
 .vscode/
