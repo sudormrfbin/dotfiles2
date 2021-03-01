@@ -78,9 +78,9 @@ fast_add_abbr ppy 'ptpython'
 fast_add_abbr x   'chmod +x'
 fast_add_abbr vv  'sudoedit'
 fast_add_abbr imd 'systemctl poweroff'
-fast_add_abbr ins 'sudo apt install'
-fast_add_abbr upd 'sudo apt update'
-fast_add_abbr upg 'sudo apt full-upgrade'
+fast_add_abbr ins 'yay -S'
+fast_add_abbr upd 'yay -Sy'
+fast_add_abbr upg 'yay -Syu'
 fast_add_abbr xk  'setxkbmap -option ctrl:swapcaps; xset r rate 250 25'
 
 fast_add_abbr rl 'exec fish'
@@ -135,7 +135,7 @@ fast_add_abbr yc 'yadm commit -m'
 
 set -x EDITOR  "nvim"
 set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ $PATH
-set -x BROWSER /mnt/MyStuff/Downloads/firefox/firefox
+set -x BROWSER /usr/bin/vivaldi-stable
 
 set -x F_EXCLUDE '^/tmp/.+' '\.out$'
 
