@@ -38,6 +38,11 @@
 - 
   category: default
   local: false
+  name: "lifepillar/vim-cheat40"
+  opt: false
+- 
+  category: default
+  local: false
   name: "lifepillar/vim-colortemplate"
   opt: true
 - 

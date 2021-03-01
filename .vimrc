@@ -285,6 +285,10 @@ function! s:show_documentation()
 endfunction
 " }}}
 
+" vim-cheat40 {{{
+let g:cheat40_use_default = 0
+" }}}
+
 " }}}1
 
 " Misc {{{
