@@ -1,0 +1,14 @@
+[directory]
+fish_style_pwd_dir_length = 2
+
+[git_status]
+modified = "פֿ "
+deleted = "﫧 "
+staged = " "
+renamed = "凜 "
+untracked = " "
+stashed = " "
+ahead = " "
+behind = " "
+diverge = " "
+format = '([$all_status$ahead_behind]($style) )'
