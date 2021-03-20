@@ -19,8 +19,10 @@ set hidden                 " Keep changes in buffer when switching
 set splitbelow             " Horizontal split below current.
 set splitright             " Vertical split to right of current.
 set nostartofline          " Do not jump to first character with page commands.
+set wildmenu               " Show completions in command mode on a line above it
 
 set showtabline=2          " Always show tabline
+set laststatus=2           " Always show the statusline for all windows
 set wildoptions=tagfile    " Disable vertical completion by removing pum option
 set wildignorecase         " Ignore case when completing file name and directories
 
@@ -40,16 +42,25 @@ set ignorecase             " Make searching case insensitive
 set smartcase              " ... unless the query has capital letters.
 set nomagic                " Use 'magic' patterns (extended regular expressions).
 set hlsearch               " Highlight search results
+set incsearch              " Highlight search matches as you type
+
+set updatetime=100         " Decrease updatetime for faster visual response (gutter)
+set ttimeout               " Whether to timeout when waiting for keystrokes
+set ttimeoutlen=50         " Amount of time to wait for
 
 set undofile               " Persistent undo
 set backupskip=/tmp/*      " Do not back up temporary files.
 
-set list                   " Show special characters for tabs, trailing whitespace, etc
+set list                   " Show special characters for tabs, tr  ailing whitespace, etc
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+set guifont=mononoki\ Nerd\ Font:h21
+
+filetype plugin indent on
+syntax on
 
 " }}}1
 
-" Functions {{{1
+" Autocommands {{{
 
 function! s:GoToLastCursorLocation()
     if line("'\"") > 0 && line("'\"") <= line("$") && &filetype !~# 'commit'
@@ -57,27 +68,17 @@ function! s:GoToLastCursorLocation()
     endif
 endfunction
 
-function! s:ReloadVimConfig()
-    let l:vimrc = $MYVIMRC
-    if expand("%:p") ==# l:vimrc
-        write
-    endif
-    source l:vimrc
-endfunction
-
-" }}}1
-
-" Autocommands {{{
-augroup Misc
+augroup LastCursor
     autocmd!
     autocmd BufReadPost * call s:GoToLastCursorLocation()
 augroup END
+
 " }}}
 
 " Abbreviations {{{1
 
 " Always open help in new bottom window
-" cabbrev h botright help
+cabbrev h botright help
 cabbrev <expr> %% expand('%:h')
 
 " }}}1
@@ -92,10 +93,26 @@ nnoremap <C-P> R<C-R>0<ESC>
 
 inoremap jk <ESC>
 
-nnoremap <leader><leader> :botright help 
+cnoremap <C-P> <Up>
+cnoremap <C-N> <Down>
 
-" To disable highlighting, but enable on /, ?, n, N
-nnoremap <silent><expr> <Leader>/ (&hlsearch && v:hlsearch ? ':nohlsearch' : ':set hlsearch')."\n"
+" Lines {{{
+" Move lines up and down
+nnoremap [e        :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e        :<c-u>execute 'move +'. v:count1<cr>
+" Add newlines above and below
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+" }}}
+
+" Search {{{
+nnoremap <expr> n  'Nn'[v:searchforward]
+xnoremap <expr> n  'Nn'[v:searchforward]
+onoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
+xnoremap <expr> N  'nN'[v:searchforward]
+onoremap <expr> N  'nN'[v:searchforward]
+" }}}
 
 " Disabled {{{
 nnoremap <Up>       <NOP>
@@ -124,12 +141,18 @@ nnoremap ; :
 nnoremap : ;
 xnoremap ; :
 xnoremap : ;
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 " }}}
 
 " Buffer {{{
-nnoremap <leader>by gg"+yG
-nnoremap <leader>bw :set wrap!<CR>
-nnoremap <leader>bd :bdelete<CR>
+nnoremap <leader>by :%yank+<CR>
+nnoremap <leader>bw :setlocal wrap!<CR>
+nnoremap <leader>x :bdelete<CR>
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprev<CR>
 " }}}
 
 " Splits {{{
@@ -137,86 +160,165 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-
-nnoremap <leader>ss <C-W>s
-nnoremap <leader>sv <C-W>v
-nnoremap <leader>sd <C-W>c
 " }}}
 
 " Config File {{{
 nnoremap <leader>ee :edit $MYVIMRC<CR>
-nnoremap <leader>er :call <SID>ReloadVimConfig()<CR>
-nnoremap <leader>ef :edit ~/.config/nvim/after/ftplugin/<CR>
-nnoremap <leader>es :edit ~/.config/nvim/pack/mine/start/statusline/<CR>
+nnoremap <leader>er :source $MYVIMRC<CR>
 " }}}
 
 " }}}1
 
+" Lua Config {{{
+
+" LSP config in lua/lsp.lua
+lua require('lsp')
+
+augroup YankHi
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank{timeout=300}
+augroup END
+" }}}
+
 " Plugins {{{1
 
-call plugpac#begin()
+" Managed by maralla/pack
 
-Pack 'k-takata/minpac', { 'type': 'opt' }
+" vim-easy-align {{{
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" }}}
 
-Pack 'ryvnf/readline.vim'
-
-Pack 'romainl/vim-cool'
-
-Pack 'tpope/vim-commentary'
-
-Pack 'tpope/vim-unimpaired'
-
-Pack 'tommcdo/vim-lion'
-
-Pack 'wellle/targets.vim'
-
-Pack 'lifepillar/vim-mucomplete'
-
-Pack 'blankname/vim-fish', { 'for': 'fish' }
+" vim-signify {{{
+let g:signify_sign_add = '┃'
+let g:signify_sign_change = '╏'
+let g:signify_sign_delete = '▸'
+let g:signify_sign_delete_first_line = '▴'
+" }}}
 
 " vim-sandwich {{{
-Pack 'machakann/vim-sandwich', { 'type': 'opt' }
-
 packadd! vim-sandwich
 runtime macros/sandwich/keymap/surround.vim
 " }}}
 
-" vim-oldfiles {{{
-Pack 'gpanders/vim-oldfiles'
-
-nnoremap <leader>o :Oldfiles 
-
-let g:oldfiles_blacklist = ['vim/runtime/doc']
-" }}}
-
 " vim-sneak {{{
-Pack 'justinmk/vim-sneak'
-
 nmap : <Plug>Sneak_;
-
 let g:sneak#label = 1
 " }}}
 
-" indentLine {{{
-Pack 'Yggdroot/indentLine', { 'on': 'IndentLinesToggle' }
-
-nnoremap <leader>bi :IndentLinesToggle<CR>
-
-let g:indentLine_char = '│'
-let g:indentLine_enabled = 0
-let g:indentLine_bufTypeExclude = [ 'help', 'terminal' ]
-let g:indentLine_fileTypeExclude = [ 'markdown' ]
-" }}}
-
 " onedark.vim {{{
-Pack 'joshdick/onedark.vim', { 'type': 'opt' }
+packadd! onedark.vim
+
+" https://github.com/alacritty/alacritty/issues/3402
+if &term == "alacritty"
+  let &term = "xterm-256color"
+endif
 
 let g:onedark_terminal_italics=1
-
-packadd! onedark.vim
 colorscheme onedark
 " }}}
 
-call plugpac#end()
+" lightline.vim & lightline-bufferline {{{
+let g:lightline = {
+    \ 'colorscheme': 'onedark',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'readonly', 'filename', 'modified' ] ],
+    \   'right': [ [ 'lineinfo' ],
+    \              [ 'percent' ],
+    \              [ 'filetype' ] ]
+    \ },
+    \ 'component_function': {
+    \   'filename': 'IconFileName',
+    \   'cwd': 'GetCwd',
+    \ },
+    \ 'tabline': {
+    \   'left': [ ['buffers'] ],
+    \   'right': [ ['cwd'] ]
+    \ },
+    \ 'component_expand': {
+    \   'buffers': 'lightline#bufferline#buffers'
+    \ },
+    \ 'component_type': {
+    \   'buffers': 'tabsel'
+    \ },
+    \ 'mode_map': {
+      \ 'n' : 'N',
+      \ 'i' : 'I',
+      \ 'R' : 'R',
+      \ 'v' : 'V',
+      \ 'V' : 'VL',
+      \ "\<C-v>": 'VB',
+      \ 'c' : 'C',
+      \ 's' : 'S',
+      \ 'S' : 'SL',
+      \ "\<C-s>": 'SB',
+      \ 't': 'T',
+      \ },
+    \ }
+
+function! GetCwd()
+    return pathshorten(substitute(getcwd(), expand("~"), "~", ""))
+endfunction
+
+function! IconFileName()
+    return strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : '[No Name]'
+endfunction
+
+let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#unicode_symbols = 1
+" }}}
+
+" vim-polyglot {{{
+
+" rust provided by arzg/vim-rust-syntax-ext
+" disable vim-sensible bundled plugin
+" let g:polyglot_disabled = ['rust']
+
+" }}}
+
+" vim-cheat40 {{{
+let g:cheat40_use_default = 0
+" }}}
+
+" languageclient-neovim {{{
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['rust-analyzer'],
+\ }
+
+function SetLSPShortcuts()
+    nnoremap <silent> <buffer> K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <silent> <buffer> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+    nnoremap <silent> <buffer> gy :call LanguageClient#textDocument_typeDefinition()<CR>
+    nnoremap <silent> <buffer> gr :call LanguageClient#textDocument_references()<CR>
+    nnoremap <silent> <buffer> gi :call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <silent> <buffer> ]g :call LanguageClient#diagnosticsNext()<CR>
+    nnoremap <silent> <buffer> [g :call LanguageClient#diagnosticsPrevious()<CR>
+    nnoremap <silent> <buffer> <leader>lr :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <silent> <buffer> <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+    nnoremap <silent> <buffer> <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+    nnoremap <silent> <buffer> <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+augroup LSP
+    autocmd!
+    autocmd FileType rust call SetLSPShortcuts()
+augroup END
+
+" }}}
+
+" fern {{{
+let g:fern#renderer = "devicons"
+" }}}
+
+" vim-workspace {{{
+let g:workspace_session_directory = $HOME . '/.vim/sessions/'
+let g:workspace_persist_undo_history = 0
+let g:workspace_autosave = 0
+" }}}
 
 " }}}1
+
