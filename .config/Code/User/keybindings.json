@@ -243,6 +243,15 @@
     {
         "key": "ctrl+w",
         "command": "-workbench.action.closeActiveEditor"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "-workbench.action.files.openFile"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "vscode-neovim.send",
+        "args": "<c-o>",
+        "when": "editorTextFocus && neovim.mode == insert"
     }
-
 ]

@@ -148,8 +148,8 @@ nnoremap gk k
 
 " Buffer {{{
 nnoremap <leader>by :%yank+<CR>
-nnoremap <leader>bw :set wrap!<CR>
-nnoremap <leader>bd :bdelete<CR>
+nnoremap <leader>bw :setlocal wrap!<CR>
+nnoremap <leader>x :bdelete<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [b :bprev<CR>
 " }}}
@@ -257,12 +257,48 @@ let g:lightline#bufferline#unicode_symbols = 1
 
 " rust provided by arzg/vim-rust-syntax-ext
 " disable vim-sensible bundled plugin
-let g:polyglot_disabled = ['rust', 'sensible']
+" let g:polyglot_disabled = ['rust']
 
 " }}}
 
 " vim-cheat40 {{{
 let g:cheat40_use_default = 0
+" }}}
+
+" languageclient-neovim {{{
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['rust-analyzer'],
+\ }
+
+function SetLSPShortcuts()
+    nnoremap <buffer> K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <buffer> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+    nnoremap <buffer> gy :call LanguageClient#textDocument_typeDefinition()<CR>
+    nnoremap <buffer> gr :call LanguageClient#textDocument_references()<CR>
+    nnoremap <buffer> gi :call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <buffer> ]g :call LanguageClient#diagnosticsNext()<CR>
+    nnoremap <buffer> [g :call LanguageClient#diagnosticsPrevious()<CR>
+    nnoremap <buffer> <leader>lr :call LanguageClient#textDocument_rename()<CR>
+    nnoremap <buffer> <leader>lf :call LanguageClient#textDocument_formatting()<CR>
+    nnoremap <buffer> <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
+    nnoremap <buffer> <leader>lm :call LanguageClient_contextMenu()<CR>
+endfunction()
+
+augroup LSP
+    autocmd!
+    autocmd FileType rust call SetLSPShortcuts()
+augroup END
+
+" }}}
+
+" fern {{{
+let g:fern#renderer = "devicons"
+" }}}
+
+" vim-workspace {{{
+let g:workspace_session_directory = $HOME . '/.vim/sessions/'
+let g:workspace_persist_undo_history = 0
+let g:workspace_autosave = 0
 " }}}
 
 " }}}1

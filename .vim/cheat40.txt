@@ -53,14 +53,17 @@ About {{{2
        before a motion or a text object)
   *    Acts on text under/after cursor
 }}}
-Coc {{{1
+LSP {{{1
 Goto definition          gd            N
 Goto type definition     gy            N
 Goto implmentation       gi            N
 Find references          gr            N
+Show documentation       K             N
 Next diagnostics         ]g            N
 Prev diagnostics         [g            N
-Show documentation       K             N
+Rename symbol            \lr           N
+Format document          \lf           N
+Context menu             \lm           N
 File {{{1
 New untitled document    :enew         N
 Reopen last opened file  «C-o»«C-o»    N

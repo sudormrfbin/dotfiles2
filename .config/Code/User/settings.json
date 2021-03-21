@@ -50,7 +50,7 @@
         "**/*.sublime*": true,
         "**/CVS": true,
         "**/.idea": true,
-        "**/.env": true,
+        "**/.venv": true,
     },
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
@@ -65,7 +65,7 @@
 
     "python.autoComplete.addBrackets": true,
     "python.testing.pytestEnabled": true,
-    "python.linting.lintOnSave": false,
+    "python.linting.lintOnSave": true,
     "python.linting.pylintCategorySeverity.refactor": "Information",
     "python.linting.pylintCategorySeverity.convention": "Hint",
     "python.jediEnabled": false,
@@ -96,7 +96,7 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terminal.integrated.rendererType": "dom",
     "telemetry.enableTelemetry": false,
-    "workbench.colorTheme": "One Dark Theme",
+    "workbench.colorTheme": "One Dark Pro",
     "rust-client.rustupPath": "~/.cargo/bin/rustup",
     "rust-client.updateOnStartup": true,
     "rust-client.engine": "rust-analyzer",
@@ -110,11 +110,12 @@
     "rust-analyzer.updates.channel": "nightly",
     "terminal.external.linuxExec": "alacritty",
     "python.languageServer": "Microsoft",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": [],
     "python.analysis.completeFunctionParens": true,
+    "python.showStartPage": false,
+    "python.linting.pylintUseMinimalCheckers": false,
+    "editor.parameterHints.enabled": false,
+    "python.analysis.typeCheckingMode": "strict",
+    "tabnine.experimentalAutoImports": true,
+    "python.analysis.diagnosticMode": "workspace",
 }

@@ -8,8 +8,11 @@
 
 if test -z $DISPLAY
     if string match -qe 'archlinux' < /proc/version
-        if test (tty) = "/dev/tty1"
-            exec startx /usr/bin/awesome
+        switch (tty)
+            case "/dev/tty1"
+                exec startx ~/Projects/wm/target/release/wm
+            case "/dev/tty2"
+                exec startx /usr/bin/awesome
         end
     else
         switch (tty)
@@ -48,8 +51,8 @@ bind -M insert -k f12 show-man-page
 bind -M insert "`"    power-key
 bind -M insert \e1    forward-word
 bind -M insert \e`    forward-bigword
-bind -M insert \e,    up-or-search
-bind -M insert \e\<   down-or-search
+bind -M insert \cp    up-or-search
+bind -M insert \cn   down-or-search
 bind -M insert \e3    __fzf_reverse_isearch
 bind -M insert \e-    'commandline -i ~/.config/'
 bind -M insert \e0    __fish_preview_current_file
@@ -136,6 +139,7 @@ fast_add_abbr yc 'yadm commit -m'
 set -x EDITOR  "nvim"
 set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ $PATH
 set -x BROWSER /usr/bin/vivaldi-stable
+set -x VIM_CONFIG_PATH ~/.config/nvim/
 
 set -x F_EXCLUDE '^/tmp/.+' '\.out$'
 
