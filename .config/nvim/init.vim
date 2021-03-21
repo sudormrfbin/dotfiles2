@@ -30,6 +30,7 @@ set showmatch              " Show matching brackets.
 set nowrap                 " Do not wrap lines
 set ruler                  " Show the line and column numbers of the cursor.
 set number                 " Show the line numbers on the left side.
+set signcolumn=auto:3      " Show signs only when they exist and show a max of 3 signs
 set relativenumber         " Show relative line numbers
 set cursorline             " Highlight current line
 set scrolloff=3            " Show next 3 lines while scrolling.
@@ -177,6 +178,10 @@ nnoremap <leader>er :source $MYVIMRC<CR>
 
 " LSP config in lua/lsp.lua
 lua require('config')
+
+" Folding based on treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 augroup YankHi
     autocmd!

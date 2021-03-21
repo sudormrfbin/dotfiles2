@@ -9,10 +9,12 @@ local on_attach = function(client, bufnr)
 
     bufopt('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    local function buflspnkey(key, action)
+    local function buflspnkey(key, action, mode)
+        if not mode then mode = 'n' end
         local action = '<cmd>lua vim.lsp.' .. action .. '<CR>'
         local opts = { noremap=true, silent=true }
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', key, action, opts)
+
+        vim.api.nvim_buf_set_keymap(bufnr, mode, key, action, opts)
     end
 
     -- Mappings.
@@ -20,20 +22,20 @@ local on_attach = function(client, bufnr)
     buflspnkey('gd',         'buf.definition()')
     buflspnkey('K',          'buf.hover()')
     buflspnkey('gi',         'buf.implementation()')
-    buflspnkey('<C-k>',      'buf.signature_help()')
-    buflspnkey('<leader>lt', 'buf.type_definition()')
+    buflspnkey('<C-k>',      'buf.signature_help()', 'i')
+    buflspnkey('gy',         'buf.type_definition()')
     buflspnkey('<leader>lr', 'buf.rename()')
     buflspnkey('gr',         'buf.references()')
-    buflspnkey('<leader>ld',  'diagnostic.show_line_diagnostics()')
+    buflspnkey('<leader>ld', 'diagnostic.show_line_diagnostics()')
     buflspnkey('[d',         'diagnostic.goto_prev()')
     buflspnkey(']d',         'diagnostic.goto_next()')
     buflspnkey('<leader>lq', 'diagnostic.set_loclist()')
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-        buflspnkey("<space>f", "buf.formatting()")
+        buflspnkey("<leader>lf", "buf.formatting()")
     elseif client.resolved_capabilities.document_range_formatting then
-        buflspnkey("<space>f", "buf.range_formatting()")
+        buflspnkey("<leader>lf", "buf.range_formatting()")
     end
 
     -- Set autocommands conditional on server_capabilities
@@ -121,3 +123,23 @@ require 'compe'.setup {
 
 -- }
 -- -- }}}
+
+-- nvim-treesitter {{{
+require 'nvim-treesitter.configs'.setup {
+    highlight = {
+        enable = true,
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "gnn",
+            node_incremental = "gnn",
+            scope_incremental = "gns",
+            node_decremental = "gnN",
+        },
+    },
+    indent = {
+        enable = true,
+    },
+}
+-- }}}
