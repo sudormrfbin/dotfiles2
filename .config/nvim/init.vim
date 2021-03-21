@@ -93,6 +93,10 @@ nnoremap <C-P> R<C-R>0<ESC>
 
 inoremap jk <ESC>
 
+" Cycle through completion with tab and shift tab
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
@@ -172,7 +176,7 @@ nnoremap <leader>er :source $MYVIMRC<CR>
 " Lua Config {{{
 
 " LSP config in lua/lsp.lua
-lua require('lsp')
+lua require('config')
 
 augroup YankHi
     autocmd!
