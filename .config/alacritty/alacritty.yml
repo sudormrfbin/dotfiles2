@@ -9,3 +9,6 @@ font:
         family: mononoki Nerd Font
 
     size: 11
+
+key_bindings:
+    - { key: Return, mods: Alt, action: SpawnNewInstance }
