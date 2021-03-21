@@ -70,6 +70,32 @@ Next diagnostics         ]d            N
 Prev diagnostics         [d            N
 Rename symbol            \lr           N
 Format document          \lf           N
+Icons {{{2
+Text                     
+Method                   
+Function                 ƒ
+Constructor              
+Field                    識
+Variable                 勇
+Class                    
+Interface                ﰮ
+Module                   
+Property                 
+Unit                     
+Value                    
+Enum                     了
+Keyword                  
+Snippet                  ﬌
+Color                    
+File                     
+Reference                渚
+Folder                   
+EnumMember               
+Constant                 
+Struct                   
+Event                    鬒
+Operator                 Ψ
+TypeParameter            
 File {{{1
 New untitled document    :enew         N
 Reopen last opened file  «C-o»«C-o»    N

@@ -51,6 +51,37 @@ local on_attach = function(client, bufnr)
             augroup END
     ]], false)
     end
+
+    -- lsp completion icons {{{
+    require('vim.lsp.protocol').CompletionItemKind = {
+        -- https://github.com/hrsh7th/nvim-compe/issues/135#issuecomment-773522031
+        '';   -- Text          = 1;
+        '';   -- Method        = 2;
+        'ƒ';   -- Function      = 3;
+        '';   -- Constructor   = 4;
+        '識';  -- Field         = 5;
+        '勇';  -- Variable      = 6;
+        '';   -- Class         = 7;
+        'ﰮ';   -- Interface     = 8;
+        '';   -- Module        = 9;
+        '';   -- Property      = 10;
+        '';   -- Unit          = 11;
+        '';   -- Value         = 12;
+        '了';  -- Enum          = 13;
+        '';   -- Keyword       = 14;
+        '﬌';   -- Snippet       = 15;
+        '';   -- Color         = 16;
+        '';   -- File          = 17;
+        '渚';  -- Reference     = 18;
+        '';   -- Folder        = 19;
+        '';   -- EnumMember    = 20;
+        '';   -- Constant      = 21;
+        '';   -- Struct        = 22;
+        '鬒';  -- Event         = 23;
+        'Ψ';   -- Operator      = 24;
+        '';   -- TypeParameter = 25;
+    }
+    -- }}}
 end
 
 -- Use a loop to conveniently both setup defined servers 
