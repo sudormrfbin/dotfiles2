@@ -65,6 +65,7 @@ Goto type definition     gy            N
 Goto implmentation       gi            N
 Find references          gr            N
 Show documentation       K             N
+Enter doc window         KK            N
 Show signature help      <C-K>         I
 Next diagnostics         ]d            N
 Prev diagnostics         [d            N
