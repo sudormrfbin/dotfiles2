@@ -156,8 +156,6 @@ nnoremap gk k
 nnoremap <leader>by :%yank+<CR>
 nnoremap <leader>bw :setlocal wrap!<CR>
 nnoremap <leader>x :bdelete<CR>
-nnoremap ]b :bnext<CR>
-nnoremap [b :bprev<CR>
 " }}}
 
 " Splits {{{
@@ -170,6 +168,8 @@ nnoremap <leader>l <C-W>l
 " Config File {{{
 nnoremap <leader>ee :edit $MYVIMRC<CR>
 nnoremap <leader>er :source $MYVIMRC<CR>
+nnoremap <expr> <leader>ec ':e ' .. stdpath('config') .. '/cheat40.txt<CR>'
+nnoremap <expr> <leader>el ':e ' .. stdpath('config') .. '/lua/config.lua<CR>'
 " }}}
 
 " }}}1
@@ -192,6 +192,17 @@ augroup END
 " Plugins {{{1
 
 " Managed by maralla/pack
+
+" nvim-tree.lua {{{
+let g:nvim_tree_side = 'right'
+let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+let g:nvim_tree_quit_on_open = 1
+let g:nvim_tree_indent_markers = 1
+let g:nvim_tree_hide_dotfiles = 1
+let g:nvim_tree_disable_netrw = 1
+let g:nvim_tree_hijack_netrw = 1
+let g:nvim_tree_add_trailing = 1
+" }}}
 
 " vim-easy-align {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -227,58 +238,6 @@ endif
 
 let g:onedark_terminal_italics=1
 colorscheme onedark
-" }}}
-
-" lightline.vim & lightline-bufferline {{{
-let g:lightline = {
-    \ 'colorscheme': 'onedark',
-    \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified' ] ],
-    \   'right': [ [ 'lineinfo' ],
-    \              [ 'percent' ],
-    \              [ 'filetype' ] ]
-    \ },
-    \ 'component_function': {
-    \   'filename': 'IconFileName',
-    \   'cwd': 'GetCwd',
-    \ },
-    \ 'tabline': {
-    \   'left': [ ['buffers'] ],
-    \   'right': [ ['cwd'] ]
-    \ },
-    \ 'component_expand': {
-    \   'buffers': 'lightline#bufferline#buffers'
-    \ },
-    \ 'component_type': {
-    \   'buffers': 'tabsel'
-    \ },
-    \ 'mode_map': {
-      \ 'n' : 'N',
-      \ 'i' : 'I',
-      \ 'R' : 'R',
-      \ 'v' : 'V',
-      \ 'V' : 'VL',
-      \ "\<C-v>": 'VB',
-      \ 'c' : 'C',
-      \ 's' : 'S',
-      \ 'S' : 'SL',
-      \ "\<C-s>": 'SB',
-      \ 't': 'T',
-      \ },
-    \ }
-
-function! GetCwd()
-    return pathshorten(substitute(getcwd(), expand("~"), "~", ""))
-endfunction
-
-function! IconFileName()
-    return strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : '[No Name]'
-endfunction
-
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#unicode_symbols = 1
 " }}}
 
 " vim-polyglot {{{

@@ -4,20 +4,18 @@
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
-    -- local function bufkey(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function bufopt(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
-    bufopt('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
+    -- buflspnkey {{{
     local function buflspnkey(key, action, mode)
         if not mode then mode = 'n' end
-        local action = '<cmd>lua vim.lsp.' .. action .. '<CR>'
+        action = '<cmd>lua vim.lsp.' .. action .. '<CR>'
         local opts = { noremap=true, silent=true }
 
         vim.api.nvim_buf_set_keymap(bufnr, mode, key, action, opts)
     end
+    -- }}}
 
-    -- Mappings.
+    -- Mappings {{{
     buflspnkey('gD',         'buf.declaration()')
     buflspnkey('gd',         'buf.definition()')
     buflspnkey('K',          'buf.hover()')
@@ -37,22 +35,25 @@ local on_attach = function(client, bufnr)
     elseif client.resolved_capabilities.document_range_formatting then
         buflspnkey("<leader>lf", "buf.range_formatting()")
     end
+    -- }}}
 
+    -- Document highlight {{{
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
         vim.api.nvim_exec([[
-            hi LspReferenceRead gui=underline
-            hi LspReferenceText gui=bold
-            hi LspReferenceWrite gui=underline,italic,reverse
-            augroup lsp_document_highlight
-                autocmd! * <buffer>
-                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-            augroup END
-    ]], false)
+        hi LspReferenceRead gui=underline
+        hi LspReferenceText gui=bold
+        hi LspReferenceWrite gui=underline,italic,reverse
+        augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+        augroup END
+            ]], false)
     end
+    -- }}}
 
-    -- lsp completion icons {{{
+    -- LSP completion icons {{{
     require('vim.lsp.protocol').CompletionItemKind = {
         -- https://github.com/hrsh7th/nvim-compe/issues/135#issuecomment-773522031
         '';   -- Text          = 1;
@@ -84,12 +85,38 @@ local on_attach = function(client, bufnr)
     -- }}}
 end
 
--- Use a loop to conveniently both setup defined servers 
--- and map buffer local keybindings when the language server attaches
-local servers = { "rust_analyzer" }
-for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup { on_attach = on_attach }
-end
+-- Rust LSP {{{
+nvim_lsp.rust_analyzer.setup { on_attach = on_attach }
+-- }}}
+
+-- Lua LSP {{{
+local lua_settings = {
+    runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = vim.split(package.path, ';'),
+    },
+    diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+    },
+    workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+        }
+    }
+}
+
+nvim_lsp.sumneko_lua.setup {
+    cmd = {"/usr/bin/lua-language-server", "-E", "/usr/share/lua-language-server/main.lua"},
+    on_attach = on_attach,
+    settings = { Lua = lua_settings },
+}
+-- }}}
+
 -- }}}
 
 -- nvim-compe {{{
@@ -173,4 +200,225 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
     },
 }
+-- }}}
+
+-- nvim-bufferline {{{
+require'bufferline'.setup{
+    options = {
+        view = "default",
+        numbers = "ordinal",
+        number_style = "",
+        mappings = true,
+        modified_icon = '⚫︎',
+        left_trunc_marker = '',
+        right_trunc_marker = '',
+        max_name_length = 18,
+        max_prefix_length = 15, -- prefix used when a buffer is deduplicated
+        tab_size = 18,
+        diagnostics = "nvim_lsp",
+        diagnostics_indicator = function(count, level)
+            local icon = level:match("error") and " " or ""
+            return " " .. icon .. " " .. count
+        end,
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        show_tab_indicators = true,
+        persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+        -- can also be a table containing 2 custom separators
+        -- [focused and unfocused]. eg: { '|', '|' }
+        separator_style = {'thick', 'thick'} ,
+        enforce_regular_tabs = false, -- whether to enforce same tab length
+        always_show_bufferline = false,
+        sort_by = 'extension',
+    }
+}
+
+vim.api.nvim_set_keymap('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+-- }}}
+
+-- galaxyline {{{
+local gl = require('galaxyline')
+local colors = require('colors').onedark
+local condition = require('galaxyline.condition')
+local gls = gl.section
+gl.short_line_list = {'NvimTree','vista','dbui','packer'}
+
+-- Statusline components {{{
+
+local ModeIndicator = {
+    provider = function()
+        -- auto change color according the vim mode
+        local normal = {'n', 'no', }
+        local mode_color = {
+            n      = colors.green,
+            no     = colors.green,
+            i      = colors.blue,
+            ic     = colors.blue,
+            v      = colors.magenta,
+            [""] = colors.magenta,
+            V      = colors.magenta,
+            c      = colors.blue,
+            cv     = colors.blue,
+            ce     = colors.blue,
+            s      = colors.orange,
+            S      = colors.orange,
+            [""] = colors.orange,
+            R      = colors.red,
+            Rv     = colors.red,
+            r      = colors.green, -- hit enter prompt
+            rm     = colors.green, -- --more--
+            ["r?"] = colors.cyan,
+            ["!"]  = colors.blue,
+            t      = colors.red
+        }
+        -- name of hi group derived from table name name
+        vim.api.nvim_command("hi GalaxyModeIndicator guifg=" .. mode_color[vim.fn.mode()])
+        return "▊ "
+    end,
+    highlight = {colors.green, colors.bg, "bold"}
+}
+
+local FileIcon = {
+        provider = 'FileIcon',
+        condition = condition.buffer_not_empty,
+        highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color,colors.bg},
+    }
+
+local FileName = {
+        provider = 'FileName',
+        condition = condition.buffer_not_empty,
+        highlight = {colors.white,colors.bg,'italic'}
+    }
+
+local LineInfo = {
+        provider = 'LineColumn',
+        icon = '   ',
+        separator_highlight = {'NONE',colors.bg},
+        highlight = {colors.fg,colors.bg},
+    }
+
+local Percent = {
+        provider = 'LinePercent',
+        separator = ' ',
+        separator_highlight = {'NONE',colors.bg},
+        highlight = {colors.fg,colors.bg,'bold'},
+    }
+
+local DiagnosticError = {
+        provider = 'DiagnosticError',
+        icon = '  ',
+        highlight = {colors.red,colors.bg}
+    }
+
+local DiagnosticWarn = {
+        provider = 'DiagnosticWarn',
+        icon = '  ',
+        highlight = {colors.yellow,colors.bg},
+    }
+
+local DiagnosticHint = {
+        provider = 'DiagnosticHint',
+        icon = '  ',
+        highlight = {colors.cyan,colors.bg},
+    }
+
+local DiagnosticInfo = {
+        provider = 'DiagnosticInfo',
+        icon = '  ',
+        highlight = {colors.blue,colors.bg},
+    }
+
+local Separator = {
+    provider = function() return '' end,
+    highlight = {nil, colors.light_grey}
+}
+
+local SeparatorStop = {
+    provider = function() return ' ' end,
+    highlight = {nil, colors.bg}
+}
+
+local LspServer = {
+        provider = function() return '   ' end,
+        condition = condition.check_active_lsp,
+        highlight = {colors.yellow,colors.bg,'bold'}
+    }
+
+local GitBranch = {
+        provider = 'GitBranch',
+        icon = '   ',
+        condition = condition.check_git_workspace,
+        highlight = {colors.green,colors.bg},
+    }
+
+local DiffAdd = {
+    provider = 'DiffAdd',
+    condition = condition.hide_in_width,
+    icon = '  ',
+    highlight = {colors.green,colors.bg},
+  }
+
+local DiffModified = {
+    provider = 'DiffModified',
+    condition = condition.hide_in_width,
+    icon = ' 柳',
+    highlight = {colors.orange,colors.bg},
+  }
+
+local DiffRemove = {
+    provider = 'DiffRemove',
+    condition = condition.hide_in_width,
+    icon = '  ',
+    highlight = {colors.red,colors.bg},
+  }
+
+local BufferType = {
+        provider = 'FileTypeName',
+        separator = ' ',
+        separator_highlight = {'NONE',colors.light_grey},
+        highlight = {colors.blue,colors.light_grey}
+}
+
+local SFileName = {
+        provider =  'SFileName',
+        condition = condition.buffer_not_empty,
+        highlight = {colors.fg,colors.light_grey, 'reverse'}
+    }
+
+-- }}}
+
+gls.left = {
+    {ModeIndicator   = ModeIndicator},
+    {FileIcon        = FileIcon},
+    {FileName        = FileName},
+    {GitBranch       = GitBranch},
+    {LspServer       = LspServer},
+    {DiagnosticError = DiagnosticError},
+    {DiagnosticWarn  = DiagnosticWarn},
+    {DiagnosticInfo  = DiagnosticInfo},
+    {DiagnosticHint  = DiagnosticHint},
+    -- separator fills the middle
+    {Separator       = Separator},
+}
+
+gls.right = {
+    -- nitpick to show one character blank in front
+    {SeparatorStop = SeparatorStop},
+    {DiffAdd       = DiffAdd},
+    {DiffModified  = DiffModified},
+    {DiffRemove    = DiffRemove},
+    {LineInfo      = LineInfo},
+    {Percent       = Percent},
+}
+
+gls.short_line_left = {
+    {SFileName = SFileName},
+    {Separator = Separator},
+}
+
+gls.short_line_right = {
+
+}
+
 -- }}}
