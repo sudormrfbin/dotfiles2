@@ -6,11 +6,6 @@
 - 
   category: default
   local: false
-  name: "Rigellute/shades-of-purple.vim"
-  opt: true
-- 
-  category: default
-  local: false
   name: "arzg/vim-rust-syntax-ext"
   opt: false
 - 
@@ -38,13 +33,23 @@
 - 
   category: default
   local: false
-  name: "lifepillar/vim-cheat40"
+  name: "lambdalisue/fern-git-status.vim"
   opt: false
 - 
   category: default
   local: false
-  name: "lifepillar/vim-colortemplate"
-  opt: true
+  name: "lambdalisue/fern-renderer-devicons.vim"
+  opt: false
+- 
+  category: default
+  local: false
+  name: lambdalisue/fern.vim
+  opt: false
+- 
+  category: default
+  local: false
+  name: "lifepillar/vim-cheat40"
+  opt: false
 - 
   category: default
   local: false
@@ -83,12 +88,12 @@
 - 
   category: default
   local: false
-  name: "tpope/vim-commentary"
+  name: "thaerkh/vim-workspace"
   opt: false
 - 
   category: default
   local: false
-  name: "tpope/vim-fugitive"
+  name: "tpope/vim-commentary"
   opt: false
 - 
   category: default

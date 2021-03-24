@@ -101,6 +101,15 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
+" Telescope {{{
+nnoremap <leader>tf :Telescope find_files<CR>
+nnoremap <leader>to :Telescope oldfiles<CR>
+nnoremap <leader>tr :Telescope lsp_references<CR>
+nnoremap <leader>ta :Telescope lsp_code_actions<CR>
+nnoremap <leader>tq :Telescope quickfix<CR>
+nnoremap <leader>tb :Telescope buffers<CR>
+" }}}
+
 " Lines {{{
 " Move lines up and down
 nnoremap [e        :<c-u>execute 'move -1-'. v:count1<cr>

@@ -347,9 +347,9 @@ local LspServer = {
 
 local GitBranch = {
         provider = 'GitBranch',
-        icon = '   ',
+        icon = '  ',
         condition = condition.check_git_workspace,
-        highlight = {colors.green,colors.bg},
+        highlight = {colors.blue,colors.bg},
     }
 
 local DiffAdd = {
@@ -421,4 +421,19 @@ gls.short_line_right = {
 
 }
 
+-- }}}
+
+-- telescope {{{
+local actions = require('telescope.actions')
+require('telescope').setup{
+    defaults = {
+        mappings = {
+            i = {
+                ["<esc>"] = actions.close,
+                ["<C-J>"] = actions.move_selection_next,
+                ["<C-K>"] = actions.move_selection_previous,
+            },
+        },
+    }
+}
 -- }}}
