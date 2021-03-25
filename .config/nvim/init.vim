@@ -102,12 +102,13 @@ cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
 " Telescope {{{
-nnoremap <leader>tf :Telescope find_files<CR>
-nnoremap <leader>to :Telescope oldfiles<CR>
-nnoremap <leader>tr :Telescope lsp_references<CR>
-nnoremap <leader>ta :Telescope lsp_code_actions<CR>
-nnoremap <leader>tq :Telescope quickfix<CR>
-nnoremap <leader>tb :Telescope buffers<CR>
+nnoremap <leader><leader>f :Telescope find_files<CR>
+nnoremap <leader><leader>o :Telescope oldfiles<CR>
+nnoremap <leader><leader>r :Telescope lsp_references<CR>
+nnoremap <leader><leader>a :Telescope lsp_code_actions<CR>
+nnoremap <leader><leader>q :Telescope quickfix<CR>
+nnoremap <leader><leader>b :Telescope buffers<CR>
+nnoremap <leader><leader>g :Telescope live_grep<CR>
 " }}}
 
 " Lines {{{
