@@ -5,154 +5,129 @@
 ---
 - 
   category: default
-  local: false
-  remote: "https://github.com/akinsho/nvim-bufferline.lua"
   name: "nvim-bufferline.lua"
   opt: false
+  remote: "https://github.com/akinsho/nvim-bufferline.lua"
 - 
   category: default
   for: 
     - fish
-  local: false
-  remote: "https://github.com/blankname/vim-fish"
   name: "vim-fish"
   opt: true
+  remote: "https://github.com/blankname/vim-fish"
 - 
   category: default
-  local: false
-  remote: "https://github.com/hrsh7th/nvim-compe"
   name: "nvim-compe"
   opt: false
+  remote: "https://github.com/hrsh7th/nvim-compe"
 - 
   category: default
-  local: false
-  remote: "https://github.com/joshdick/onedark.vim"
-  name: "onedark.vim"
+  name: onedark.vim
   opt: false
+  remote: "https://github.com/joshdick/onedark.vim"
 - 
   category: default
-  local: false
-  remote: "https://github.com/junegunn/vim-easy-align"
   name: "vim-easy-align"
   opt: false
+  remote: "https://github.com/junegunn/vim-easy-align"
 - 
   category: default
-  local: false
-  remote: "https://github.com/justinmk/vim-sneak"
   name: "vim-sneak"
   opt: false
+  remote: "https://github.com/justinmk/vim-sneak"
 - 
   category: default
-  local: false
-  remote: "https://github.com/kyazdani42/nvim-tree.lua"
   name: "nvim-tree.lua"
   opt: false
+  remote: "https://github.com/kyazdani42/nvim-tree.lua"
 - 
   category: default
-  local: false
-  remote: "https://github.com/kyazdani42/nvim-web-devicons"
   name: "nvim-web-devicons"
   opt: false
+  remote: "https://github.com/kyazdani42/nvim-web-devicons"
 - 
   category: default
-  local: false
-  remote: "https://github.com/lifepillar/vim-cheat40"
   name: "vim-cheat40"
   opt: false
+  remote: "https://github.com/lifepillar/vim-cheat40"
 - 
   category: default
-  local: false
-  remote: "https://github.com/machakann/vim-sandwich"
   name: "vim-sandwich"
   opt: false
+  remote: "https://github.com/machakann/vim-sandwich"
 - 
   category: default
-  local: false
-  remote: "https://github.com/mhinz/vim-signify"
   name: "vim-signify"
   opt: false
+  remote: "https://github.com/mhinz/vim-signify"
 - 
   category: default
-  local: false
-  remote: "https://github.com/neovim/nvim-lspconfig"
   name: "nvim-lspconfig"
   opt: false
+  remote: "https://github.com/neovim/nvim-lspconfig"
 - 
   category: default
-  local: false
-  remote: "https://github.com/norcalli/nvim-colorizer.lua"
   name: "nvim-colorizer.lua"
   on: ColorizerAttachToBuffer
   opt: true
+  remote: "https://github.com/norcalli/nvim-colorizer.lua"
 - 
   category: default
-  local: false
+  name: plenary.nvim
+  opt: false
   remote: "https://github.com/nvim-lua/plenary.nvim"
-  name: "plenary.nvim"
-  opt: false
 - 
   category: default
-  local: false
+  name: popup.nvim
+  opt: false
   remote: "https://github.com/nvim-lua/popup.nvim"
-  name: "popup.nvim"
-  opt: false
 - 
   category: default
-  local: false
+  name: telescope.nvim
+  opt: false
   remote: "https://github.com/nvim-telescope/telescope.nvim"
-  name: "telescope.nvim"
-  opt: false
 - 
   category: default
-  local: false
-  remote: "https://github.com/nvim-treesitter/nvim-treesitter"
   name: "nvim-treesitter"
   opt: false
+  remote: "https://github.com/nvim-treesitter/nvim-treesitter"
 - 
   category: default
-  local: false
-  remote: "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   name: "nvim-treesitter-textobjects"
   opt: false
+  remote: "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
 - 
   category: default
-  local: false
-  remote: "https://github.com/romainl/vim-cool"
   name: "vim-cool"
   opt: false
+  remote: "https://github.com/romainl/vim-cool"
 - 
   category: default
-  local: false
-  remote: "https://github.com/romgrk/nvim-treesitter-context"
   name: "nvim-treesitter-context"
   opt: false
+  remote: "https://github.com/romgrk/nvim-treesitter-context"
 - 
   category: default
-  local: false
-  remote: "https://github.com/ryanoasis/vim-devicons"
   name: "vim-devicons"
   opt: false
+  remote: "https://github.com/ryanoasis/vim-devicons"
 - 
   category: default
-  local: false
-  remote: "https://github.com/sheerun/vim-polyglot"
   name: "vim-polyglot"
   opt: false
+  remote: "https://github.com/sheerun/vim-polyglot"
 - 
   category: default
-  local: false
-  remote: "https://github.com/thaerkh/vim-workspace"
   name: "vim-workspace"
   opt: false
+  remote: "https://github.com/thaerkh/vim-workspace"
 - 
   category: default
-  local: false
-  remote: "https://github.com/tpope/vim-commentary"
   name: "vim-commentary"
   opt: false
+  remote: "https://github.com/tpope/vim-commentary"
 - 
   category: default
-  local: false
-  remote: "https://github.com/tweekmonster/startuptime.vim"
-  name: "startuptime.vim"
+  name: startuptime.vim
   opt: true
+  remote: "https://github.com/tweekmonster/startuptime.vim"

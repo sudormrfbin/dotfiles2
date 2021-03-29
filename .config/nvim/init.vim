@@ -44,6 +44,7 @@ set smartcase              " ... unless the query has capital letters.
 set nomagic                " Use 'magic' patterns (extended regular expressions).
 set hlsearch               " Highlight search results
 set incsearch              " Highlight search matches as you type
+set inccommand=nosplit     " Show live substitution results as you type
 
 set updatetime=100         " Decrease updatetime for faster visual response (gutter)
 set ttimeout               " Whether to timeout when waiting for keystrokes
@@ -101,11 +102,18 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
 
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :cfirst<CR>
+nnoremap ]Q :clast<CR>
+
 " Telescope {{{
 nnoremap <leader><leader>f :Telescope find_files<CR>
 nnoremap <leader><leader>o :Telescope oldfiles<CR>
 nnoremap <leader><leader>r :Telescope lsp_references<CR>
 nnoremap <leader><leader>a :Telescope lsp_code_actions<CR>
+nnoremap <leader><leader>s :Telescope lsp_document_symbols<CR>
+nnoremap <leader><leader>w :Telescope lsp_workspace_symbols<CR>
 nnoremap <leader><leader>q :Telescope quickfix<CR>
 nnoremap <leader><leader>b :Telescope buffers<CR>
 nnoremap <leader><leader>g :Telescope live_grep<CR>
@@ -260,32 +268,6 @@ colorscheme onedark
 
 " vim-cheat40 {{{
 let g:cheat40_use_default = 0
-" }}}
-
-" languageclient-neovim {{{
-let g:LanguageClient_serverCommands = {
-\ 'rust': ['rust-analyzer'],
-\ }
-
-function SetLSPShortcuts()
-    nnoremap <silent> <buffer> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <silent> <buffer> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
-    nnoremap <silent> <buffer> gy :call LanguageClient#textDocument_typeDefinition()<CR>
-    nnoremap <silent> <buffer> gr :call LanguageClient#textDocument_references()<CR>
-    nnoremap <silent> <buffer> gi :call LanguageClient#textDocument_implementation()<CR>
-    nnoremap <silent> <buffer> ]g :call LanguageClient#diagnosticsNext()<CR>
-    nnoremap <silent> <buffer> [g :call LanguageClient#diagnosticsPrevious()<CR>
-    nnoremap <silent> <buffer> <leader>lr :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <silent> <buffer> <leader>lf :call LanguageClient#textDocument_formatting()<CR>
-    nnoremap <silent> <buffer> <leader>ls :call LanguageClient_textDocument_documentSymbol()<CR>
-    nnoremap <silent> <buffer> <leader>lm :call LanguageClient_contextMenu()<CR>
-endfunction()
-
-augroup LSP
-    autocmd!
-    autocmd FileType rust call SetLSPShortcuts()
-augroup END
-
 " }}}
 
 " fern {{{
