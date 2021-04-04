@@ -1,4 +1,4 @@
-; vim: fdm=marker:fmr=\ {{{,\ }}}
+; vim: fdm=marker:fmr=\ {{{,\ }}}:ft=dosini
 
 ; Modified from https://github.com/adi1090x/polybar-themes/tree/master/simple/forest
 
@@ -476,9 +476,15 @@ ramp-3 = ${icon.brightness-3}
 ramp-4 = ${icon.brightness-4}
 ramp-foreground = ${color.yellow}
 
+; Bar is set differently - only whole bar as not shown, only ${bar.fill} is used
+; Combined with setting bar-width to a high value and setting bar colors for
+; individual 0-10 instead of usual 0-4 makes it more succinct. Green shown for
+; *very* low brightness, yellow for a little more and red for anything higher
+; than 15%
+
 ; Only applies if <bar> is used
 bar-format = "%fill%%indicator%%empty%"
-bar-width = 11
+bar-width = 20
 bar-gradient = false
 
 bar-indicator = ${bar.indicator}
@@ -488,12 +494,17 @@ bar-indicator-font = 2
 bar-fill = ${bar.fill}
 bar-fill-font = 2
 bar-foreground-0 = ${color.green}
-bar-foreground-1 = ${color.green}
-bar-foreground-2 = ${color.yellow}
+bar-foreground-1 = ${color.yellow}
+bar-foreground-2 = ${color.red}
 bar-foreground-3 = ${color.red}
 bar-foreground-4 = ${color.red}
+bar-foreground-5 = ${color.red}
+bar-foreground-6 = ${color.red}
+bar-foreground-7 = ${color.red}
+bar-foreground-8 = ${color.red}
+bar-foreground-9 = ${color.red}
 
-bar-empty = ${bar.empty}
+bar-empty = 
 bar-empty-font = 2
 bar-empty-foreground = ${color.sep}
 ; }}}
@@ -869,7 +880,7 @@ format-connected-prefix-foreground = ${color.purple}
 ; Available tags:
 ;   <label-disconnected> (default)
 format-disconnected = ${icon.network-disconnected}
-format-disconnected-foreground = ${color.sep}
+format-disconnected-foreground = ${color.grey}
 
 ; Available tags:
 ;   <label-connected> (default)
