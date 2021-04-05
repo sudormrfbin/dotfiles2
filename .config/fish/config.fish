@@ -10,7 +10,7 @@ if test -z $DISPLAY
     if string match -qe 'archlinux' < /proc/version
         switch (tty)
             case "/dev/tty1"
-                exec startx ~/Projects/wm/target/release/wm
+                exec startx ~/.config/wm/target/release/wm
             case "/dev/tty2"
                 exec startx /usr/bin/awesome
         end
