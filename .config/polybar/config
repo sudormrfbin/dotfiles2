@@ -130,7 +130,7 @@ font-3 = "feather:size=18;4"
 
 modules-left = workspaces sep cpu memory filesystem github netspeed
 modules-center = date intent
-modules-right = network sep volume brightness sep battery
+modules-right = network sep brightness volume sep battery
 
 ; The separator will be inserted between the output of each module
 separator =
@@ -462,11 +462,13 @@ card = amdgpu_bl0
 ;   <label> (default)
 ;   <ramp>
 ;   <bar>
-format = <ramp> <bar>
+format = <label>
+format-prefix = ${icon.brightness-4}
+format-prefix-foreground = ${color.yellow}
 
 ; Available tokens:
 ;   %percentage% (default)
-label = %percentage%%
+label = " %percentage%%"
 
 ; Only applies if <ramp> is used
 ramp-0 = ${icon.brightness-0}
