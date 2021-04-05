@@ -129,7 +129,7 @@ font-3 = "feather:size=18;4"
 ;   modules-right = ipc clock
 
 modules-left = workspaces sep cpu memory filesystem github netspeed
-modules-center = date
+modules-center = date intent
 modules-right = network sep volume brightness sep battery
 
 ; The separator will be inserted between the output of each module
@@ -1190,6 +1190,44 @@ label-empty-foreground = ${color.foreground}
 ; label-occupied-padding = 0
 ; label-empty-padding = 0
 
+; }}}
+
+; Intent {{{
+[module/intent]
+type = custom/script
+
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/bin/sh -c [command]")
+exec = head -n1 ~/.cache/intent.txt
+
+; Conditional command that, if defined, needs to exit successfully
+; before the main exec command is invoked.
+; Default: ""
+exec-if = test -s ~/.cache/intent.txt
+
+; Will the script output continous content?
+; Default: false
+; tail = true
+
+; Seconds to sleep between updates
+; Default: 5 (0 if `tail = true`)
+interval = 10
+
+; Available tokens:
+;   %output%
+; Default: %output%
+label = " %output%"
+; ellipsis adds three chars
+label-maxlen = 27
+label-ellipsis = true
+
+; Available tags:
+;   <output> - deprecated
+;   <label> (default)
+format = <label>
+format-prefix = ${icon.blocks}
+format-prefix-foreground = ${color.blue}
 ; }}}
 
 ; Github {{{
