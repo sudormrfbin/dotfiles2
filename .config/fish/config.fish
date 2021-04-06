@@ -10,7 +10,7 @@ if test -z $DISPLAY
     if string match -qe 'archlinux' < /proc/version
         switch (tty)
             case "/dev/tty1"
-                exec startx ~/.config/wm/target/release/wm
+                exec startx
             case "/dev/tty2"
                 exec startx /usr/bin/awesome
         end
@@ -139,8 +139,10 @@ fast_add_abbr yc 'yadm commit -m'
 
 set -x EDITOR  "nvim"
 set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ $PATH
-set -x BROWSER /usr/bin/vivaldi-stable
+set -x BROWSER /usr/bin/firefox
 set -x VIM_CONFIG_PATH ~/.config/nvim/
+
+set -x SXHKD_SHELL "/bin/bash"
 
 set -x F_EXCLUDE '^/tmp/.+' '\.out$'
 
