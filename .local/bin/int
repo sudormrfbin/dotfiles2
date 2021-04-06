@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+INTFILE=$HOME/.cache/intent.txt
+
+if [[ $# -eq 0 ]]; then
+    echo -n > $INTFILE
+else
+    echo "$@" > $INTFILE
+fi
