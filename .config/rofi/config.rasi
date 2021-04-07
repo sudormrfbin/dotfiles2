@@ -12,6 +12,7 @@ configuration {
     show-icons:                     true;
 	icon-theme: 					"Papirus";
     display-drun: 					"";
+    display-window: 				"";
     drun-display-format:            "{name}";
     disable-history:                false;
     fullscreen:                     false;
@@ -39,7 +40,7 @@ prompt {
 	padding: 						0px;
 	background-color: 				@bg;
 	text-color: 					@ac;
-	font:							"feather 15";
+	font:							"feather 15, mononoki Nerd Font 15";
 }
 
 entry {
