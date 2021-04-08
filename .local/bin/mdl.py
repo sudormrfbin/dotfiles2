@@ -130,7 +130,7 @@ def main():
         elif state == State.TO_TAG_OR_SEARCH:
             print(
                 term.orange
-                + "[y] - ytsearch [i] - tag indian [n] - new track [p] - picard [l] play "
+                + "[y]tsearch, tag [i]ndian, [n]ew track, [p]icard, p[l]ay "
                 + term.normal,
                 end="",
                 flush=True,
