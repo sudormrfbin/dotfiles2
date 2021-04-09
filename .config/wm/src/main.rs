@@ -16,7 +16,7 @@ const TERMINAL: &str = "alacritty";
 const LAUNCHER: &str = "rofi -no-lazy-grab -show drun -modi drun";
 const BROWSER: &str = "firefox";
 
-const STARTUP_SCRIPT: &str = "~/.config/wm/wm-startup.sh";
+const STARTUP_SCRIPT: &str = "/home/gokul/.config/wm/wm-startup.sh";
 
 const MAX_MAIN: u32 = 1;
 const RATIO: f32 = 0.6;
