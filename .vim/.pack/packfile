@@ -6,102 +6,122 @@
 - 
   category: default
   local: false
-  name: "arzg/vim-rust-syntax-ext"
+  remote: "https://github.com/arzg/vim-rust-syntax-ext"
+  name: "vim-rust-syntax-ext"
   opt: false
 - 
   category: default
   for: 
     - fish
   local: false
-  name: "blankname/vim-fish"
+  remote: "https://github.com/blankname/vim-fish"
+  name: "vim-fish"
   opt: true
 - 
   category: default
   local: false
-  name: itchyny/lightline.vim
+  remote: "https://github.com/itchyny/lightline.vim"
+  name: "lightline.vim"
   opt: false
 - 
   category: default
   local: false
-  name: joshdick/onedark.vim
+  remote: "https://github.com/joshdick/onedark.vim"
+  name: "onedark.vim"
   opt: false
 - 
   category: default
   local: false
-  name: "justinmk/vim-sneak"
+  remote: "https://github.com/justinmk/vim-sneak"
+  name: "vim-sneak"
   opt: false
 - 
   category: default
   local: false
-  name: "lambdalisue/fern-git-status.vim"
+  remote: "https://github.com/lambdalisue/fern-git-status.vim"
+  name: "fern-git-status.vim"
   opt: false
 - 
   category: default
   local: false
-  name: "lambdalisue/fern-renderer-devicons.vim"
+  remote: "https://github.com/lambdalisue/fern-renderer-devicons.vim"
+  name: "fern-renderer-devicons.vim"
   opt: false
 - 
   category: default
   local: false
-  name: lambdalisue/fern.vim
+  remote: "https://github.com/lambdalisue/fern.vim"
+  name: "fern.vim"
   opt: false
 - 
   category: default
   local: false
-  name: "lifepillar/vim-cheat40"
+  remote: "https://github.com/lifepillar/vim-cheat40"
+  name: "vim-cheat40"
   opt: false
 - 
   category: default
   local: false
-  name: "lifepillar/vim-mucomplete"
+  remote: "https://github.com/lifepillar/vim-mucomplete"
+  name: "vim-mucomplete"
   opt: false
 - 
   category: default
   local: false
-  name: "machakann/vim-sandwich"
+  remote: "https://github.com/machakann/vim-sandwich"
+  name: "vim-sandwich"
   opt: false
 - 
   category: default
   local: false
-  name: "mengelbrecht/lightline-bufferline"
+  remote: "https://github.com/mengelbrecht/lightline-bufferline"
+  name: "lightline-bufferline"
   opt: false
 - 
   category: default
   local: false
-  name: "mhinz/vim-signify"
+  remote: "https://github.com/mhinz/vim-signify"
+  name: "vim-signify"
   opt: false
 - 
   category: default
   local: false
-  name: "romainl/vim-cool"
+  remote: "https://github.com/romainl/vim-cool"
+  name: "vim-cool"
   opt: false
 - 
   category: default
   local: false
-  name: "ryanoasis/vim-devicons"
+  remote: "https://github.com/ryanoasis/vim-devicons"
+  name: "vim-devicons"
   opt: false
 - 
   category: default
   local: false
-  name: "sheerun/vim-polyglot"
+  remote: "https://github.com/sheerun/vim-polyglot"
+  name: "vim-polyglot"
   opt: false
 - 
   category: default
   local: false
-  name: "thaerkh/vim-workspace"
+  remote: "https://github.com/thaerkh/vim-workspace"
+  name: "vim-workspace"
   opt: false
 - 
   category: default
   local: false
-  name: "tpope/vim-commentary"
+  remote: "https://github.com/tpope/vim-commentary"
+  name: "vim-commentary"
   opt: false
 - 
   category: default
   local: false
-  name: tweekmonster/startuptime.vim
+  remote: "https://github.com/tweekmonster/startuptime.vim"
+  name: "startuptime.vim"
   opt: true
 - 
   category: default
   local: false
-  name: wellle/targets.vim
+  remote: "https://github.com/wellle/targets.vim"
+  name: "targets.vim"
   opt: false
