@@ -10,9 +10,36 @@ super + Return
 super + @space
 	rofi -no-lazy-grab -show drun -modi drun
 
+# window switcher
+super + shift + @space
+	rofi -no-lazy-grab -show window
+
+# browser
+super + b
+	raise-or-run.sh firefox firefox
+
+# music player
+super + c
+	raise-or-run.sh cmus "alacritty --class Alacritty,cmus -e cmus"
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+XF86Audio{Raise,Lower}Volume
+	amixer -D pulse sset Master 5%{+,-}
+
+XF86AudioMute
+	amixer -D pulse set Master 1+ toggle
+
+XF86AudioPlay
+	playerctl play-pause
+
+XF86Audio{Next,Prev}
+	playerctl {next,previous}
+
+XF86MonBrightness{Up,Down}
+	light -{A,U} 5
 
 #
 # bspwm hotkeys
@@ -36,15 +63,19 @@ super + y
 
 # swap the current node and the biggest window
 super + g
-	bspc node --swap biggest.window
+	bspc node --swap biggest.window --follow
+
+# make all nodes equal in size
+super + equal
+	bspc node @/ -B
 
 #
 # state/flags
 #
 
-# set the window state
+# toggle the window state
 super + {t,shift + t,s,f}
-	bspc node --state {tiled,pseudo_tiled,floating,fullscreen}
+	bspc node --state {\~tiled,\~pseudo_tiled,\~floating,\~fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -54,24 +85,20 @@ super + ctrl + {m,x,y,z}
 # focus/swap
 #
 
-# focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node --{focus,swap} {west,south,north,east}
+# focus or swap the node in the given direction
+super + {_,shift + }{h,l}
+	bspc node --{focus,swap} {west,east}
 
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node --focus @{parent,brother,first,second}
-
-# focus the next/previous window in the current desktop
-super + {_,shift + }c
+# cycle focus
+super + {j,k}
 	bspc node --focus {next,prev}.local.!hidden.window
 
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop --focus {prev,next}.local
+# cycle swap node
+super + shift + {j,k}
+	bspc node --swap {next,prev}.local.!hidden.window
 
 # focus the last node/desktop
-super + {grave,Tab}
+super + {Tab,grave}
 	bspc {node,desktop} --focus last
 
 # focus the older or newer node in the focus history
@@ -81,8 +108,8 @@ super + {o,i}
 	bspc wm --record-history on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop --focus,node --desktop} '^{1-9,10}'
+super + {_,shift + }{1-4}
+	bspc {desktop --focus,node --to-desktop} {1-4}
 
 #
 # preselect
