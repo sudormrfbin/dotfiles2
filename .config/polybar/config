@@ -274,20 +274,20 @@ indicator =
 
 ; Colors {{{
 [color]
-background = #282C34
-foreground = #C4C7C5
-sep = #3F4952
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+sep = ${xrdb:color20}
 
 ; onedark
-red    = #E06C75
-maroon = #BE5046
-green  = #98C379
-yellow = #E5C07B
-orange = #D19A66
-blue   = #61AFEF
-purple = #C678DD
-cyan   = #56B6C2
-grey   = #5C6370
+red    = ${xrdb:color1}
+maroon = ${xrdb:color17}
+green  = ${xrdb:color2}
+yellow = ${xrdb:color3}
+orange = ${xrdb:color16}
+blue   = ${xrdb:color4}
+purple = ${xrdb:color5}
+cyan   = ${xrdb:color6}
+grey   = ${xrdb:color8}
 
 white  = #FFFFFF
 black  = #000000
