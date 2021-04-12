@@ -5,9 +5,10 @@
 selfile="$(yadm diff --name-only | \
     fzf --preview='yadm diff --color $HOME/{}' --height=100% --multi --prompt='Stage: ')"
 
+[ -z "$selfile" ] && exit
+
 # paths are always relative to $HOME
 selfile="$HOME/$selfile"
 
-[ -n "$selfile" ] &&
-    yadm add "$selfile" &&
-    yadm diff --name-status --cached
+yadm add "$selfile"
+yadm diff --name-status --cached
