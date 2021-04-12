@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Interactively stage modified dotfiles using yadm
+
+selfile="$(yadm diff --name-only | \
+    fzf --preview='yadm diff --color $HOME/{}' --height=100% --multi --prompt='Stage: ')"
+
+# paths are always relative to $HOME
+selfile="$HOME/$selfile"
+
+[ -n "$selfile" ] &&
+    yadm add "$selfile" &&
+    yadm diff --name-status --cached

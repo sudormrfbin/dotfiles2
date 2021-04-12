@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+frecedb="${XDG_CACHE_HOME:-$HOME/.cache}/yadm-files.txt"
+
+selfile="$(frece print $frecedb | fzf)"
+[ -f "$selfile" ] && frece increment $frecedb $selfile && $EDITOR $selfile
