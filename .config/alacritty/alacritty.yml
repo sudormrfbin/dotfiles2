@@ -12,6 +12,7 @@ font:
 
 key_bindings:
     - { key: Return, mods: Alt, action: SpawnNewInstance }
+    - { key: V, mods: Control, action: Paste }
 
 # Colors (One Dark)
 # colors:
