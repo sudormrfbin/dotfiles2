@@ -58,6 +58,16 @@ Incremental selection {{{2
 Start/Increment          gnn           N
 Decrement                gnN           N
 Scope increment          gns           N
+Telescope {{{1
+Find Files               \\f           N
+Oldfiles                 \\o           N
+Lsp References           \\r           N
+Lsp Code Actions         \\a           N
+Lsp Document Symbols     \\s           N
+Lsp Workspace Symbols    \\w           N
+Quickfix                 \\q           N
+Buffers                  \\b           N
+Live Grep                \\g           N
 LSP {{{1
 Goto definition          gd            N
 Goto declaration         gD            N
