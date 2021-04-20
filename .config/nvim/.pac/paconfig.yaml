@@ -108,6 +108,11 @@
   remote: "https://github.com/romgrk/nvim-treesitter-context"
 - 
   category: default
+  name: ron.vim
+  opt: false
+  remote: "https://github.com/ron-rs/ron.vim"
+- 
+  category: default
   name: "vim-devicons"
   opt: false
   remote: "https://github.com/ryanoasis/vim-devicons"
@@ -116,6 +121,11 @@
   name: "vim-polyglot"
   opt: false
   remote: "https://github.com/sheerun/vim-polyglot"
+- 
+  category: default
+  name: pears.nvim
+  opt: false
+  remote: "https://github.com/steelsojka/pears.nvim"
 - 
   category: default
   name: "vim-workspace"
@@ -131,3 +141,9 @@
   name: startuptime.vim
   opt: true
   remote: "https://github.com/tweekmonster/startuptime.vim"
+- 
+  build: ./install.sh
+  category: default
+  name: "compe-tabnine"
+  opt: false
+  remote: "https://github.com/tzachar/compe-tabnine"
