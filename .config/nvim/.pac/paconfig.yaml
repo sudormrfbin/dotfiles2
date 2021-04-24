@@ -10,13 +10,6 @@
   remote: "https://github.com/akinsho/nvim-bufferline.lua"
 - 
   category: default
-  for: 
-    - fish
-  name: "vim-fish"
-  opt: true
-  remote: "https://github.com/blankname/vim-fish"
-- 
-  category: default
   name: "nvim-compe"
   opt: false
   remote: "https://github.com/hrsh7th/nvim-compe"
@@ -71,6 +64,11 @@
   on: ColorizerAttachToBuffer
   opt: true
   remote: "https://github.com/norcalli/nvim-colorizer.lua"
+- 
+  category: default
+  name: lsp_extensions.nvim
+  opt: false
+  remote: "https://github.com/nvim-lua/lsp_extensions.nvim"
 - 
   category: default
   name: plenary.nvim
@@ -139,6 +137,7 @@
 - 
   category: default
   name: startuptime.vim
+  on: StartupTime
   opt: true
   remote: "https://github.com/tweekmonster/startuptime.vim"
 - 
