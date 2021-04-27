@@ -1,0 +1,133 @@
+// ktrl Example Configuration File
+// -------------------------------
+//
+// ktrl config files use `ron` (Rust Object Notation) to serialize
+// the text into the internal `cfg::Cfg` struct.
+//
+// - The full KEY_... listing can be found inside the `keys::KeyCode` enum
+// - Layer entries are mapping between a source `KeyCode` into an `Action` (more on that below)
+//
+(
+    // ktrl will register a TapHold as an hold after 300ms
+    tap_hold_wait_time: 130,
+
+    // ktrl will register a TapDance if all taps occur within a 1000ms period (1s)
+    tap_dance_wait_time: 1000,
+
+    // Gives names to layers
+    layer_aliases: {
+        "base":            0,
+        "num-and-symbols": 1,
+        "firefox-keys":    2,
+        "function_keys":   3,
+        "meta-disabled":   4,
+        "meta-enabled":    5,
+    },
+
+    layer_profiles: {
+        "firefox": Profile(
+            indices: [],
+            aliases: ["firefox-keys"],
+        ),
+        "function": Profile(
+            indices: [],
+            aliases: ["function_keys"],
+        ),
+        "meta": Profile(
+            indices: [],
+            aliases: ["meta-enabled", "function_keys"]
+        ),
+        "no-meta": Profile(
+            indices: [],
+            aliases: ["meta-disabled"],
+        ),
+    },
+
+    layers: [
+        // Layer 0 (Base Layer)
+        //
+        //   Layer 0 is a bit special.
+        //   When ktrl stats-up, it automatically enables this layer.
+        //   After that, it can never be turned off.
+        //   I.E it configures the default behavior (when all other layers are off).
+        //
+        //   All the layer entries repeat the same pattern.
+        //   They map a source `KeyCode` to an `Action`.
+        //
+        {
+            // KEY_LEFTMETA:  Tap(Key(KEY_LEFTCTRL)),
+            // KEY_RIGHTALT: TapHold(Key(KEY_RIGHTALT), ActivateProfile("meta")),
+            // KEY_F1:  TapHold(Key(KEY_F1), ToggleLayerAlias("function_keys")),
+            // KEY_F3:  TapHold(Key(KEY_F3), DeactivateAllProfiles),
+            KEY_SLASH: TapHold(Key(KEY_SLASH), Key(KEY_RIGHTSHIFT)),
+            KEY_SPACE: TapHold(Key(KEY_SPACE), Key(KEY_LEFTMETA)),
+            KEY_C: TapHold(Key(KEY_C), MomentaryLayer(1)),
+            KEY_M: TapHold(Key(KEY_M), MomentaryLayer(1)),
+            KEY_RIGHTALT: Tap(Key(KEY_ENTER)),
+            KEY_ENTER: Tap(Key(KEY_RIGHTALT)),
+            KEY_LEFTALT: Tap(Key(KEY_BACKSPACE)),
+            KEY_BACKSPACE: Tap(Key(KEY_LEFTALT)),
+            // KEY_CAPSLOCK: TapHold(Key(KEY_ESC), Key(KEY_LEFTCTRL)),
+            KEY_CAPSLOCK: Tap(Key(KEY_LEFTCTRL)),
+            KEY_LEFTCTRL: Tap(Key(KEY_CAPSLOCK)),
+        },
+        // num-and-symbols layer
+        {
+
+            KEY_Q: Tap(Key(KEY_1)),
+            KEY_W: Tap(Key(KEY_2)),
+            KEY_E: Tap(Key(KEY_3)),
+            KEY_R: Tap(Key(KEY_4)),
+            KEY_T: Tap(Key(KEY_5)),
+            KEY_Y: Tap(Key(KEY_6)),
+            KEY_U: Tap(Key(KEY_7)),
+            KEY_I: Tap(Key(KEY_8)),
+            KEY_O: Tap(Key(KEY_9)),
+            KEY_P: Tap(Key(KEY_0)),
+
+            KEY_A: Tap(KeySeq([KEY_LEFTSHIFT, KEY_1])),
+            KEY_S: Tap(KeySeq([KEY_LEFTSHIFT, KEY_2])),
+            KEY_D: Tap(KeySeq([KEY_LEFTSHIFT, KEY_3])),
+            KEY_F: Tap(KeySeq([KEY_LEFTSHIFT, KEY_4])),
+            KEY_G: Tap(KeySeq([KEY_LEFTSHIFT, KEY_5])),
+            KEY_H: Tap(KeySeq([KEY_LEFTSHIFT, KEY_6])),
+            KEY_J: Tap(KeySeq([KEY_LEFTSHIFT, KEY_7])),
+            KEY_K: Tap(KeySeq([KEY_LEFTSHIFT, KEY_8])),
+            KEY_L: Tap(KeySeq([KEY_LEFTSHIFT, KEY_9])),
+            KEY_SEMICOLON: Tap(KeySeq([KEY_LEFTSHIFT, KEY_0])),
+
+        },
+        // firefox-keys
+        {
+            KEY_J: Tap(Key(KEY_DOWN)),
+            KEY_K: Tap(Key(KEY_UP)),
+            KEY_LEFTSHIFT: TapHold(ToggleLayerAlias("firefox-keys"), Key(KEY_LEFTSHIFT)),
+        },
+        // function_keys
+        {
+            // maps standard Mac keyboard to default to function keys.
+            KEY_BRIGHTNESSDOWN: Tap(Key(KEY_F1)), // 224
+            KEY_BRIGHTNESSUP: Tap(Key(KEY_F2)), // 225
+            KEY_SCALE: Tap(Key(KEY_F3)), // 120
+            KEY_DASHBOARD: Tap(Key(KEY_F4)), // 204
+            KEY_KBDILLUMDOWN: Tap(Key(KEY_F5)), //229
+            KEY_KBDILLUMUP: Tap(Key(KEY_F6)), // 230
+            KEY_PREVIOUSSONG: Tap(Key(KEY_F7)), // 165
+            KEY_PLAYPAUSE: Tap(Key(KEY_F8)), // 164
+            KEY_NEXTSONG: Tap(Key(KEY_F9)), // 163
+            KEY_MUTE: Tap(Key(KEY_F10)), // 113
+            KEY_VOLUMEDOWN: Tap(Key(KEY_F11)), // 114
+            KEY_VOLUMEUP: Tap(Key(KEY_F12)), // 115
+        },
+        // meta-disabled
+        {
+            KEY_LEFTMETA:  Tap(Key(KEY_LEFTCTRL)),
+            KEY_RIGHTALT: TapHold(Key(KEY_RIGHTALT), ActivateProfile("meta")),
+        },
+        // meta-enabled
+        {
+            KEY_LEFTMETA:  Tap(Key(KEY_LEFTMETA)),
+            KEY_RIGHTALT: TapHold(Key(KEY_RIGHTALT), ActivateProfile("no-meta")),
+        },
+    ],
+)
