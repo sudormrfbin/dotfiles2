@@ -4,145 +4,67 @@
 
 ---
 - 
-  category: default
-  name: "nvim-bufferline.lua"
-  opt: false
   remote: "https://github.com/akinsho/nvim-bufferline.lua"
 - 
-  category: default
-  name: "nvim-compe"
-  opt: false
   remote: "https://github.com/hrsh7th/nvim-compe"
 - 
-  category: default
-  name: onedark.vim
-  opt: false
   remote: "https://github.com/joshdick/onedark.vim"
 - 
-  category: default
-  name: "vim-easy-align"
-  opt: false
   remote: "https://github.com/junegunn/vim-easy-align"
 - 
-  category: default
-  name: "vim-sneak"
-  opt: false
   remote: "https://github.com/justinmk/vim-sneak"
 - 
-  category: default
-  name: "nvim-tree.lua"
-  opt: false
   remote: "https://github.com/kyazdani42/nvim-tree.lua"
 - 
-  category: default
-  name: "nvim-web-devicons"
-  opt: false
   remote: "https://github.com/kyazdani42/nvim-web-devicons"
 - 
-  category: default
-  name: "vim-cheat40"
-  opt: false
   remote: "https://github.com/lifepillar/vim-cheat40"
 - 
-  category: default
-  name: "vim-sandwich"
-  opt: false
   remote: "https://github.com/machakann/vim-sandwich"
 - 
-  category: default
-  name: "vim-signify"
-  opt: false
   remote: "https://github.com/mhinz/vim-signify"
 - 
-  category: default
-  name: "nvim-lspconfig"
-  opt: false
   remote: "https://github.com/neovim/nvim-lspconfig"
 - 
-  category: default
-  name: "nvim-colorizer.lua"
   on: ColorizerAttachToBuffer
   opt: true
   remote: "https://github.com/norcalli/nvim-colorizer.lua"
 - 
-  category: default
-  name: lsp_extensions.nvim
-  opt: false
   remote: "https://github.com/nvim-lua/lsp_extensions.nvim"
 - 
-  category: default
-  name: plenary.nvim
-  opt: false
   remote: "https://github.com/nvim-lua/plenary.nvim"
 - 
-  category: default
-  name: popup.nvim
-  opt: false
   remote: "https://github.com/nvim-lua/popup.nvim"
 - 
-  category: default
-  name: telescope.nvim
-  opt: false
   remote: "https://github.com/nvim-telescope/telescope.nvim"
 - 
-  category: default
-  name: "nvim-treesitter"
-  opt: false
   remote: "https://github.com/nvim-treesitter/nvim-treesitter"
 - 
-  category: default
-  name: "nvim-treesitter-textobjects"
-  opt: false
   remote: "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
 - 
-  category: default
-  name: "vim-cool"
-  opt: false
+  remote: "https://github.com/rmagatti/auto-session"
+- 
   remote: "https://github.com/romainl/vim-cool"
 - 
-  category: default
-  name: "nvim-treesitter-context"
-  opt: false
   remote: "https://github.com/romgrk/nvim-treesitter-context"
 - 
-  category: default
-  name: ron.vim
-  opt: false
   remote: "https://github.com/ron-rs/ron.vim"
 - 
-  category: default
-  name: "vim-devicons"
-  opt: false
   remote: "https://github.com/ryanoasis/vim-devicons"
 - 
-  category: default
-  name: "vim-polyglot"
-  opt: false
   remote: "https://github.com/sheerun/vim-polyglot"
 - 
-  category: default
-  name: pears.nvim
-  opt: false
-  remote: "https://github.com/steelsojka/pears.nvim"
-- 
-  category: default
-  name: "vim-workspace"
-  opt: false
   remote: "https://github.com/thaerkh/vim-workspace"
 - 
-  category: default
-  name: "vim-commentary"
-  opt: false
   remote: "https://github.com/tpope/vim-commentary"
 - 
-  category: default
-  name: startuptime.vim
+  remote: "https://github.com/tpope/vim-obsession"
+- 
   on: StartupTime
   opt: true
   remote: "https://github.com/tweekmonster/startuptime.vim"
 - 
   build: ./install.sh
-  category: default
-  name: "compe-tabnine"
-  opt: false
   remote: "https://github.com/tzachar/compe-tabnine"
+- 
+  remote: "https://github.com/windwp/nvim-autopairs"
