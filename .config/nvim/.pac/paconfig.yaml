@@ -56,7 +56,7 @@
 - 
   remote: "https://github.com/thaerkh/vim-workspace"
 - 
-  remote: "https://github.com/tpope/vim-commentary"
+  remote: "https://github.com/tomtom/tcomment_vim"
 - 
   remote: "https://github.com/tpope/vim-obsession"
 - 
