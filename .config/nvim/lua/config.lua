@@ -119,6 +119,7 @@ nvim_lsp.sumneko_lua.setup {
 
 -- Python LSP {{{
 nvim_lsp.pyls.setup { on_attach = on_attach }
+vim.api.nvim_command('autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()')
 -- }}}
 
 -- }}}
