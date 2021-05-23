@@ -63,6 +63,7 @@
             KEY_SPACE: TapHold(Key(KEY_SPACE), Key(KEY_LEFTMETA)),
             KEY_C: TapHold(Key(KEY_C), MomentaryLayer(1)),
             KEY_M: TapHold(Key(KEY_M), MomentaryLayer(1)),
+            KEY_V: TapHold(Key(KEY_V), MomentaryLayer(2)),
             KEY_RIGHTALT: Tap(Key(KEY_ENTER)),
             KEY_ENTER: Tap(Key(KEY_RIGHTALT)),
             KEY_LEFTALT: Tap(Key(KEY_BACKSPACE)),
@@ -89,19 +90,22 @@
             KEY_S: Tap(KeySeq([KEY_LEFTSHIFT, KEY_2])),
             KEY_D: Tap(KeySeq([KEY_LEFTSHIFT, KEY_3])),
             KEY_F: Tap(KeySeq([KEY_LEFTSHIFT, KEY_4])),
-            KEY_G: Tap(KeySeq([KEY_LEFTSHIFT, KEY_5])),
-            KEY_H: Tap(KeySeq([KEY_LEFTSHIFT, KEY_6])),
+            KEY_G: Tap(KeySeq([KEY_LEFTSHIFT, KEY_MINUS])), // instead of percent
+            KEY_H: Tap(Key(KEY_EQUAL)), // instead of caret
             KEY_J: Tap(KeySeq([KEY_LEFTSHIFT, KEY_7])),
             KEY_K: Tap(KeySeq([KEY_LEFTSHIFT, KEY_8])),
             KEY_L: Tap(KeySeq([KEY_LEFTSHIFT, KEY_9])),
             KEY_SEMICOLON: Tap(KeySeq([KEY_LEFTSHIFT, KEY_0])),
 
+            KEY_N: Tap(Key(KEY_MINUS)), // instead of percent
         },
         // firefox-keys
         {
             KEY_J: Tap(Key(KEY_DOWN)),
             KEY_K: Tap(Key(KEY_UP)),
-            KEY_LEFTSHIFT: TapHold(ToggleLayerAlias("firefox-keys"), Key(KEY_LEFTSHIFT)),
+            KEY_H: Tap(Key(KEY_LEFT)),
+            KEY_L: Tap(Key(KEY_RIGHT)),
+            KEY_M: Tap(Key(KEY_ESC)),
         },
         // function_keys
         {
