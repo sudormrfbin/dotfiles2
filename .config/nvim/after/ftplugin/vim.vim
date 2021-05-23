@@ -4,6 +4,7 @@
 setlocal formatoptions-=r
 setlocal formatoptions-=o
 
+setlocal foldenable
 setlocal foldmethod=marker
 setlocal keywordprg=:botright\ help
 

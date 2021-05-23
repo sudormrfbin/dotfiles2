@@ -98,6 +98,9 @@ inoremap jk <ESC>
 " Cycle through completion with tab and shift tab
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Cycle through completion with ctrl-j and ctrl-k
+inoremap <silent><expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
@@ -112,6 +115,7 @@ nnoremap <leader><leader>f :Telescope find_files<CR>
 nnoremap <leader><leader>o :Telescope oldfiles<CR>
 nnoremap <leader><leader>r :Telescope lsp_references<CR>
 nnoremap <leader><leader>a :Telescope lsp_code_actions<CR>
+vnoremap <leader><leader>a :<C-U>Telescope lsp_range_code_actions<CR>
 nnoremap <leader><leader>s :Telescope lsp_document_symbols<CR>
 nnoremap <leader><leader>w :Telescope lsp_workspace_symbols<CR>
 nnoremap <leader><leader>q :Telescope quickfix<CR>
@@ -138,19 +142,19 @@ onoremap <expr> N  'nN'[v:searchforward]
 " }}}
 
 " Disabled {{{
-nnoremap <Up>       <NOP>
-nnoremap <Down>     <NOP>
-nnoremap <Left>     <NOP>
-nnoremap <Right>    <NOP>
+" nnoremap <Up>       <NOP>
+" nnoremap <Down>     <NOP>
+" nnoremap <Left>     <NOP>
+" nnoremap <Right>    <NOP>
 nnoremap <PageUp>   <NOP>
 nnoremap <PageDown> <NOP>
 nnoremap <Home>     <NOP>
 nnoremap <End>      <NOP>
 inoremap <Esc>      <NOP>
-inoremap <Up>       <NOP>
-inoremap <Down>     <NOP>
-inoremap <Left>     <NOP>
-inoremap <Right>    <NOP>
+" inoremap <Up>       <NOP>
+" inoremap <Down>     <NOP>
+" inoremap <Left>     <NOP>
+" inoremap <Right>    <NOP>
 inoremap <PageUp>   <NOP>
 inoremap <PageDown> <NOP>
 inoremap <Home>     <NOP>
@@ -172,6 +176,7 @@ nnoremap gk k
 
 " Buffer {{{
 nnoremap <leader>by :%yank+<CR>
+nnoremap <leader>bd :%delete<CR>
 nnoremap <leader>bw :setlocal wrap!<CR>
 nnoremap <leader>x :bdelete<CR>
 " }}}
@@ -198,6 +203,7 @@ nnoremap <expr> <leader>el ':e ' .. stdpath('config') .. '/lua/config.lua<CR>'
 lua require('config')
 
 " Folding based on treesitter
+set nofoldenable   " Disable folds when opening files
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
@@ -209,7 +215,7 @@ augroup END
 
 " Plugins {{{1
 
-" Managed by maralla/pack
+" Managed by gokulsoumya/pac
 
 " nvim-tree.lua {{{
 let g:nvim_tree_side = 'right'
@@ -278,6 +284,11 @@ let g:fern#renderer = "devicons"
 let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 let g:workspace_persist_undo_history = 0
 let g:workspace_autosave = 0
+" }}}
+
+" lsp-extensions {{{
+" Inlay hints for rust
+autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint", "TypeHint"} }
 " }}}
 
 " }}}1
