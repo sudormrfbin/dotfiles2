@@ -34,13 +34,19 @@ fi
 
 redshift &
 start-pulseaudio-x11 &
+greenclip daemon &  # clipboard manager
 libinput-gestures-setup start &
-setxkbmap -option ctrl:swapcaps
+# handled by ktrl
+# setxkbmap -option ctrl:swapcaps
 xset r rate 250 25
 
 polybar -r main &
 xsetroot -cursor_name left_ptr &  # set default cursor for root window
 picom --experimental-backends &  # jonaburg's fork
 feh --bg-fill $(find ~/Pictures/colors/ -type f | shuf -n1) &
+
+# remap space as super; must come after setxkbmap
+# https://github.com/kartynnik/space2super
+# ( sleep 5; s2sctl start ) &
 
 exec bspwm
