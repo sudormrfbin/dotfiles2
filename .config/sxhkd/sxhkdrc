@@ -6,17 +6,29 @@
 super + Return
 	alacritty
 
-# program launcher
-super + @space
+# open terminal in floating state
+super + shift + Return
+	bspc rule -a Alacritty -o state=floating layer=above && alacritty
+
+program launcher
+super + a
 	rofi -no-lazy-grab -show drun -modi drun
 
 # window switcher
-super + shift + @space
+super + shift + a
 	rofi -no-lazy-grab -show window
+
+super + v
+	rofi -no-lazy-grab -modi "clipboard:greenclip print" \
+		-show clipboard -run-command '{cmd}'
 
 # browser
 super + b
 	raise-or-run.sh firefox firefox
+
+# editor
+super + z
+	raise-or-run.sh neovide neovide
 
 # music player
 super + c
@@ -54,7 +66,7 @@ super + {_,shift + }x
 	bspc node --{close,kill}
 
 # alternate between the tiled and monocle layout
-super + m
+super + n
 	bspc desktop --layout next
 
 # send the newest marked node to the newest preselected node
