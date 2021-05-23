@@ -20,7 +20,7 @@ local on_attach = function(client, bufnr)
     buflspnkey('gd',         'buf.definition()')
     buflspnkey('K',          'buf.hover()')
     buflspnkey('gi',         'buf.implementation()')
-    buflspnkey('<C-k>',      'buf.signature_help()', 'i')
+    buflspnkey('<C-a>',      'buf.signature_help()', 'i')
     buflspnkey('gy',         'buf.type_definition()')
     buflspnkey('<leader>lr', 'buf.rename()')
     buflspnkey('gr',         'buf.references()')
@@ -117,6 +117,10 @@ nvim_lsp.sumneko_lua.setup {
 }
 -- }}}
 
+-- Python LSP {{{
+nvim_lsp.pyls.setup { on_attach = on_attach }
+-- }}}
+
 -- }}}
 
 -- nvim-compe {{{
@@ -141,6 +145,10 @@ require 'compe'.setup {
         buffer = true;
         nvim_lsp = true;
         nvim_lua = true;
+        tabnine = {
+            sort = false;
+            show_prediction_strength = false;
+        };
     };
 }
 -- }}}
@@ -399,4 +407,8 @@ require('telescope').setup{
         },
     }
 }
+-- }}}
+
+-- autopairs {{{
+require('nvim-autopairs').setup()
 -- }}}
