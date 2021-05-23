@@ -73,10 +73,7 @@ abbr -ag -  'cd -'
 
 fast_add_abbr m   'man'
 fast_add_abbr v   'nvim'
-fast_add_abbr c   'cmus'
-fast_add_abbr d   'dnote'
 fast_add_abbr py  'python3'
-fast_add_abbr ppy 'ptpython'
 
 fast_add_abbr x   'chmod +x'
 fast_add_abbr vv  'sudoedit'
@@ -84,20 +81,11 @@ fast_add_abbr imd 'systemctl poweroff'
 fast_add_abbr ins 'yay -S'
 fast_add_abbr upd 'yay -Sy'
 fast_add_abbr upg 'yay -Syu'
-fast_add_abbr xk  'setxkbmap -option ctrl:swapcaps; xset r rate 250 25'
 
 fast_add_abbr rl 'exec fish'
 
-fast_add_abbr u 'upto'
-
-fast_add_abbr fs 'funcsave'
-
 fast_add_abbr xo 'xdg-open'
 fast_add_abbr xc 'xclip -sel clip'
-fast_add_abbr wd 'wget -q --show-progress'
-
-fast_add_abbr dpl 'drive pull'
-fast_add_abbr dph 'drive push'
 
 fast_add_abbr ga   'git add'
 fast_add_abbr gl   'git log'
@@ -116,13 +104,6 @@ fast_add_abbr gcl  'git clone --depth=1'
 fast_add_abbr gcam 'git commit -am'
 fast_add_abbr gpum 'git pull upstream master'
 fast_add_abbr gcls 'git clone --depth=1 --shallow-submodules --recursive'
-
-fast_add_abbr pa  'pluck add'
-fast_add_abbr pg  'pluck export | grep'
-fast_add_abbr pgp 'pluck export | grep \#'
-
-fast_add_abbr re  'crow -s en -t es'
-fast_add_abbr rs  'crow -s es -t en'
 
 fast_add_abbr t  'task'
 fast_add_abbr ta 'task add'
