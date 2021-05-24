@@ -171,7 +171,7 @@ Hard-wrap (cursor moves) gq            O
 Hard-wrap (cursor stays) gw            O
 Format current line      gww           N
 Join with next line      J             N
-Ditto, preserve spaces   gJ            N
+Join without space       gJ            N
 Use hard tabs            :set noet     N
 Use soft tabs (spaces)   :set et       N
 Detab (needs 'et' on)    :retab        N
@@ -220,6 +220,7 @@ Search {{{1
 Toggle ignore case       :set ic!      N
 Select up to next match  gn            M
 Select up to prev match  gN            M
+Do last :s for file      g$            N
 Search » for this word   *            *M
 Search « for this word   #            *M
 Prev in quickfix list    :cp           N
