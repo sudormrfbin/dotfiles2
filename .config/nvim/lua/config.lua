@@ -1,6 +1,22 @@
 -- Lua plugin configs
 
--- lspconfig {{{
+local colors = require('colors').onedark
+
+-- onedark.vim {{{
+vim.cmd[[
+packadd! onedark.vim
+
+" https://github.com/alacritty/alacritty/issues/3402
+if &term == "alacritty"
+  let &term = "xterm-256color"
+endif
+
+let g:onedark_terminal_italics=1
+colorscheme onedark
+]]
+-- }}}
+
+-- LSP {{{
 local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
@@ -84,6 +100,43 @@ local on_attach = function(client, bufnr)
     }
     -- }}}
 end
+
+-- Diagnostics {{{
+
+function dhl(severity, color)
+    -- default colors used in eg. diagnostics popup
+    vim.cmd("hi clear LspDiagnosticsDefault" .. severity)
+    vim.cmd("hi LspDiagnosticsDefault" .. severity .. " gui=bold guifg=" .. color)
+    -- curly underlines for diagnostics like IDEs
+    vim.cmd("hi clear LspDiagnosticsUnderline" .. severity)
+    vim.cmd("hi LspDiagnosticsUnderline" .. severity .. " gui=undercurl guisp=" .. color)
+    -- colors for in text diagnostics
+    vim.cmd("hi clear LspDiagnosticsVirtualText" .. severity)
+    vim.cmd("hi LspDiagnosticsVirtualText" .. severity .. " guibg=#3E4452 guifg=" .. color)
+
+    -- Color line numbers instead of showing icons in signcolumn
+    vim.fn.sign_define(
+        "LspDiagnosticsSign" .. severity,
+        {text = "", numhl = "LspDiagnosticsDefault" .. severity}
+    )
+end
+
+dhl("Error", colors.red)
+dhl("Warning", colors.yellow)
+dhl("Information", colors.blue)
+dhl("Hint", colors.green)
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = {
+            spacing = 2,
+            prefix = " ■",
+            severity_limit = "Error",
+        },
+        severity_sort = true,
+    }
+)
+-- }}}
 
 -- Rust LSP {{{
 nvim_lsp.rust_analyzer.setup { on_attach = on_attach }
@@ -211,7 +264,6 @@ vim.api.nvim_set_keymap('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true,
 
 -- galaxyline {{{
 local gl = require('galaxyline')
-local colors = require('colors').onedark
 local condition = require('galaxyline.condition')
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista','dbui','packer'}
@@ -292,7 +344,7 @@ local DiagnosticWarn = {
 local DiagnosticHint = {
         provider = 'DiagnosticHint',
         icon = '  ',
-        highlight = {colors.cyan,colors.bg},
+        highlight = {colors.green,colors.bg},
     }
 
 local DiagnosticInfo = {
