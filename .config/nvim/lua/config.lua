@@ -131,7 +131,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
         virtual_text = {
             spacing = 2,
             prefix = " ■",
-            severity_limit = "Error",
+            severity_limit = "Warning",
         },
         severity_sort = true,
     }
