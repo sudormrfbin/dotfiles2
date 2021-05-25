@@ -2,20 +2,6 @@
 
 local colors = require('colors').onedark
 
--- onedark.vim {{{
-vim.cmd[[
-packadd! onedark.vim
-
-" https://github.com/alacritty/alacritty/issues/3402
-if &term == "alacritty"
-  let &term = "xterm-256color"
-endif
-
-let g:onedark_terminal_italics=1
-colorscheme onedark
-]]
--- }}}
-
 -- LSP {{{
 local nvim_lsp = require('lspconfig')
 

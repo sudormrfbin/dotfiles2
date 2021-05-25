@@ -197,22 +197,6 @@ nnoremap <expr> <leader>el ':e ' .. stdpath('config') .. '/lua/config.lua<CR>'
 
 " }}}1
 
-" Lua Config {{{
-
-" LSP config in lua/lsp.lua
-lua require('config')
-
-" Folding based on treesitter
-set nofoldenable   " Disable folds when opening files
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-
-augroup YankHi
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank{timeout=300}
-augroup END
-" }}}
-
 " Plugins {{{1
 
 " Managed by gokulsoumya/pac
@@ -252,6 +236,18 @@ nmap : <Plug>Sneak_;
 let g:sneak#label = 1
 " }}}
 
+" onedark.vim {{{
+packadd! onedark.vim
+
+" https://github.com/alacritty/alacritty/issues/3402
+if &term == "alacritty"
+  let &term = "xterm-256color"
+endif
+
+let g:onedark_terminal_italics=1
+colorscheme onedark
+" }}}
+
 " vim-polyglot {{{
 
 " rust provided by arzg/vim-rust-syntax-ext
@@ -280,4 +276,20 @@ autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require
 " }}}
 
 " }}}1
+
+" Lua Config {{{
+
+" LSP config in lua/lsp.lua
+lua require('config')
+
+" Folding based on treesitter
+set nofoldenable   " Disable folds when opening files
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+augroup YankHi
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank{timeout=300}
+augroup END
+" }}}
 
