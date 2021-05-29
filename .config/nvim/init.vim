@@ -111,7 +111,7 @@ nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
 " Telescope {{{
-nnoremap <leader><leader>f :Telescope find_files<CR>
+nnoremap <C-M> :Telescope find_files<CR>
 nnoremap <leader><leader>o :Telescope oldfiles<CR>
 nnoremap <leader><leader>r :Telescope lsp_references<CR>
 nnoremap <leader><leader>a :Telescope lsp_code_actions<CR>
@@ -178,7 +178,7 @@ nnoremap gk k
 nnoremap <leader>by :%yank+<CR>
 nnoremap <leader>bd :%delete<CR>
 nnoremap <leader>bw :setlocal wrap!<CR>
-nnoremap <leader>x :bdelete<CR>
+nnoremap <leader>x :BufferClose<CR>
 " }}}
 
 " Splits {{{
