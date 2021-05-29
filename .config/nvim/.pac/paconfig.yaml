@@ -4,8 +4,6 @@
 
 ---
 - 
-  remote: "https://github.com/akinsho/nvim-bufferline.lua"
-- 
   remote: "https://github.com/hrsh7th/nvim-compe"
 - 
   remote: "https://github.com/joshdick/onedark.vim"
@@ -45,6 +43,8 @@
   remote: "https://github.com/rmagatti/auto-session"
 - 
   remote: "https://github.com/romainl/vim-cool"
+- 
+  remote: "https://github.com/romgrk/barbar.nvim"
 - 
   remote: "https://github.com/romgrk/nvim-treesitter-context"
 - 

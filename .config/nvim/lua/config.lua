@@ -157,7 +157,7 @@ nvim_lsp.sumneko_lua.setup {
 -- }}}
 
 -- Python LSP {{{
-nvim_lsp.pyls.setup { on_attach = on_attach }
+nvim_lsp.pyright.setup { on_attach = on_attach }
 vim.api.nvim_command('autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()')
 -- }}}
 
@@ -187,10 +187,12 @@ require 'compe'.setup {
         nvim_lua = true;
         tabnine = {
             sort = false;
+            priority = 1;
             show_prediction_strength = false;
         };
     };
 }
+vim.api.nvim_set_keymap('i', '<C-Space>', 'compe#complete()', { noremap = true, silent = true, expr = true })
 -- }}}
 
 -- nvim-treesitter {{{
@@ -213,39 +215,9 @@ require 'nvim-treesitter.configs'.setup {
 }
 -- }}}
 
--- nvim-bufferline {{{
-require'bufferline'.setup{
-    options = {
-        view = "default",
-        numbers = "ordinal",
-        number_style = "",
-        mappings = true,
-        modified_icon = '⚫︎',
-        left_trunc_marker = '',
-        right_trunc_marker = '',
-        max_name_length = 18,
-        max_prefix_length = 15, -- prefix used when a buffer is deduplicated
-        tab_size = 18,
-        diagnostics = "nvim_lsp",
-        diagnostics_indicator = function(count, level)
-            local icon = level:match("error") and " " or ""
-            return " " .. icon .. " " .. count
-        end,
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-        show_tab_indicators = true,
-        persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        -- can also be a table containing 2 custom separators
-        -- [focused and unfocused]. eg: { '|', '|' }
-        separator_style = {'thick', 'thick'} ,
-        enforce_regular_tabs = false, -- whether to enforce same tab length
-        always_show_bufferline = false,
-        sort_by = 'extension',
-    }
-}
-
-vim.api.nvim_set_keymap('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+-- barbar.nvim {{{
+vim.api.nvim_set_keymap('n', '<C-P>', ':BufferPrevious<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-N>', ':BufferNext<CR>', { noremap = true, silent = true })
 -- }}}
 
 -- galaxyline {{{
