@@ -219,13 +219,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
 
-" vim-signify {{{
-let g:signify_sign_add = '┃'
-let g:signify_sign_change = '╏'
-let g:signify_sign_delete = '▸'
-let g:signify_sign_delete_first_line = '▴'
-" }}}
-
 " vim-sandwich {{{
 packadd! vim-sandwich
 runtime macros/sandwich/keymap/surround.vim
@@ -258,10 +251,6 @@ colorscheme onedark
 
 " vim-cheat40 {{{
 let g:cheat40_use_default = 0
-" }}}
-
-" fern {{{
-let g:fern#renderer = "devicons"
 " }}}
 
 " vim-workspace {{{
