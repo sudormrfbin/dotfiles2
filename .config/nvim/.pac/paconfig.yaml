@@ -4,6 +4,8 @@
 
 ---
 - 
+  remote: "https://github.com/famiu/feline.nvim"
+- 
   remote: "https://github.com/hrsh7th/nvim-compe"
 - 
   remote: "https://github.com/joshdick/onedark.vim"
@@ -16,11 +18,11 @@
 - 
   remote: "https://github.com/kyazdani42/nvim-web-devicons"
 - 
+  remote: "https://github.com/lewis6991/gitsigns.nvim"
+- 
   remote: "https://github.com/lifepillar/vim-cheat40"
 - 
   remote: "https://github.com/machakann/vim-sandwich"
-- 
-  remote: "https://github.com/mhinz/vim-signify"
 - 
   remote: "https://github.com/neovim/nvim-lspconfig"
 - 
@@ -56,7 +58,7 @@
 - 
   remote: "https://github.com/thaerkh/vim-workspace"
 - 
-  remote: "https://github.com/tomtom/tcomment_vim"
+  remote: "https://github.com/tpope/vim-commentary"
 - 
   remote: "https://github.com/tpope/vim-obsession"
 - 
