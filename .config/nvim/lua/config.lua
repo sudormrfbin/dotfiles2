@@ -9,7 +9,7 @@ local on_attach = function(client, bufnr)
     local function buflspnkey(key, action, mode)
         if not mode then mode = "n" end
         action = "<cmd>lua vim.lsp." .. action .. "<CR>"
-        local opts = {noremap = true, silent = true}
+        local opts = { noremap = true, silent = true }
 
         vim.api.nvim_buf_set_keymap(bufnr, mode, key, action, opts)
     end
@@ -40,7 +40,8 @@ local on_attach = function(client, bufnr)
     -- Document highlight {{{
     -- Set autocommands conditional on server_capabilities
     if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec([[
+        vim.api.nvim_exec(
+            [[
         hi LspReferenceRead gui=underline
         hi LspReferenceText gui=bold
         hi LspReferenceWrite gui=underline,italic,reverse
@@ -49,7 +50,8 @@ local on_attach = function(client, bufnr)
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
         augroup END
-            ]], false)
+            ]], false
+        )
     end
     -- }}}
 
@@ -80,7 +82,7 @@ local on_attach = function(client, bufnr)
         "", -- Struct        = 22;
         "鬒", -- Event         = 23;
         "Ψ", -- Operator      = 24;
-        "" -- TypeParameter = 25;
+        "", -- TypeParameter = 25;
     }
     -- }}}
 end
@@ -90,21 +92,27 @@ end
 function dhl(severity, color)
     -- default colors used in eg. diagnostics popup
     vim.cmd("hi clear LspDiagnosticsDefault" .. severity)
-    vim.cmd("hi LspDiagnosticsDefault" .. severity .. " gui=bold guifg=" ..
-                color)
+    vim.cmd(
+        "hi LspDiagnosticsDefault" .. severity .. " gui=bold guifg=" .. color
+    )
     -- curly underlines for diagnostics like IDEs
     vim.cmd("hi clear LspDiagnosticsUnderline" .. severity)
     vim.cmd(
-        "hi LspDiagnosticsUnderline" .. severity .. " gui=undercurl guisp=" ..
-            color)
+        "hi LspDiagnosticsUnderline" .. severity .. " gui=undercurl guisp="
+            .. color
+    )
     -- colors for in text diagnostics
     vim.cmd("hi clear LspDiagnosticsVirtualText" .. severity)
-    vim.cmd("hi LspDiagnosticsVirtualText" .. severity ..
-                " guibg=#3E4452 guifg=" .. color)
+    vim.cmd(
+        "hi LspDiagnosticsVirtualText" .. severity .. " guibg=#3E4452 guifg="
+            .. color
+    )
 
     -- Color line numbers instead of showing icons in signcolumn
-    vim.fn.sign_define("LspDiagnosticsSign" .. severity,
-                       {text = "", numhl = "LspDiagnosticsDefault" .. severity})
+    vim.fn.sign_define(
+        "LspDiagnosticsSign" .. severity,
+            { text = "", numhl = "LspDiagnosticsDefault" .. severity }
+    )
 end
 
 dhl("Error", colors.red)
@@ -112,19 +120,20 @@ dhl("Warning", colors.yellow)
 dhl("Information", colors.blue)
 dhl("Hint", colors.green)
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = {
             spacing = 2,
             prefix = " ■",
-            severity_limit = "Warning"
+            severity_limit = "Warning",
         },
-        severity_sort = true
-    })
+        severity_sort = true,
+    }
+)
 -- }}}
 
 -- Rust LSP {{{
-nvim_lsp.rust_analyzer.setup({on_attach = on_attach})
+nvim_lsp.rust_analyzer.setup({ on_attach = on_attach })
 -- }}}
 
 -- Lua LSP {{{
@@ -133,106 +142,125 @@ local lua_settings = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = "LuaJIT",
         -- Setup your lua path
-        path = vim.split(package.path, ";")
+        path = vim.split(package.path, ";"),
     },
     diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {"vim"}
+        globals = { "vim" },
     },
     workspace = {
         -- Make the server aware of Neovim runtime files
         library = {
             [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-        }
-    }
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        },
+    },
 }
 
-nvim_lsp.sumneko_lua.setup({
-    cmd = {
-        "/usr/bin/lua-language-server", "-E",
-        "/usr/share/lua-language-server/main.lua"
-    },
-    on_attach = on_attach,
-    settings = {Lua = lua_settings}
-})
+nvim_lsp.sumneko_lua.setup(
+    {
+        cmd = {
+            "/usr/bin/lua-language-server", "-E",
+            "/usr/share/lua-language-server/main.lua",
+        },
+        on_attach = on_attach,
+        settings = { Lua = lua_settings },
+    }
+)
 -- }}}
 
 -- Python LSP {{{
-nvim_lsp.pyright.setup({on_attach = on_attach})
+nvim_lsp.pyright.setup({ on_attach = on_attach })
 vim.api.nvim_command(
-    "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()")
+    "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()"
+)
 -- }}}
 
 -- EFM General LSP {{{
 -- provides formatting for LSPs like pyright and sumneko_lua which do not
 -- have their own
-nvim_lsp.efm.setup({
-    on_attach = on_attach,
-    init_options = {documentFormatting = true},
-    root_dir = vim.loop.cwd,
-    settings = {
-        rootMarkers = {".git/"},
-        languages = {
-            lua = {{formatCommand = "lua-format -i", formatStdin = true}},
-            python = {{formatCommand = "black --fast -q -", formatStdin = true}}
-        }
+nvim_lsp.efm.setup(
+    {
+        on_attach = on_attach,
+        init_options = { documentFormatting = true },
+        root_dir = vim.loop.cwd,
+        settings = {
+            rootMarkers = { ".git/" },
+            languages = {
+                lua = { { formatCommand = "lua-format -i", formatStdin = true } },
+                python = {
+                    { formatCommand = "black --fast -q -", formatStdin = true },
+                },
+            },
+        },
     }
-})
+)
 -- }}}
 
 -- }}}
 
 -- nvim-compe {{{
-require("compe").setup({
-    enabled = true,
-    -- auto open popup
-    autocomplete = true,
-    debug = false,
-    -- min chars to trigger completion on
-    min_length = 1,
-    preselect = "enable",
-    throttle_time = 80,
-    source_timeout = 200,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    documentation = true,
+require("compe").setup(
+    {
+        enabled = true,
+        -- auto open popup
+        autocomplete = true,
+        debug = false,
+        -- min chars to trigger completion on
+        min_length = 1,
+        preselect = "enable",
+        throttle_time = 80,
+        source_timeout = 200,
+        incomplete_delay = 400,
+        max_abbr_width = 100,
+        max_kind_width = 100,
+        max_menu_width = 100,
+        documentation = true,
 
-    source = {
-        path = true,
-        buffer = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        tabnine = {sort = false, priority = 1, show_prediction_strength = false}
+        source = {
+            path = true,
+            buffer = true,
+            nvim_lsp = true,
+            nvim_lua = true,
+            tabnine = {
+                sort = false,
+                priority = 1,
+                show_prediction_strength = false,
+            },
+        },
     }
-})
-vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()",
-                        {noremap = true, silent = true, expr = true})
+)
+vim.api.nvim_set_keymap(
+    "i", "<C-Space>", "compe#complete()",
+        { noremap = true, silent = true, expr = true }
+)
 -- }}}
 
 -- nvim-treesitter {{{
-require("nvim-treesitter.configs").setup({
-    highlight = {enable = true},
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = "gnn",
-            node_incremental = "gnn",
-            scope_incremental = "gns",
-            node_decremental = "gnN"
-        }
-    },
-    indent = {enable = true}
-})
+require("nvim-treesitter.configs").setup(
+    {
+        highlight = { enable = true },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                init_selection = "gnn",
+                node_incremental = "gnn",
+                scope_incremental = "gns",
+                node_decremental = "gnN",
+            },
+        },
+        indent = { enable = true },
+    }
+)
 -- }}}
 
 -- barbar.nvim {{{
-vim.api.nvim_set_keymap("n", "<C-P>", ":BufferPrevious<CR>",
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<C-N>", ":BufferNext<CR>",
-                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap(
+    "n", "<C-P>", ":BufferPrevious<CR>", { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+    "n", "<C-N>", ":BufferNext<CR>", { noremap = true, silent = true }
+)
 -- }}}
 
 -- -- galaxyline {{{
@@ -423,9 +451,9 @@ vim.api.nvim_set_keymap("n", "<C-N>", ":BufferNext<CR>",
 -- feline {{{
 -- Initialize the components table
 local components = {
-    left = {active = {}, inactive = {}},
-    mid = {active = {}, inactive = {}},
-    right = {active = {}, inactive = {}}
+    left = { active = {}, inactive = {} },
+    mid = { active = {}, inactive = {} },
+    right = { active = {}, inactive = {} },
 }
 
 local vi_mode_colors = {
@@ -442,7 +470,7 @@ local vi_mode_colors = {
     COMMAND = colors.blue,
     SHELL = colors.blue,
     TERM = colors.red,
-    NONE = colors.yellow
+    NONE = colors.yellow,
 }
 
 local lsprovider = require("feline.providers.lsp")
@@ -456,7 +484,7 @@ local mode_color_fg = function()
     return val
 end
 
-local space_bg_sep = {str = " ", hl = {bg = colors.bg}}
+local space_bg_sep = { str = " ", hl = { bg = colors.bg } }
 
 -- Statusline components {{{
 
@@ -472,67 +500,86 @@ local ModeIndicator = {
         return val
     end,
     -- icon = '',
-    right_sep = space_bg_sep
+    right_sep = space_bg_sep,
 }
 
 local FileName = {
     provider = "file_info",
-    hl = {bg = colors.bg, style = "italic"}
+    type = "unique",
+    hl = { bg = colors.bg, style = "italic" },
 }
+
+local FileNameInactive = {
+    provider = "file_info",
+    file_modified_icon = '[+]',
+    icon = '',
+    type = "unique",
+    hl = { bg = colors.white, fg = colors.black, style = "italic" },
+}
+
+local get_line_info = function(component)
+    local curline = vim.fn.line('.')
+    local curcol = vim.fn.col('.')
+    local lines = vim.fn.line('$')
+    local percent
+
+    if curline == 1 then
+        percent = "Top"
+    elseif curline == lines then
+        percent = "Bot"
+    else
+        percent = vim.fn.round(curline / lines * 100)
+        percent = string.format("%2d%%%%", percent)
+    end
+
+    return string.format(
+        component.icon .. "%d:%-2d %3s ", lines, curcol, percent
+    )
+end
 
 local LineInfo = {
-    provider = function(component)
-        local curline = vim.fn.line('.')
-        local curcol = vim.fn.col('.')
-        local lines = vim.fn.line('$')
-        local percent
-
-        if curline == 1 then
-            percent = "Top"
-        elseif curline == lines then
-            percent = "Bot"
-        else
-            percent = vim.fn.round(curline / lines * 100)
-            percent = string.format("%2d%%%%", percent)
-        end
-
-        return string.format(component.icon .. "%d:%-2d %3s ", lines, curcol,
-                             percent)
-    end,
+    provider = get_line_info,
     icon = "  ",
     -- separator_highlight = {'NONE',colors.bg},
-    hl = {bg = colors.bg},
-    left_sep = ' '
+    hl = { bg = colors.bg },
+    left_sep = ' ',
 }
 
-local ScrollBar = {provider = "scroll_bar", hl = mode_color_fg}
+local LineInfoInactive = {
+    provider = get_line_info,
+    icon = '',
+    hl = { bg = colors.white, fg = colors.black },
+    left_sep = { str = ' ', hl = { bg = colors.white } },
+}
+
+local ScrollBar = { provider = "scroll_bar", hl = mode_color_fg }
 
 local DiagnosticError = {
     provider = "diagnostic_errors",
     enabled = function() return lsprovider.diagnostics_exist("Error") end,
     icon = "  ",
-    hl = {fg = colors.red}
+    hl = { fg = colors.red },
 }
 
 local DiagnosticWarn = {
     provider = "diagnostic_warnings",
     enabled = function() return lsprovider.diagnostics_exist("Warning") end,
     icon = "  ",
-    hl = {fg = colors.yellow}
+    hl = { fg = colors.yellow },
 }
 
 local DiagnosticHint = {
     provider = "diagnostic_hints",
     enabled = function() return lsprovider.diagnostics_exist("Hint") end,
     icon = "  ",
-    hl = {fg = colors.green}
+    hl = { fg = colors.green },
 }
 
 local DiagnosticInfo = {
     provider = "diagnostic_info",
     enabled = function() return lsprovider.diagnostics_exist("Information") end,
     icon = "  ",
-    hl = {fg = colors.blue}
+    hl = { fg = colors.blue },
 }
 
 -- local Separator = {
@@ -548,36 +595,51 @@ local DiagnosticInfo = {
 local LspServer = {
     provider = "  ",
     enabled = lsprovider.is_lsp_attached,
-    hl = {fg = colors.yellow, style = "bold"}
+    hl = { fg = colors.yellow, style = "bold" },
 }
 
 local GitBranch = {
     provider = "git_branch",
     icon = "  ",
-    hl = {fg = colors.blue}
+    hl = { fg = colors.blue },
 }
 
 local DiffAdd = {
     provider = "git_diff_added",
     icon = "  ",
-    hl = {fg = colors.green}
+    hl = { fg = colors.green },
 }
 
 local DiffModified = {
     provider = "git_diff_changed",
     icon = " 柳",
-    hl = {fg = colors.orange}
+    hl = { fg = colors.orange },
 }
 
 local DiffRemove = {
     provider = "git_diff_removed",
     icon = "  ",
-    hl = {fg = colors.red}
+    hl = { fg = colors.red },
+}
+
+local SeparatorInactive = {
+    provider = '',
+    hl = { bg = colors.black, style = 'strikethrough' },
 }
 
 -- }}}
 
 -- LuaFormatter off
+
+components.left.inactive = {
+    FileNameInactive,
+    SeparatorInactive,
+}
+
+components.right.inactive = {
+    LineInfoInactive
+}
+
 components.left.active = {
     ModeIndicator,
     FileName,
@@ -598,32 +660,40 @@ components.right.active = {
 -- LuaFormatter on
 
 local properties = {
-    force_inactive = {filetypes = {}, buftypes = {}, bufnames = {}}
+    force_inactive = { filetypes = {}, buftypes = {}, bufnames = {} },
 }
 
-require("feline").setup({
-    default_bg = colors.light_grey,
-    default_fg = colors.white,
-    colors = vi_mode_colors,
-    components = components,
-    properties = properties,
-    vi_mode_colors = vi_mode_colors
-})
+require("feline").setup(
+    {
+        default_bg = colors.light_grey,
+        default_fg = colors.white,
+        colors = vi_mode_colors,
+        components = components,
+        properties = properties,
+        vi_mode_colors = vi_mode_colors,
+    }
+)
 -- }}}
 
 -- telescope {{{
 local actions = require("telescope.actions")
-require("telescope").setup({
-    defaults = {
-        mappings = {
-            i = {
-                ["<esc>"] = actions.close,
-                ["<C-J>"] = actions.move_selection_next,
-                ["<C-K>"] = actions.move_selection_previous
-            }
-        }
+require("telescope").setup(
+    {
+        defaults = {
+            mappings = {
+                i = {
+                    ["<esc>"] = actions.close,
+                    ["<C-J>"] = actions.move_selection_next,
+                    ["<C-K>"] = actions.move_selection_previous,
+                },
+            },
+            -- clean sharp corners
+            borderchars = {
+                "━", "┃", "━", "┃", "┏", "┓", "┛", "┗",
+            },
+        },
     }
-})
+)
 -- }}}
 
 -- autopairs {{{
@@ -631,43 +701,42 @@ require("nvim-autopairs").setup()
 -- }}}
 
 -- gitsigns.nvim {{{
-require("gitsigns").setup({
-    sign_priority = 6, -- default
-    signs = {
-        add = {
-            hl = "SignifySignAdd",
-            text = "┃",
-            numhl = "GitSignsAddNr",
-            linehl = "GitSignsAddLn"
+require("gitsigns").setup(
+    {
+        sign_priority = 6, -- default
+        signs = {
+            add = {
+                hl = "SignifySignAdd",
+                text = "┃",
+                numhl = "GitSignsAddNr",
+                linehl = "GitSignsAddLn",
+            },
+            change = {
+                hl = "SignifySignChange",
+                text = "╏",
+                numhl = "GitSignsChangeNr",
+                linehl = "GitSignsChangeLn",
+            },
+            delete = {
+                hl = "SignifySignDelete",
+                text = "▸",
+                numhl = "GitSignsDeleteNr",
+                linehl = "GitSignsDeleteLn",
+            },
+            topdelete = {
+                hl = "SignifySignDelete",
+                text = "▴",
+                numhl = "GitSignsDeleteNr",
+                linehl = "GitSignsDeleteLn",
+            },
+            changedelete = {
+                hl = "SignifySignChange",
+                text = "▸",
+                numhl = "GitSignsChangeNr",
+                linehl = "GitSignsChangeLn",
+            },
         },
-        change = {
-            hl = "SignifySignChange",
-            text = "╏",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
-        },
-        delete = {
-            hl = "SignifySignDelete",
-            text = "▸",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
-        },
-        topdelete = {
-            hl = "SignifySignDelete",
-            text = "▴",
-            numhl = "GitSignsDeleteNr",
-            linehl = "GitSignsDeleteLn"
-        },
-        changedelete = {
-            hl = "SignifySignChange",
-            text = "▸",
-            numhl = "GitSignsChangeNr",
-            linehl = "GitSignsChangeLn"
-        }
     }
-})
+)
 -- }}}
 
--- feline.nvim {{{
-
--- }}}
