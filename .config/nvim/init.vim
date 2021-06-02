@@ -264,6 +264,15 @@ let g:workspace_autosave = 0
 autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint", "TypeHint"} }
 " }}}
 
+" indent-blankline {{{
+let g:indent_blankline_char = '┃'
+let g:indent_blankline_use_treesitter = v:true
+let g:indent_blankline_filetype_exclude = ['help']
+let g:indent_blankline_show_current_context = v:true
+let g:indent_blankline_context_patterns = ['class', 'function', 'method', 'while', 'closure', 'for']
+let g:indent_blankline_viewport_buffer = 50
+" }}}
+
 " }}}1
 
 " Lua Config {{{
