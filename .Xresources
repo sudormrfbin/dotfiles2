@@ -1,78 +1,55 @@
 Xcursor.theme: Qogir
 
 ! Base16 OneDark
-! https://github.com/pinpox/base16-xresources
 
-#define base00 #282c34
-#define base01 #353b45
-#define base02 #3e4451
-#define base03 #545862
-#define base04 #565c64
-#define base05 #abb2bf
-#define base06 #b6bdca
-#define base07 #c8ccd4
-#define base08 #e06c75
-#define base09 #d19a66
-#define base0A #e5c07b
-#define base0B #98c379
-#define base0C #56b6c2
-#define base0D #61afef
-#define base0E #c678dd
-#define base0F #be5046
+/* #define base00 #282c34 */
+/* #define base01 #353b45 */
+/* #define base02 #3e4451 */
+/* #define base03 #545862 */
+/* #define base04 #565c64 */
+/* #define base05 #abb2bf */
+/* #define base06 #b6bdca */
+/* #define base07 #c8ccd4 */
+/* #define base08 #e06c75 */
+/* #define base09 #d19a66 */
+/* #define base0A #e5c07b */
+/* #define base0B #98c379 */
+/* #define base0C #56b6c2 */
+/* #define base0D #61afef */
+/* #define base0E #c678dd */
+/* #define base0F #be5046 */
 
-*foreground:   base05
+*foreground:   #abb2bf
 #ifdef background_opacity
-*background:   [background_opacity]base00
+*background:   [background_opacity]#282c34
 #else
-*background:   base00
+*background:   #282c34
 #endif
-*cursorColor:  base05
+*cursorColor:  #abb2bf
 
-*color0:       base00
-! red
-*color1:       base08
-! green
-*color2:       base0B
-! yellow
-*color3:       base0A
-! blue
-*color4:       base0D
-! purple
-*color5:       base0E
-! cyan
-*color6:       base0C
-! grey-white
-*color7:       base05
-
-! grey
-*color8:       base03
-! red
-*color9:       base08
-! green
-*color10:      base0B
-! yellow
-*color11:      base0A
-blue
-*color12:      base0D
-! magenta
-*color13:      base0E
-! cyan
-*color14:      base0C
-! white
-*color15:      base07
+*color0:  #282c34
+*color1:  #e06c75
+*color2:  #98c379
+*color3:  #e5c07b
+*color4:  #61afef
+*color5:  #c678dd
+*color6:  #56b6c2
+*color7:  #abb2bf
+*color8:  #545862
+*color9:  #e06c75
+*color10: #98c379
+*color11: #e5c07b
+*color12: #61afef
+*color13: #c678dd
+*color14: #56b6c2
+*color15: #c8ccd4
 
 ! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
+! Use 'shell' template to set these if necessary
 
-! orange
-*color16:      base09
-! maroon
-*color17:      base0F
-! shade of grey
-*color18:      base01
-! shade of grey
-*color19:      base02
-! shade of grey
-*color20:      base04
-! shade of white
-*color21:      base06
+*color16: #d19a66
+*color17: #be5046
+*color18: #353b45
+*color19: #3e4451
+*color20: #565c64
+*color21: #b6bdca
