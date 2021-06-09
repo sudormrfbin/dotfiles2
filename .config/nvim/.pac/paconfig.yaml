@@ -4,7 +4,15 @@
 
 ---
 - 
+  remote: "https://github.com/RRethy/nvim-treesitter-textsubjects"
+- 
+  remote: "https://github.com/coderifous/textobj-word-column.vim"
+- 
   remote: "https://github.com/famiu/feline.nvim"
+- 
+  remote: "https://github.com/folke/lua-dev.nvim"
+- 
+  remote: "https://github.com/folke/which-key.nvim"
 - 
   remote: "https://github.com/hrsh7th/nvim-compe"
 - 
@@ -14,15 +22,20 @@
 - 
   remote: "https://github.com/justinmk/vim-sneak"
 - 
+  remote: "https://github.com/kosayoda/nvim-lightbulb"
+- 
   remote: "https://github.com/kyazdani42/nvim-tree.lua"
 - 
   remote: "https://github.com/kyazdani42/nvim-web-devicons"
 - 
   remote: "https://github.com/lewis6991/gitsigns.nvim"
 - 
-  remote: "https://github.com/lifepillar/vim-cheat40"
+  remote: "https://github.com/lukas-reineke/indent-blankline.nvim"
+  rev: lua
 - 
   remote: "https://github.com/machakann/vim-sandwich"
+- 
+  remote: "https://github.com/mizlan/iswap.nvim"
 - 
   remote: "https://github.com/neovim/nvim-lspconfig"
 - 
@@ -44,6 +57,8 @@
 - 
   remote: "https://github.com/rmagatti/auto-session"
 - 
+  remote: "https://github.com/rmagatti/goto-preview"
+- 
   remote: "https://github.com/romainl/vim-cool"
 - 
   remote: "https://github.com/romgrk/barbar.nvim"
@@ -52,15 +67,13 @@
 - 
   remote: "https://github.com/ron-rs/ron.vim"
 - 
-  remote: "https://github.com/ryanoasis/vim-devicons"
-- 
   remote: "https://github.com/sheerun/vim-polyglot"
 - 
-  remote: "https://github.com/thaerkh/vim-workspace"
+  remote: "https://github.com/tpope/vim-apathy"
 - 
   remote: "https://github.com/tpope/vim-commentary"
 - 
-  remote: "https://github.com/tpope/vim-obsession"
+  remote: "https://github.com/tpope/vim-scriptease"
 - 
   on: StartupTime
   opt: true

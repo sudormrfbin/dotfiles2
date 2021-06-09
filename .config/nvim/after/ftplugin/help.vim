@@ -10,6 +10,7 @@ nnoremap <buffer> <C-E> j
 nnoremap <buffer> <C-Y> k
 nnoremap <buffer> <C-F> l
 
+nnoremap <buffer> q :close<CR>
 " Jump to next tagnd fo  llow it
 " BUGS: - If there is no match but the word under the cursor is a valid
 "       tag, it is followd

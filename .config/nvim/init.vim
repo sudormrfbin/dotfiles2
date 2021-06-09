@@ -1,3 +1,5 @@
+" vim: fdm=marker:fdl=0:fml=0
+
 " Neovim Config
 
 " Options {{{1
@@ -91,7 +93,6 @@ let mapleader="\<SPACE>"
 
 noremap Y y$
 nnoremap zV zMzv
-nnoremap <C-P> R<C-R>0<ESC>
 
 inoremap jk <ESC>
 
@@ -110,17 +111,29 @@ nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
 
+" Force line wise paste
+nnoremap [p :let [content, type] =
+    \ [getreg(v:register), getregtype(v:register)] \|
+    \ call setreg(v:register, content, "V")<CR>[p
+    \:call setreg(v:register, content, type)<CR>
+nnoremap ]p :let [content, type] =
+    \ [getreg(v:register), getregtype(v:register)] \|
+    \ call setreg(v:register, content, "V")<CR>]p
+    \:call setreg(v:register, content, type)<CR>
+
 " Telescope {{{
-nnoremap <C-M> :Telescope find_files<CR>
-nnoremap <leader><leader>o :Telescope oldfiles<CR>
-nnoremap <leader><leader>r :Telescope lsp_references<CR>
-nnoremap <leader><leader>a :Telescope lsp_code_actions<CR>
-vnoremap <leader><leader>a :<C-U>Telescope lsp_range_code_actions<CR>
-nnoremap <leader><leader>s :Telescope lsp_document_symbols<CR>
-nnoremap <leader><leader>w :Telescope lsp_workspace_symbols<CR>
-nnoremap <leader><leader>q :Telescope quickfix<CR>
-nnoremap <leader><leader>b :Telescope buffers<CR>
-nnoremap <leader><leader>g :Telescope live_grep<CR>
+nnoremap <CR> :Telescope find_files<CR>
+nnoremap go :Telescope oldfiles<CR>
+nnoremap gr :Telescope lsp_references<CR>
+nnoremap gd :Telescope lsp_definitions<CR>
+nnoremap gi :Telescope lsp_implementations<CR>
+nnoremap gs :Telescope lsp_document_symbols<CR>
+nnoremap gA :Telescope lsp_code_actions<CR>
+vnoremap gA :<C-U>Telescope lsp_range_code_actions<CR>
+nnoremap gW :Telescope lsp_workspace_symbols<CR>
+nnoremap gb :Telescope buffers<CR>
+nnoremap gh :Telescope live_grep<CR>
+nnoremap gx :Telescope quickfix<CR>
 " }}}
 
 " Lines {{{
@@ -139,26 +152,6 @@ onoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 xnoremap <expr> N  'nN'[v:searchforward]
 onoremap <expr> N  'nN'[v:searchforward]
-" }}}
-
-" Disabled {{{
-" nnoremap <Up>       <NOP>
-" nnoremap <Down>     <NOP>
-" nnoremap <Left>     <NOP>
-" nnoremap <Right>    <NOP>
-nnoremap <PageUp>   <NOP>
-nnoremap <PageDown> <NOP>
-nnoremap <Home>     <NOP>
-nnoremap <End>      <NOP>
-inoremap <Esc>      <NOP>
-" inoremap <Up>       <NOP>
-" inoremap <Down>     <NOP>
-" inoremap <Left>     <NOP>
-" inoremap <Right>    <NOP>
-inoremap <PageUp>   <NOP>
-inoremap <PageDown> <NOP>
-inoremap <Home>     <NOP>
-inoremap <End>      <NOP>
 " }}}
 
 " Swapped {{{
@@ -181,17 +174,8 @@ nnoremap <leader>bw :setlocal wrap!<CR>
 nnoremap <leader>x :BufferClose<CR>
 " }}}
 
-" Splits {{{
-nnoremap <leader>h <C-W>h
-nnoremap <leader>j <C-W>j
-nnoremap <leader>k <C-W>k
-nnoremap <leader>l <C-W>l
-" }}}
-
 " Config File {{{
 nnoremap <leader>ee :edit $MYVIMRC<CR>
-nnoremap <leader>er :source $MYVIMRC<CR>
-nnoremap <expr> <leader>ec ':e ' .. stdpath('config') .. '/cheat40.txt<CR>'
 nnoremap <expr> <leader>el ':e ' .. stdpath('config') .. '/lua/config.lua<CR>'
 " }}}
 
@@ -219,14 +203,47 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
 
-" vim-sandwich {{{
-packadd! vim-sandwich
-runtime macros/sandwich/keymap/surround.vim
-" }}}
-
 " vim-sneak {{{
 nmap : <Plug>Sneak_;
 let g:sneak#label = 1
+" Repeat last search with single s
+let g:sneak#s_next = 1
+" Case sensitivity determined by 'ignorecase' and 'smartcase'
+let g:sneak#use_ic_scs = 1
+" ; always moves forward, , always backwards
+let g:sneak#absolute_dir = 1
+
+nnoremap <C-Q> q
+
+" 2-character Sneak (default)
+nmap q <Plug>Sneak_s
+nmap Q <Plug>Sneak_S
+" visual-mode
+xmap q <Plug>Sneak_s
+xmap Q <Plug>Sneak_S
+" operator-pending-mode
+omap q <Plug>Sneak_s
+omap Q <Plug>Sneak_S
+
+" 1-character enhanced 'f'
+nmap f <Plug>Sneak_f
+nmap F <Plug>Sneak_F
+" visual-mode
+xmap f <Plug>Sneak_f
+xmap F <Plug>Sneak_F
+" operator-pending-mode
+omap f <Plug>Sneak_f
+omap F <Plug>Sneak_F
+
+" 1-character enhanced 't'
+nmap t <Plug>Sneak_t
+nmap T <Plug>Sneak_T
+" visual-mode
+xmap t <Plug>Sneak_t
+xmap T <Plug>Sneak_T
+" operator-pending-mode
+omap t <Plug>Sneak_t
+omap T <Plug>Sneak_T
 " }}}
 
 " onedark.vim {{{
@@ -265,7 +282,8 @@ autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require
 " }}}
 
 " indent-blankline {{{
-let g:indent_blankline_char = '┃'
+" let g:indent_blankline_char = '┃'
+let g:indent_blankline_char = '│'
 let g:indent_blankline_use_treesitter = v:true
 let g:indent_blankline_filetype_exclude = ['help']
 let g:indent_blankline_show_current_context = v:true
@@ -281,9 +299,11 @@ let g:indent_blankline_viewport_buffer = 50
 lua require('config')
 
 " Folding based on treesitter
-set nofoldenable   " Disable folds when opening files
+" set nofoldenable   " Disable folds when opening files
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+" set foldlevelstart=99  " Start editing buffer with all folds open
+set foldminlines=20   " Only fold when there are lines greater than this
 
 augroup YankHi
     autocmd!

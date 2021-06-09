@@ -9,6 +9,6 @@ setlocal foldmethod=marker
 setlocal keywordprg=:botright\ help
 
 " folded section
-inoreabbrev cm "{{{<CR>" }}}<ESC>k0f{i
+inoreabbrev <buffer> cm "{{{<CR>" }}}<ESC>k0f{i
 
 let b:vcm_tab_complete = 'vim'
