@@ -35,6 +35,8 @@
 - 
   remote: "https://github.com/machakann/vim-sandwich"
 - 
+  remote: "https://github.com/mfussenegger/nvim-dap"
+- 
   remote: "https://github.com/mizlan/iswap.nvim"
 - 
   remote: "https://github.com/neovim/nvim-lspconfig"
@@ -55,6 +57,8 @@
 - 
   remote: "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
 - 
+  remote: "https://github.com/rcarriga/nvim-dap-ui"
+- 
   remote: "https://github.com/rmagatti/auto-session"
 - 
   remote: "https://github.com/rmagatti/goto-preview"
@@ -68,6 +72,8 @@
   remote: "https://github.com/ron-rs/ron.vim"
 - 
   remote: "https://github.com/sheerun/vim-polyglot"
+- 
+  remote: "https://github.com/theHamsta/nvim-dap-virtual-text"
 - 
   remote: "https://github.com/tpope/vim-apathy"
 - 

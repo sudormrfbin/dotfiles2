@@ -188,6 +188,115 @@ nvim_lsp.efm.setup({
 })
 -- }}}
 
+-- C/C++ LSP {{{
+nvim_lsp.ccls.setup({
+    on_attach = on_attach,
+    init_options = {
+        compilationDatabaseDirectory = "build";
+        index = {
+            threads = 0;
+        };
+        clang = {
+            excludeArgs = { "-frounding-math"} ;
+        };
+    }
+})
+-- }}}
+
+-- }}}
+
+-- DAP {{{
+local dap = require('dap')
+dap.adapters.lldb = {
+    type = 'executable',
+    -- NOTE: Does not inherit env vars by default, see nvim-dap wiki
+    command = '/usr/bin/lldb-vscode',
+    name = "lldb"
+}
+
+local function pick_process()
+    local output = vim.fn.system({'ps', 'a'})
+    local lines = vim.split(output, '\n')
+    local procs = {}
+    for _, line in pairs(lines) do
+        -- output format
+        --    " 107021 pts/4    Ss     0:00 /bin/zsh <args>"
+        local parts = vim.fn.split(vim.fn.trim(line), ' \\+')
+        local pid = parts[1]
+        local name = table.concat({unpack(parts, 5)}, ' ')
+        if pid and pid ~= 'PID' then
+            pid = tonumber(pid)
+            if pid ~= vim.fn.getpid() then
+                table.insert(procs, { pid = tonumber(pid), name = name })
+            end
+        end
+    end
+    local choices = {'Select process'}
+    for i, proc in ipairs(procs) do
+        table.insert(choices, string.format("%d: pid=%d name=%s", i, proc.pid, proc.name))
+    end
+    local choice = vim.fn.inputlist(choices)
+    if choice < 1 or choice > #procs then
+        return nil
+    end
+    return procs[choice].pid
+end
+
+-- Rust/C/C++ DAP {{{
+local pick_program = function(path)
+    path = path or ''
+    path = vim.fn.getcwd() .. '/' .. path
+    return function()
+        vim.fn.input('Path to executable: ', path, 'file')
+    end
+end
+
+local dapconfig = {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = pick_program('target/debug/'),
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    args = {},
+
+    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
+    --
+    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+    --
+    -- Otherwise you might get the following error:
+    --
+    --    Error on launch: Failed to attach to the target process
+    --
+    -- But you should be aware of the implications:
+    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
+    runInTerminal = false,
+}
+
+dap.configurations.rust = {
+    dapconfig,
+    {
+      -- If you get an "Operation not permitted" error using this, try disabling YAMA:
+      --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
+      name = "Attach to process",
+      type = 'lldb',  -- Adjust this to match your adapter name (`dap.adapters.<name>`)
+      request = 'attach',
+      pid = pick_process,
+      args = {},
+    },
+}
+-- dap.configurations.c    = dapconfig
+-- dap.configurations.cpp  = dapconfig
+-- }}}
+
+-- provided by nvim-dap-virtual-text
+vim.g.dap_virtual_text = true
+-- show virtual text for current frame (recommended)
+vim.g.dap_virtual_text = true
+-- request variable values for all frames (experimental)
+vim.g.dap_virtual_text = 'all frames'
+
+-- require("dapui").setup()
 -- }}}
 
 -- nvim-compe {{{
@@ -567,7 +676,7 @@ require("gitsigns").setup({
 -- }}}
 
 -- nvim-lightbulb {{{
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
 vim.fn.sign_define('LightBulbSign', { text = "", texthl = "LspDiagnosticsDefaultInformation" })
 -- }}}
 

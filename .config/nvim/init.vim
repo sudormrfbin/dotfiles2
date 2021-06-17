@@ -72,9 +72,16 @@ function! s:GoToLastCursorLocation()
     endif
 endfunction
 
-augroup LastCursor
+augroup lastcursor
     autocmd!
     autocmd BufReadPost * call s:GoToLastCursorLocation()
+augroup END
+
+" https://github.com/jeffkreeftmeijer/vim-numbertoggle/tree/main/plugin
+augroup numbertoggle
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+    autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
 
 " }}}
@@ -122,7 +129,7 @@ nnoremap ]p :let [content, type] =
     \:call setreg(v:register, content, type)<CR>
 
 " Telescope {{{
-nnoremap <CR> :Telescope find_files<CR>
+nnoremap <BS> :Telescope find_files<CR>
 nnoremap go :Telescope oldfiles<CR>
 nnoremap gr :Telescope lsp_references<CR>
 nnoremap gd :Telescope lsp_definitions<CR>
@@ -141,8 +148,8 @@ nnoremap gx :Telescope quickfix<CR>
 nnoremap [e        :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap ]e        :<c-u>execute 'move +'. v:count1<cr>
 " Add newlines above and below
-nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+nnoremap gk mp:<c-u>put! =repeat(nr2char(10), v:count1)<cr>`p
+nnoremap gj mp:<c-u>put =repeat(nr2char(10), v:count1)<cr>`p
 " }}}
 
 " Search {{{
@@ -163,8 +170,8 @@ xnoremap ; :
 xnoremap : ;
 nnoremap j gj
 nnoremap k gk
-nnoremap gj j
-nnoremap gk k
+" nnoremap gj j
+" nnoremap gk k
 " }}}
 
 " Buffer {{{
@@ -291,6 +298,20 @@ let g:indent_blankline_context_patterns = ['class', 'function', 'method', 'while
 let g:indent_blankline_viewport_buffer = 50
 " }}}
 
+" nvim-dap {{{
+nnoremap <leader>dd :lua require('dapui').toggle()<CR>
+nnoremap <leader>dc :lua require'dap'.continue()<CR>
+nnoremap <leader>do :lua require'dap'.step_over()<CR>
+nnoremap <leader>di :lua require'dap'.step_into()<CR>
+nnoremap <leader>du :lua require'dap'.step_out()<CR>
+nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <leader>dB :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <leader>dp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <leader>dl :lua require'dap'.run_last()<CR>
+
+" }}}
+
 " }}}1
 
 " Lua Config {{{
@@ -310,4 +331,6 @@ augroup YankHi
     autocmd TextYankPost * silent! lua vim.highlight.on_yank{timeout=300}
 augroup END
 " }}}
+
+nnoremap <leader>ww :e ~/Notes/life.md<CR>
 
