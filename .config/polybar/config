@@ -638,19 +638,19 @@ interval = 60
 ; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
 ; NOTE: if you want to use syntax tags here you need to use %%{...}
 ; Show only time by default
-date = 
-time = " %I:%M %p"
+date = ""
+time = " %A | %I:%M %p | %d %B"
 
 ; if `date-alt` or `time-alt` is defined, clicking
 ; the module will toggle between formats
-date-alt = " %A, %d %B %Y"
-time-alt = 
+; date-alt = " %A, %d %B %Y"
+; time-alt = 
 
 ; Available tags:
 ;   <label> (default)
-format = <label>
-format-prefix = ${icon.clock}
-format-prefix-foreground = ${color.red}
+; format = <label>
+; format-prefix = ${icon.clock}
+; format-prefix-foreground = ${color.red}
 
 ; Available tokens:
 ;   %date%
