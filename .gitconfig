@@ -1,0 +1,6 @@
+[color]
+	ui = auto
+[init]
+	defaultBranch = master
+[alias]
+	sl = stash list
