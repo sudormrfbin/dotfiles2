@@ -321,7 +321,7 @@ require("compe").setup({
         buffer = true,
         nvim_lsp = true,
         nvim_lua = true,
-        tabnine = {sort = false, priority = 1, show_prediction_strength = false}
+        -- tabnine = {sort = false, priority = 1, show_prediction_strength = false}
     }
 })
 vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()",
@@ -633,6 +633,10 @@ require("telescope").setup({
 
 -- autopairs {{{
 require("nvim-autopairs").setup()
+require("nvim-autopairs.completion.compe").setup({
+  map_cr = true, --  map <CR> on insert mode
+  map_complete = true -- auto insert `(` after select function or method item
+})
 -- }}}
 
 -- gitsigns.nvim {{{
@@ -691,6 +695,29 @@ require('goto-preview').setup {
     opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
   }
 ---- }}}
+
+-- treesitter-playground {{{
+require "nvim-treesitter.configs".setup {
+    playground = {
+        enable = true,
+        disable = {},
+        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+        persist_queries = false, -- Whether the query persists across vim sessions
+        keybindings = {
+            toggle_query_editor = 'o',
+            toggle_hl_groups = 'i',
+            toggle_injected_languages = 't',
+            toggle_anonymous_nodes = 'a',
+            toggle_language_display = 'I',
+            focus_language = 'f',
+            unfocus_language = 'F',
+            update = 'R',
+            goto_node = '<cr>',
+            show_help = '?',
+        },
+    }
+}
+-- }}}
 
 -- Pretty print any object
 function D(obj)
