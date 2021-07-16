@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cargo fmt --quiet -- --check && $(cargo check --quiet) && $(cargo clippy --quiet) || (echo "fmt/clippy/check failed" && exit 1)
