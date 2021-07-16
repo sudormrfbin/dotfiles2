@@ -1,4 +1,4 @@
-# Fish Config File
+#h Fish Config File
 
 # X
 
@@ -71,6 +71,7 @@ bind -M insert \cq    'commandline -rt ""'
 # fast_add_abbr does _not_ escape non-alphanumeric characters in abbr names
 abbr -ag -  'cd -'
 
+fast_add_abbr g   'git'
 fast_add_abbr m   'man'
 fast_add_abbr v   'nvim'
 fast_add_abbr py  'python3'
@@ -119,7 +120,7 @@ fast_add_abbr yc 'yadm commit -m'
 # Variables
 
 set -x EDITOR  "nvim"
-set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ $PATH
+set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ ~/.local/share/gem/ruby/3.0.0/bin $PATH
 set -x BROWSER /usr/bin/firefox
 set -x VIM_CONFIG_PATH ~/.config/nvim/
 
