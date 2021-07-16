@@ -4,3 +4,4 @@
 	defaultBranch = master
 [alias]
 	sl = stash list
+	sp = stash push "*" --include-untracked -m
