@@ -128,8 +128,9 @@ font-3 = "feather:size=18;4"
 ;   modules-center = xwindow xbacklight
 ;   modules-right = ipc clock
 
-modules-left = workspaces sep cpu memory filesystem github netspeed
-modules-center = date intent
+; modules-left = workspaces sep cpu memory filesystem github netspeed
+modules-left = workspaces sep cpu memory filesystem netspeed
+modules-center = day time month intent
 modules-right = network sep brightness volume sep battery
 
 ; The separator will be inserted between the output of each module
@@ -659,6 +660,29 @@ time = " %A | %I:%M %p | %d %B"
 ; No space because when one is show the other isn't
 label = %date%%time%
 
+[module/day]
+type = internal/date
+interval = 60
+time = "%A"
+format-foreground = ${color.sep}
+label = %time%
+
+[module/time]
+type = internal/date
+interval = 60
+time = " %I:%M %p"
+format-prefix = ${icon.clock}
+format-prefix-foreground = ${color.green}
+label = %time%
+
+[module/month]
+type = internal/date
+interval = 60
+time = "%d %B"
+format-foreground = ${color.sep}
+label = %time%
+
+; 
 ; }}}
 
 ; CPU {{{
@@ -1265,6 +1289,21 @@ format-offline =
 ;   %notifications% (default)
 ; Default: Notifications: %notifications%
 label = " %notifications%"
+; }}}
+
+; Pomodoro {{{
+[module/pomodoro]
+type = custom/script
+
+exec = ~/.local/bin/polypomo
+tail = true
+
+label = %output%
+click-left = ~/.local/bin/polypomo toggle
+click-right = ~/.local/bin/polypomo end
+click-middle = ~/.local/bin/polypomo lock
+scroll-up = ~/.local/bin/polypomo time +60
+scroll-down = ~/.local/bin/polypomo time -60
 ; }}}
 
 ; Separator {{{
