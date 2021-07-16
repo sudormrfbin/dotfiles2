@@ -4,13 +4,16 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	kitty
 
 # open terminal in floating state
 super + shift + Return
 	bspc rule -a Alacritty -o state=floating layer=above && alacritty
 
-program launcher
+XF86WebCam
+	giph --stop
+
+# program launcher
 super + a
 	rofi -no-lazy-grab -show drun -modi drun
 
