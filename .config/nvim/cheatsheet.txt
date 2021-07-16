@@ -4,16 +4,18 @@
 # is useful for plugins that have names totally unrelated to their purpose.
 # Also note that the alignment is purely decorative.
 
-Split lines on space (opposite of J) | r<CR>
-Match nth occurrence of {pat}        | /\v(.{-}\zspat){n}
-Modeline format (per file settings)  | // vim: sw=4:ts=4:noruler
-Swap arguments | :ISwap
-Repeat last Ex command | @:
-Insert current word in cmdline mode | <C-R><C-W>
-Insert current path in cmdline mode | <C-R><C-F>
-Insert expanded path in cmdline mode | <C-R><C-P>
-Insert current WORD in cmdline mode | <C-R><C-A>
-Insert current line in cmdline mode | <C-R><C-L>
+Split lines on space (opposite of J)  | r<CR>
+Match nth occurrence of {pat}         | /\v(.{-}\zspat){n}
+Modeline format (per file settings)   | // vim: sw=4:ts=4:noruler
+Swap arguments                        | :ISwap
+Repeat last Ex command                | @:
+Insert current word in cmdline mode   | <C-R><C-W>
+Insert current path in cmdline mode   | <C-R><C-F>
+Insert expanded path in cmdline mode  | <C-R><C-P>
+Insert current WORD in cmdline mode   | <C-R><C-A>
+Insert current line in cmdline mode   | <C-R><C-L>
+Open current buffer in new tab (zoom) | :tab sb
+Copy GitHub permalink to clipboard    | :GetCommitLink
 
 ## dap @debugger
 Toggle UI                | <leader>dd
