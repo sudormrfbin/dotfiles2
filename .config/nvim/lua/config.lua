@@ -115,15 +115,31 @@ dhl("Warning", colors.yellow)
 dhl("Information", colors.blue)
 dhl("Hint", colors.green)
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+local publish_diagnostics = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = {
             spacing = 2,
             prefix = " ■",
             severity_limit = "Warning"
         },
         severity_sort = true
-    })
+})
+vim.lsp.handlers["textDocument/publishDiagnostics"] = publish_diagnostics
+
+vim.g.diagnostics_active = true
+
+function Toggle_diagnostics()
+    if vim.g.diagnostics_active then
+        vim.g.diagnostics_active = false
+        vim.lsp.diagnostic.clear(0)
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+    else
+        vim.g.diagnostics_active = true
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = publish_diagnostics
+    end
+end
+
+vim.api.nvim_set_keymap("n", "yod", ":lua Toggle_diagnostics()<CR>",{noremap = true, silent = true})
+
 -- }}}
 
 -- Rust LSP {{{
