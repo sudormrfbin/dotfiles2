@@ -112,6 +112,9 @@ super + {j,k}
 super + shift + {j,k}
 	bspc node --swap {next,prev}.local.!hidden.window
 
+super + {bracketleft,bracketright}
+	bspc node @/ -R {-,+}90
+
 # focus the last node/desktop
 super + {Tab,grave}
 	bspc {node,desktop} --focus last
