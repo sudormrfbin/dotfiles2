@@ -223,7 +223,13 @@ local function mod_ctrl(key, action)
 	return awful.key({ modkey, "Control" }, key, action)
 end
 
--- Construct a keybind invoked with `key`.
+-- Construct a keybind that does `action` when `mod + alt + key` is pressed.
+-- @see mod()
+local function mod_alt(key, action)
+	return awful.key({ modkey, "Alt" }, key, action)
+end
+
+-- Construct a keybind invoked with `keyn`.
 local function key(keyn, action)
 	return awful.key({}, keyn, action)
 end
@@ -259,6 +265,7 @@ end
 
 -- {{{ Key bindings
 local globalkeys = gears.table.join(
+	-- TODO: add keys for resizing clients
 	mod("a", spawn(launcher)),
 	mod("Return", spawn(terminal)),
 	mod("j", focusto("down")),
@@ -269,6 +276,10 @@ local globalkeys = gears.table.join(
 	mod_shift("k", swapwith("up")),
 	mod_shift("h", swapwith("left")),
 	mod_shift("l", swapwith("right")),
+	mod_ctrl("j", function() awful.client.incwfact(-0.10) end),
+	mod_ctrl("k", function() awful.client.incwfact(0.10) end),
+	mod_ctrl("h", function() awful.tag.incmwfact(-0.10) end),
+	mod_ctrl("l", function() awful.tag.incmwfact(0.10) end),
 	audio("LowerVolume", "amixer -D pulse sset Master 5%-"),
 	audio("RaiseVolume", "amixer -D pulse sset Master 5%+"),
 	audio("Mute", "amixer -D pulse set Master 1+ toggle"),
@@ -277,20 +288,15 @@ local globalkeys = gears.table.join(
 	audio("Prev", "playerctl previous"),
 	bright("Up", "light -A 1"),
 	bright("Down", "light -U 1"),
-	-- TODO: add keys for resizing clients
+	mod_ctrl("r", awesome.restart),
+	mod_ctrl("q", awesome.quit),
+	mod("space", function() awful.layout.inc(1) end),
+	mod_shift("space", function() awful.layout.inc(-1) end),
 	mod("Tab", function()
 		awful.client.focus.history.previous()
 		if client.focus then
 			client.focus:raise()
 		end
-	end),
-	mod_ctrl("r", awesome.restart),
-	mod_ctrl("q", awesome.quit),
-	mod("space", function()
-		awful.layout.inc(1) -- switch to next layout
-	end),
-	mod_shift("space", function()
-		awful.layout.inc(-1)
 	end)
 )
 
@@ -304,14 +310,12 @@ local function clienttoggle(property)
 end
 
 local clientkeys = gears.table.join(
-	mod("x", function(c)
-		c:kill()
-	end),
+	mod("x", function(c) c:kill() end),
 	mod("f", clienttoggle("fullscreen")),
 	mod("t", clienttoggle("floating")),
 	mod("n", clienttoggle("maximized")),
-	mod_ctrl("n", clienttoggle("maximized_vertical")),
-	mod_shift("n", clienttoggle("maximized_horizontal"))
+	mod_alt("j", clienttoggle("maximized_vertical")),
+	mod_alt("l", clienttoggle("maximized_horizontal"))
 )
 
 -- Bind all key numbers to tags.
@@ -345,7 +349,7 @@ local clientbuttons = gears.table.join(
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		awful.mouse.client.move(c)
 	end),
-	awful.button({ modkey }, 3, function(c)
+	awful.button({ modkey, "Shift" }, 1, function(c)
 		c:emit_signal("request::activate", "mouse_click", { raise = true })
 		awful.mouse.client.resize(c)
 	end)
