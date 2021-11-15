@@ -1,0 +1,8 @@
+theme = "onedark"
+
+[keys.normal]
+";" = "command_mode"
+":" = "collapse_selection"
+
+[keys.insert]
+j = {k = {"normal_mode}}
