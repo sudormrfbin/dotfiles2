@@ -5,3 +5,5 @@
 [alias]
 	sl = stash list
 	sp = stash push "*" --include-untracked -m
+[commit]
+	verbose = true
