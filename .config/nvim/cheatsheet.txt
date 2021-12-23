@@ -54,3 +54,32 @@ Previous match                       | ,
 Vertical scope search                | [count]s
 Label mode next matches              | <Tab>
 Label mode prev matches              | <S-Tab> or <BS>
+
+## asciidoc @adoc
+Header level 1                        | = Title
+Header level 2                        | == Title
+Header level 3                        | === Title
+Paragraph title                       | .Title\nUsual paragraph
+Admonition icon tip                   | TIP: Some tip
+Admonition icon important             | IMPORTANT: Something important
+Admonition icon warning               | WARNING: Some warning
+Admonition icon caution               | CAUTION: Some text
+Code block (code fence, source code)  | [source,language]\n----\nsource_code\n----
+Blockquotes                           | > some text (similar to markdown)
+Line break                            | line 1 + line 2
+Monospace                             | `monospace like markdown`
+Monospace with formatting             | +mono *bold* mono+
+Comment                               | // this is a comment
+Horizontal rule (separator line)      | ''''
+Colors                                | [red]#red text#
+Text size                             | [big]#this is big#
+Bullet (unordered) list               | - item 1\n - item 2
+Ordered list                          | . item 1\n . item 2
+Definition                            | Term 1::\n Definiton
+FAQ / Q&A                             | [qanda]\n Question1:: answer 1
+Superscript                           | ^super^
+Subscript                             | ~sub~
+Italic                                | _italic_
+Bold                                  | *bold*
+Link                                  | http://example.com[click here]
+Table of contents (TOC) doc attribute | :toc:
