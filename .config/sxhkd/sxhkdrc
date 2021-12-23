@@ -25,6 +25,9 @@ super + v
 	rofi -no-lazy-grab -modi "clipboard:greenclip print" \
 		-show clipboard -run-command '{cmd}'
 
+super + d
+	discord
+
 # browser
 super + b
 	raise-or-run.sh firefox firefox
