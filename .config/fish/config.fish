@@ -88,28 +88,37 @@ fast_add_abbr rl 'exec fish'
 fast_add_abbr xo 'xdg-open'
 fast_add_abbr xc 'xclip -sel clip'
 
-fast_add_abbr ga   'git add'
-fast_add_abbr gl   'git log'
-fast_add_abbr gb   'git branch'
-fast_add_abbr gs   'git status'
-fast_add_abbr gc   'git commit -m'
-fast_add_abbr gd   'git diff'
-fast_add_abbr g1   'git clone --depth=1'
-fast_add_abbr gph  'git push'
-fast_add_abbr gpl  'git pull'
-fast_add_abbr gco  'git checkout'
-fast_add_abbr gsp  'git stash pop'
-fast_add_abbr gca  'git commit --amend'
-fast_add_abbr gss  'git stash push --include-untracked --message'
-fast_add_abbr gcl  'git clone --depth=1'
-fast_add_abbr gcam 'git commit -am'
-fast_add_abbr gpum 'git pull upstream master'
-fast_add_abbr gcls 'git clone --depth=1 --shallow-submodules --recursive'
+fast_add_abbr c  'cargo'
+fast_add_abbr cf 'cargo fmt'
+fast_add_abbr ch 'cargo check'
+fast_add_abbr cr 'cargo run --'
+fast_add_abbr cl 'cargo clippy'
 
-fast_add_abbr t  'task'
-fast_add_abbr ta 'task add'
-fast_add_abbr td 'task done'
-fast_add_abbr tl 'task ready'
+abbr g- 'git switch -'
+fast_add_abbr ga    'git add'
+fast_add_abbr gl    'git log'
+fast_add_abbr gb    'git branch'
+fast_add_abbr gs    'git status'
+fast_add_abbr gc    'git commit -m'
+fast_add_abbr gd    'git diff'
+fast_add_abbr g1    'git clone --depth=1'
+fast_add_abbr gph   'git push'
+fast_add_abbr gpl   'git pull'
+fast_add_abbr gco   'git checkout'
+fast_add_abbr gsp   'git stash pop'
+fast_add_abbr gca   'git commit --amend'
+fast_add_abbr gcaan 'git commit --amend --all --no-edit'
+fast_add_abbr gss   'git stash push --include-untracked --message'
+fast_add_abbr gcl   'git clone --depth=1'
+fast_add_abbr gcam  'git commit -am'
+fast_add_abbr gpum  'git pull upstream master'
+fast_add_abbr gcls  'git clone --depth=1 --shallow-submodules --recursive'
+
+fast_add_abbr t  'todo'
+fast_add_abbr l  'todo list'
+# fast_add_abbr ta 'task add'
+# fast_add_abbr td 'task done'
+# fast_add_abbr tl 'task ready'
 
 fast_add_abbr y  'yadm status'
 fast_add_abbr ya 'yadm add'
@@ -123,7 +132,14 @@ set -x EDITOR  "nvim"
 set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ ~/.local/share/gem/ruby/3.0.0/bin $PATH
 set -x BROWSER /usr/bin/firefox
 set -x VIM_CONFIG_PATH ~/.config/nvim/
+set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk/
+set -x ANDROID_SDK_ROOT /opt/android-sdk/
+set -x ANDROID_HOME $ANDROID_SDK_ROOT
+set -x PATH $ANDROID_HOME/emulator/ $ANDROID_HOME/platform-tools/ \
+            $ANDROID_HOME/tools/    $ANDROID_HOME/tools/bin/ \
+            $PATH
 
+set -x RUST_BACKTRACE 1
 set -x SXHKD_SHELL "/bin/bash"
 
 set -x F_EXCLUDE '^/tmp/.+' '\.out$'
