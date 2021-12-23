@@ -415,6 +415,12 @@
 #[fullscreen_show_critical]
 #    msg_urgency = critical
 #    fullscreen = show
+#
+
+[cargo]
+    body = "*cargo*"
+    msg_urgency = critical
+    timeout = 10
 
 #[espeak]
 #    summary = "*"
