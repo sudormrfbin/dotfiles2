@@ -90,7 +90,7 @@ end
 
 -- Diagnostics {{{
 
-function dhl(severity, color)
+local dhl = function (severity, color)
     -- default colors used in eg. diagnostics popup
     vim.cmd("hi clear LspDiagnosticsDefault" .. severity)
     vim.cmd("hi LspDiagnosticsDefault" .. severity .. " gui=bold guifg=" ..
@@ -142,8 +142,11 @@ vim.api.nvim_set_keymap("n", "yod", ":lua Toggle_diagnostics()<CR>",{noremap = t
 
 -- }}}
 
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- Rust LSP {{{
-nvim_lsp.rust_analyzer.setup({on_attach = on_attach})
+nvim_lsp.rust_analyzer.setup({on_attach = on_attach, capabilities = capabilities})
 -- }}}
 
 -- Lua LSP {{{
@@ -156,13 +159,21 @@ local lua_settings = {
     },
     diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {"vim"}
+        globals = {
+            "vim",
+            -- awesomewm
+            "awesome",
+            "client",
+            "root",
+            "screen",
+        }
     },
     workspace = {
         -- Make the server aware of Neovim runtime files
         library = {
             [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+            ['/usr/share/awesome/lib'] = true,
         }
     }
 }
@@ -172,7 +183,7 @@ local lsp_opts = {
         "/usr/bin/lua-language-server", "-E",
         "/usr/share/lua-language-server/main.lua"
     },
-    on_attach = on_attach,
+    on_attach = on_attach, capabilities = capabilities,
     settings = {Lua = lua_settings}
 }
 
@@ -182,31 +193,40 @@ nvim_lsp.sumneko_lua.setup(luadev)
 -- }}}
 
 -- Python LSP {{{
-nvim_lsp.pyright.setup({on_attach = on_attach})
+-- nvim_lsp.pyright.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.pyright.setup({cmd = {"/home/gokul/Projects/py-analyzer/target/debug/py-analyzer"}, on_attach = on_attach})
 vim.api.nvim_command(
     "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()")
 -- }}}
 
--- EFM General LSP {{{
--- provides formatting for LSPs like pyright and sumneko_lua which do not
--- have their own
-nvim_lsp.efm.setup({
-    on_attach = on_attach,
-    init_options = {documentFormatting = true},
-    root_dir = vim.loop.cwd,
-    settings = {
-        rootMarkers = {".git/"},
-        languages = {
-            lua = {{formatCommand = "lua-format -i", formatStdin = true}},
-            python = {{formatCommand = "black --fast -q -", formatStdin = true}}
-        }
-    }
-})
+-- Go LSP {{{
+nvim_lsp.gopls.setup({on_attach = on_attach, capabilities = capabilities})
 -- }}}
+
+-- Java LSP {{{
+nvim_lsp.jdtls.setup({on_attach = on_attach, capabilities = capabilities})
+-- }}}
+
+-- -- EFM General LSP {{{
+-- -- provides formatting for LSPs like pyright and sumneko_lua which do not
+-- -- have their own
+-- nvim_lsp.efm.setup({
+--     on_attach = on_attach,
+--     init_options = {documentFormatting = true},
+--     root_dir = vim.loop.cwd,
+--     settings = {
+--         rootMarkers = {".git/"},
+--         languages = {
+--             lua = {{formatCommand = "lua-format -i", formatStdin = true}},
+--             python = {{formatCommand = "black --fast -q -", formatStdin = true}}
+--         }
+--     }
+-- })
+-- -- }}}
 
 -- C/C++ LSP {{{
 nvim_lsp.ccls.setup({
-    on_attach = on_attach,
+    on_attach = on_attach, capabilities = capabilities,
     init_options = {
         compilationDatabaseDirectory = "build";
         index = {
@@ -221,127 +241,88 @@ nvim_lsp.ccls.setup({
 
 -- }}}
 
--- DAP {{{
-local dap = require('dap')
-dap.adapters.lldb = {
-    type = 'executable',
-    -- NOTE: Does not inherit env vars by default, see nvim-dap wiki
-    command = '/usr/bin/lldb-vscode',
-    name = "lldb"
-}
+-- -- nvim-compe {{{
+-- require("compe").setup({
+--     enabled = true,
+--     -- auto open popup
+--     autocomplete = true,
+--     debug = false,
+--     -- min chars to trigger completion on
+--     min_length = 1,
+--     preselect = "enable",
+--     throttle_time = 80,
+--     source_timeout = 200,
+--     incomplete_delay = 400,
+--     max_abbr_width = 100,
+--     max_kind_width = 100,
+--     max_menu_width = 100,
+--     documentation = true,
 
-local function pick_process()
-    local output = vim.fn.system({'ps', 'a'})
-    local lines = vim.split(output, '\n')
-    local procs = {}
-    for _, line in pairs(lines) do
-        -- output format
-        --    " 107021 pts/4    Ss     0:00 /bin/zsh <args>"
-        local parts = vim.fn.split(vim.fn.trim(line), ' \\+')
-        local pid = parts[1]
-        local name = table.concat({unpack(parts, 5)}, ' ')
-        if pid and pid ~= 'PID' then
-            pid = tonumber(pid)
-            if pid ~= vim.fn.getpid() then
-                table.insert(procs, { pid = tonumber(pid), name = name })
-            end
-        end
-    end
-    local choices = {'Select process'}
-    for i, proc in ipairs(procs) do
-        table.insert(choices, string.format("%d: pid=%d name=%s", i, proc.pid, proc.name))
-    end
-    local choice = vim.fn.inputlist(choices)
-    if choice < 1 or choice > #procs then
-        return nil
-    end
-    return procs[choice].pid
-end
+--     source = {
+--         path = true,
+--         buffer = true,
+--         nvim_lsp = true,
+--         nvim_lua = true,
+--         -- tabnine = {sort = false, priority = 1, show_prediction_strength = false}
+--     }
+-- })
+-- vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()",
+--                         {noremap = true, silent = true, expr = true})
+-- -- }}}
 
--- Rust/C/C++ DAP {{{
-local pick_program = function(path)
-    path = path or ''
-    path = vim.fn.getcwd() .. '/' .. path
-    return function()
-        vim.fn.input('Path to executable: ', path, 'file')
-    end
-end
+-- nvim-cmp {{{
+local cmp = require'cmp'
 
-local dapconfig = {
-    name = "Launch",
-    type = "lldb",
-    request = "launch",
-    program = pick_program('target/debug/'),
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    args = {},
-
-    -- if you change `runInTerminal` to true, you might need to change the yama/ptrace_scope setting:
-    --
-    --    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-    --
-    -- Otherwise you might get the following error:
-    --
-    --    Error on launch: Failed to attach to the target process
-    --
-    -- But you should be aware of the implications:
-    -- https://www.kernel.org/doc/html/latest/admin-guide/LSM/Yama.html
-    runInTerminal = false,
-}
-
-dap.configurations.rust = {
-    dapconfig,
-    {
-      -- If you get an "Operation not permitted" error using this, try disabling YAMA:
-      --  echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
-      name = "Attach to process",
-      type = 'lldb',  -- Adjust this to match your adapter name (`dap.adapters.<name>`)
-      request = 'attach',
-      pid = pick_process,
-      args = {},
+cmp.setup({
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+        end,
     },
-}
--- dap.configurations.c    = dapconfig
--- dap.configurations.cpp  = dapconfig
--- }}}
+    mapping = {
+        ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        ['<C-e>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' }),
+    },
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'vsnip' }, -- For vsnip users.
+        -- { name = 'luasnip' }, -- For luasnip users.
+        -- { name = 'ultisnips' }, -- For ultisnips users.
+        -- { name = 'snippy' }, -- For snippy users.
+    }, {
+            { name = 'buffer' },
+        })
+})
 
--- provided by nvim-dap-virtual-text
-vim.g.dap_virtual_text = true
--- show virtual text for current frame (recommended)
-vim.g.dap_virtual_text = true
--- request variable values for all frames (experimental)
-vim.g.dap_virtual_text = 'all frames'
-
--- require("dapui").setup()
--- }}}
-
--- nvim-compe {{{
-require("compe").setup({
-    enabled = true,
-    -- auto open popup
-    autocomplete = true,
-    debug = false,
-    -- min chars to trigger completion on
-    min_length = 1,
-    preselect = "enable",
-    throttle_time = 80,
-    source_timeout = 200,
-    incomplete_delay = 400,
-    max_abbr_width = 100,
-    max_kind_width = 100,
-    max_menu_width = 100,
-    documentation = true,
-
-    source = {
-        path = true,
-        buffer = true,
-        nvim_lsp = true,
-        nvim_lua = true,
-        -- tabnine = {sort = false, priority = 1, show_prediction_strength = false}
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+    sources = {
+        { name = 'buffer' }
     }
 })
-vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()",
-                        {noremap = true, silent = true, expr = true})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+            { name = 'cmdline' }
+        })
+})
+
 -- }}}
 
 -- nvim-treesitter {{{
@@ -406,11 +387,11 @@ vim.api.nvim_set_keymap("n", "<C-N>", ":BufferNext<CR>",
 -- }}}
 
 -- feline {{{
+
 -- Initialize the components table
 local components = {
-    left = {active = {}, inactive = {}},
-    mid = {active = {}, inactive = {}},
-    right = {active = {}, inactive = {}}
+    active = {},
+    inactive = {}
 }
 
 local vi_mode_colors = {
@@ -587,16 +568,16 @@ local SeparatorInactive = {
 
 -- LuaFormatter off
 
-components.left.inactive = {
+components.inactive[1] = { -- left
     FileNameInactive,
     SeparatorInactive,
 }
 
-components.right.inactive = {
+components.inactive[2] = { -- right
     LineInfoInactive
 }
 
-components.left.active = {
+components.active[1] = { -- left
     ModeIndicator,
     FileName,
     GitBranch,
@@ -606,7 +587,10 @@ components.left.active = {
     DiagnosticInfo,
     DiagnosticHint,
 }
-components.right.active = {
+
+components.active[2] = {} -- middle
+
+components.active[3] = { -- right
     DiffAdd,
     DiffModified,
     DiffRemove,
@@ -620,9 +604,10 @@ local properties = {
 }
 
 require("feline").setup({
-    default_bg = colors.light_grey,
-    default_fg = colors.white,
-    colors = vi_mode_colors,
+    colors = {
+        bg = colors.light_grey,
+        fg = colors.white,
+    },
     components = components,
     properties = properties,
     vi_mode_colors = vi_mode_colors
@@ -732,6 +717,50 @@ require "nvim-treesitter.configs".setup {
             show_help = '?',
         },
     }
+}
+-- }}}
+
+-- octo.nvim {{{
+require("octo").setup()
+-- }}}
+
+-- nvim-tree.lua {{{
+require('nvim-tree').setup {
+    view = {
+        side = 'right',
+    },
+    ignore = { '.git', 'node_modules', '.cache' },
+    quit_on_open = true,
+    indent_markers = true,
+    hide_dotfiles = true,
+    disable_netrw = true,
+    hijack_netrw = true,
+    add_trailing = true,
+}
+-- }}}
+
+-- focus.nvim {{{
+require('focus').setup()
+-- }}}
+
+-- tabout.nvim {{{
+require('tabout').setup {
+    tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
+    backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
+    act_as_tab = true, -- shift content if tab out is not possible
+    act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
+    enable_backwards = true, -- well ...
+    completion = true, -- if the tabkey is used in a completion pum
+    tabouts = {
+      {open = "'", close = "'"},
+      {open = '"', close = '"'},
+      {open = '`', close = '`'},
+      {open = '(', close = ')'},
+      {open = '[', close = ']'},
+      {open = '{', close = '}'}
+    },
+    ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
+    exclude = {} -- tabout will ignore these filetypes
 }
 -- }}}
 

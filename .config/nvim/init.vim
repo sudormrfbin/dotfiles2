@@ -57,7 +57,7 @@ set backupskip=/tmp/*      " Do not back up temporary files.
 
 set list                   " Show special characters for tabs, tr  ailing whitespace, etc
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
-set guifont=mononoki\ Nerd\ Font:h21
+set guifont=mononoki\ Nerd\ Font\ Mono:h11.5:w5.5
 
 filetype plugin indent on
 syntax on
@@ -102,6 +102,7 @@ noremap Y y$
 nnoremap zV zMzv
 
 inoremap jk <ESC>
+nnoremap <CR> :w<CR>
 
 " Cycle through completion with tab and shift tab
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -130,13 +131,14 @@ nnoremap ]p :let [content, type] =
 
 " Telescope {{{
 nnoremap <BS> :Telescope find_files<CR>
+nnoremap g' :Telescope resume<CR>
 nnoremap go :Telescope oldfiles<CR>
 nnoremap gr :Telescope lsp_references<CR>
 nnoremap gd :Telescope lsp_definitions<CR>
 nnoremap gi :Telescope lsp_implementations<CR>
 nnoremap gs :Telescope lsp_document_symbols<CR>
-nnoremap gA :Telescope lsp_code_actions<CR>
-vnoremap gA :<C-U>Telescope lsp_range_code_actions<CR>
+nnoremap gm :Telescope lsp_code_actions<CR>
+vnoremap gm :<C-U>Telescope lsp_range_code_actions<CR>
 nnoremap gW :Telescope lsp_workspace_symbols<CR>
 nnoremap gb :Telescope buffers<CR>
 nnoremap gh :Telescope live_grep<CR>
@@ -192,17 +194,6 @@ nnoremap <expr> <leader>el ':e ' .. stdpath('config') .. '/lua/config.lua<CR>'
 
 " Managed by gokulsoumya/pac
 
-" nvim-tree.lua {{{
-let g:nvim_tree_side = 'right'
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
-let g:nvim_tree_quit_on_open = 1
-let g:nvim_tree_indent_markers = 1
-let g:nvim_tree_hide_dotfiles = 1
-let g:nvim_tree_disable_netrw = 1
-let g:nvim_tree_hijack_netrw = 1
-let g:nvim_tree_add_trailing = 1
-" }}}
-
 " vim-easy-align {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -210,47 +201,52 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
 
-" vim-sneak {{{
-nmap : <Plug>Sneak_;
-let g:sneak#label = 1
-" Repeat last search with single s
-let g:sneak#s_next = 1
-" Case sensitivity determined by 'ignorecase' and 'smartcase'
-let g:sneak#use_ic_scs = 1
-" ; always moves forward, , always backwards
-let g:sneak#absolute_dir = 1
+" " vim-sneak {{{
+" nmap : <Plug>Sneak_;
+" let g:sneak#label = 1
+" " Repeat last search with single s
+" let g:sneak#s_next = 1
+" " Case sensitivity determined by 'ignorecase' and 'smartcase'
+" let g:sneak#use_ic_scs = 1
+" " ; always moves forward, , always backwards
+" let g:sneak#absolute_dir = 1
 
-nnoremap <C-Q> q
+" nnoremap <C-Q> q
 
-" 2-character Sneak (default)
-nmap q <Plug>Sneak_s
-nmap Q <Plug>Sneak_S
-" visual-mode
-xmap q <Plug>Sneak_s
-xmap Q <Plug>Sneak_S
-" operator-pending-mode
-omap q <Plug>Sneak_s
-omap Q <Plug>Sneak_S
+" " 2-character Sneak (default)
+" nmap q <Plug>Sneak_s
+" nmap Q <Plug>Sneak_S
+" " visual-mode
+" xmap q <Plug>Sneak_s
+" xmap Q <Plug>Sneak_S
+" " operator-pending-mode
+" omap q <Plug>Sneak_s
+" omap Q <Plug>Sneak_S
 
-" 1-character enhanced 'f'
-nmap f <Plug>Sneak_f
-nmap F <Plug>Sneak_F
-" visual-mode
-xmap f <Plug>Sneak_f
-xmap F <Plug>Sneak_F
-" operator-pending-mode
-omap f <Plug>Sneak_f
-omap F <Plug>Sneak_F
+" " 1-character enhanced 'f'
+" nmap f <Plug>Sneak_f
+" nmap F <Plug>Sneak_F
+" " visual-mode
+" xmap f <Plug>Sneak_f
+" xmap F <Plug>Sneak_F
+" " operator-pending-mode
+" omap f <Plug>Sneak_f
+" omap F <Plug>Sneak_F
 
-" 1-character enhanced 't'
-nmap t <Plug>Sneak_t
-nmap T <Plug>Sneak_T
-" visual-mode
-xmap t <Plug>Sneak_t
-xmap T <Plug>Sneak_T
-" operator-pending-mode
-omap t <Plug>Sneak_t
-omap T <Plug>Sneak_T
+" " 1-character enhanced 't'
+" nmap t <Plug>Sneak_t
+" nmap T <Plug>Sneak_T
+" " visual-mode
+" xmap t <Plug>Sneak_t
+" xmap T <Plug>Sneak_T
+" " operator-pending-mode
+" omap t <Plug>Sneak_t
+" omap T <Plug>Sneak_T
+" " }}}
+
+" lightspeed.nvim {{{
+nmap ' <Plug>Lightspeed_s
+nmap <A-'> <Plug>Lightspeed_S
 " }}}
 
 " onedark.vim {{{
@@ -296,20 +292,6 @@ let g:indent_blankline_filetype_exclude = ['help']
 let g:indent_blankline_show_current_context = v:true
 let g:indent_blankline_context_patterns = ['class', 'function', 'method', 'while', 'closure', 'for']
 let g:indent_blankline_viewport_buffer = 50
-" }}}
-
-" nvim-dap {{{
-nnoremap <leader>dd :lua require('dapui').toggle()<CR>
-nnoremap <leader>dc :lua require'dap'.continue()<CR>
-nnoremap <leader>do :lua require'dap'.step_over()<CR>
-nnoremap <leader>di :lua require'dap'.step_into()<CR>
-nnoremap <leader>du :lua require'dap'.step_out()<CR>
-nnoremap <leader>db :lua require'dap'.toggle_breakpoint()<CR>
-nnoremap <leader>dB :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-nnoremap <leader>dp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-nnoremap <leader>dr :lua require'dap'.repl.open()<CR>
-nnoremap <leader>dl :lua require'dap'.run_last()<CR>
-
 " }}}
 
 " }}}1
