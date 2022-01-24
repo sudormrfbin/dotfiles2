@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+PLUGIN_FILE="$HOME/.config/nvim/plugins.txt"
+PLUGIN_INSTALL_LOCATION="$HOME/.config/nvim/pack/default/start/"
+
+__usage="
+Usage: $0 [-h|--help] [subcommand]
+
+Subcommands:
+    install <url>   Install a plugin
+    update          Update all plugins (default subcommand)
+    help            Show this help
+
+Plugins are installed to '$PLUGIN_INSTALL_LOCATION'.
+To uninstall a plugin remove it from '$PLUGIN_FILE'.
+"
+
+add-plugin() {
+    local url=$1
+    echo "$url" >> $PLUGIN_FILE
+    install-plugin $url
+}
+
+install-plugin() {
+    local url=$1
+    git -C "$PLUGIN_INSTALL_LOCATION" clone -q --depth=1 $url
+
+    # print on the same line, overwriting it
+    printf "\r\e[0KInstalled $url"
+}
+
+update-plugins() {
+    rm -rf "$PLUGIN_INSTALL_LOCATION"/*
+    readarray -t plugins < $PLUGIN_FILE
+
+    for plugin in "${plugins[@]}"
+    do
+        install-plugin $plugin &
+    done
+
+    wait # wait till all plugins to finish installing
+    printf "\r\e[0K" # clear line
+}
+
+display-help() {
+    echo "$__usage"
+}
+
+subcommand=$1
+case $subcommand in
+    "help" | "--help" | "-h")
+        display-help
+        exit
+        ;;
+    "install")
+        [ -z "$2" ] && echo "No url supplied" && exit
+        add-plugin "$2"
+        ;;
+    "update" | *)
+        update-plugins
+        ;;
+esac
