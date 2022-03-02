@@ -12,7 +12,7 @@
     ],
 
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.fontSize": 19.5,
+    "editor.fontSize": 20.5,
     "editor.fontFamily": "mononoki Nerd Font Mono",
     "editor.minimap.showSlider": "always",
     "editor.minimap.renderCharacters": false,
@@ -20,7 +20,7 @@
     "editor.wordWrap": "on",
     "editor.wrappingIndent": "indent",
     "editor.snippetSuggestions": "bottom",
-    "editor.acceptSuggestionOnEnter": "off",
+    "editor.acceptSuggestionOnEnter": "smart",
     "editor.tabCompletion": "on",
     "editor.quickSuggestions": {
         "other": true,
@@ -34,8 +34,6 @@
     "explorer.confirmDragAndDrop": false,
 
     "extensions.ignoreRecommendations": false,
-
-    "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 500,
     "files.exclude": {
         "**/__pycache__": true,
@@ -109,13 +107,25 @@
     "window.menuBarVisibility": "toggle",
     "rust-analyzer.updates.channel": "nightly",
     "terminal.external.linuxExec": "alacritty",
-    "python.languageServer": "Microsoft",
-    "workbench.editorAssociations": [],
+    "python.languageServer": "Pylance",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "python.analysis.completeFunctionParens": true,
     "python.showStartPage": false,
     "python.linting.pylintUseMinimalCheckers": false,
     "editor.parameterHints.enabled": false,
-    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.typeCheckingMode": "basic",
     "tabnine.experimentalAutoImports": true,
     "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.useImportHeuristic": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "files.autoSave": "afterDelay",
+    "Lua.workspace.library": [
+        "/usr/share/awesome/lib"
+    ],
+    "Lua.color.mode": "SemanticEnhanced",
 }
