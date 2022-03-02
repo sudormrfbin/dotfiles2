@@ -4,14 +4,14 @@
 
 # terminal emulator
 super + Return
-	kitty
+	open-terminal-in-cwd.sh
 
 # open terminal in floating state
 super + shift + Return
 	bspc rule -a Alacritty -o state=floating layer=above && alacritty
 
 XF86WebCam
-	giph --stop
+	scrot -u /tmp/screenshot.png
 
 # program launcher
 super + a
