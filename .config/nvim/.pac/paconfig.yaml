@@ -8,6 +8,8 @@
 - 
   remote: "https://github.com/abecodes/tabout.nvim"
 - 
+  remote: "https://github.com/akinsho/flutter-tools.nvim"
+- 
   remote: "https://github.com/bakpakin/fennel.vim"
 - 
   remote: "https://github.com/beauwilliams/focus.nvim"

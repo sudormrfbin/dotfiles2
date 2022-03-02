@@ -12,7 +12,6 @@ https://github.com/hrsh7th/cmp-path
 https://github.com/hrsh7th/cmp-vsnip
 https://github.com/hrsh7th/nvim-cmp
 https://github.com/hrsh7th/vim-vsnip
-https://github.com/joshdick/onedark.vim
 https://github.com/junegunn/vim-easy-align
 https://github.com/knsh14/vim-github-link
 https://github.com/kyazdani42/nvim-tree.lua
@@ -47,3 +46,5 @@ https://github.com/tpope/vim-commentary
 https://github.com/tpope/vim-scriptease
 https://github.com/windwp/nvim-autopairs
 https://github.com/rcarriga/nvim-notify
+https://github.com/joshdick/onedark.vim
+https://github.com/Pocco81/AutoSave.nvim

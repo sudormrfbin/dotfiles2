@@ -28,9 +28,9 @@ local on_attach = function(client, bufnr)
     buflspnkey("<C-a>", "buf.signature_help()", "i")
     buflspnkey("gy", "buf.type_definition()")
     buflspnkey("<leader>lr", "buf.rename()")
-    buflspnkey("<C-k>", "diagnostic.show_line_diagnostics()")
-    buflspnkey("[d", "diagnostic.goto_prev()")
-    buflspnkey("]d", "diagnostic.goto_next()")
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.diagnostic.open_float()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", {noremap = true, silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", {noremap = true, silent = true})
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
@@ -90,24 +90,33 @@ end
 
 -- Diagnostics {{{
 
+vim.diagnostic.config({
+    virtual_text = {
+        spacing = 2,
+        prefix = " ■",
+        severity_limit = "Warning"
+    },
+    severity_sort = true,
+})
+
 local dhl = function (severity, color)
     -- default colors used in eg. diagnostics popup
-    vim.cmd("hi clear LspDiagnosticsDefault" .. severity)
-    vim.cmd("hi LspDiagnosticsDefault" .. severity .. " gui=bold guifg=" ..
+    vim.cmd("hi clear DiagnosticDefault" .. severity)
+    vim.cmd("hi DiagnosticDefault" .. severity .. " gui=bold guifg=" ..
                 color)
-    -- curly underlines for diagnostics like IDEs
-    vim.cmd("hi clear LspDiagnosticsUnderline" .. severity)
+    -- curly underlines for diagnostic like IDEs
+    vim.cmd("hi clear DiagnosticUnderline" .. severity)
     vim.cmd(
-        "hi LspDiagnosticsUnderline" .. severity .. " gui=undercurl guisp=" ..
+        "hi DiagnosticUnderline" .. severity .. " gui=undercurl guisp=" ..
             color)
-    -- colors for in text diagnostics
-    vim.cmd("hi clear LspDiagnosticsVirtualText" .. severity)
-    vim.cmd("hi LspDiagnosticsVirtualText" .. severity ..
+    -- colors for in text diagnostic
+    vim.cmd("hi clear DiagnosticVirtualText" .. severity)
+    vim.cmd("hi DiagnosticVirtualText" .. severity ..
                 " guibg=#3E4452 guifg=" .. color)
 
     -- Color line numbers instead of showing icons in signcolumn
-    vim.fn.sign_define("LspDiagnosticsSign" .. severity,
-                       {text = "", numhl = "LspDiagnosticsDefault" .. severity})
+    vim.fn.sign_define("DiagnosticSign" .. severity,
+                       {text = "", numhl = "DiagnosticDefault" .. severity})
 end
 
 dhl("Error", colors.red)
@@ -115,26 +124,15 @@ dhl("Warning", colors.yellow)
 dhl("Information", colors.blue)
 dhl("Hint", colors.green)
 
-local publish_diagnostics = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = {
-            spacing = 2,
-            prefix = " ■",
-            severity_limit = "Warning"
-        },
-        severity_sort = true
-})
-vim.lsp.handlers["textDocument/publishDiagnostics"] = publish_diagnostics
-
 vim.g.diagnostics_active = true
 
 function Toggle_diagnostics()
     if vim.g.diagnostics_active then
+        vim.diagnostic.disable(0)
         vim.g.diagnostics_active = false
-        vim.lsp.diagnostic.clear(0)
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
     else
+        vim.diagnostic.enable(0)
         vim.g.diagnostics_active = true
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = publish_diagnostics
     end
 end
 
@@ -193,8 +191,8 @@ nvim_lsp.sumneko_lua.setup(luadev)
 -- }}}
 
 -- Python LSP {{{
--- nvim_lsp.pyright.setup({on_attach = on_attach, capabilities = capabilities})
-nvim_lsp.pyright.setup({cmd = {"/home/gokul/Projects/py-analyzer/target/debug/py-analyzer"}, on_attach = on_attach})
+nvim_lsp.pyright.setup({on_attach = on_attach, capabilities = capabilities})
+-- nvim_lsp.pyright.setup({cmd = {"/home/gokul/Projects/py-analyzer/target/debug/py-analyzer"}, on_attach = on_attach})
 vim.api.nvim_command(
     "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()")
 -- }}}
@@ -315,13 +313,13 @@ cmp.setup.cmdline('/', {
 })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        { name = 'path' }
-    }, {
-            { name = 'cmdline' }
-        })
-})
+-- cmp.setup.cmdline(':', {
+--     sources = cmp.config.sources({
+--         { name = 'path' }
+--     }, {
+--             { name = 'cmdline' }
+--         })
+-- })
 
 -- }}}
 
@@ -493,28 +491,28 @@ local ScrollBar = {provider = "scroll_bar", hl = mode_color_fg}
 
 local DiagnosticError = {
     provider = "diagnostic_errors",
-    enabled = function() return lsprovider.diagnostics_exist("Error") end,
+    enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.ERROR) end,
     icon = "  ",
     hl = {fg = colors.red}
 }
 
 local DiagnosticWarn = {
     provider = "diagnostic_warnings",
-    enabled = function() return lsprovider.diagnostics_exist("Warning") end,
+    enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.WARN) end,
     icon = "  ",
     hl = {fg = colors.yellow}
 }
 
 local DiagnosticHint = {
     provider = "diagnostic_hints",
-    enabled = function() return lsprovider.diagnostics_exist("Hint") end,
+    enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.HINT) end,
     icon = "  ",
     hl = {fg = colors.green}
 }
 
 local DiagnosticInfo = {
     provider = "diagnostic_info",
-    enabled = function() return lsprovider.diagnostics_exist("Information") end,
+    enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.INFO) end,
     icon = "  ",
     hl = {fg = colors.blue}
 }
@@ -634,10 +632,10 @@ require("telescope").setup({
 
 -- autopairs {{{
 require("nvim-autopairs").setup()
-require("nvim-autopairs.completion.compe").setup({
-  map_cr = true, --  map <CR> on insert mode
-  map_complete = true -- auto insert `(` after select function or method item
-})
+-- If you want insert `(` after select function or method item
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local cmp = require('cmp')
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 -- }}}
 
 -- gitsigns.nvim {{{
@@ -762,6 +760,37 @@ require('tabout').setup {
     ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
     exclude = {} -- tabout will ignore these filetypes
 }
+-- }}}
+
+-- flutter-tools.nvim {{{
+require("flutter-tools").setup({
+    lsp = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+})
+-- }}}
+
+-- nvim-notify {{{
+vim.notify = require("notify")
+-- }}}
+
+-- autosave.nvim {{{
+require("autosave").setup({
+    enabled = true,
+    execution_message = "Autosaved.",
+    events = {"InsertLeave", "TextChanged"},
+    conditions = {
+        exists = true,
+        filename_is_not = {},
+        filetype_is_not = {},
+        modifiable = true
+    },
+    write_all_buffers = false,
+    on_off_commands = true,
+    clean_command_line_interval = 0,
+    debounce_delay = 135
+})
 -- }}}
 
 -- Pretty print any object

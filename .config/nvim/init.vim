@@ -108,8 +108,8 @@ nnoremap <CR> :w<CR>
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " Cycle through completion with ctrl-j and ctrl-k
-inoremap <silent><expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+inoremap <silent> <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
 cnoremap <C-P> <Up>
 cnoremap <C-N> <Down>
@@ -118,6 +118,9 @@ nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [Q :cfirst<CR>
 nnoremap ]Q :clast<CR>
+
+nnoremap <silent> gt :lua require("FTerm").toggle()<CR>
+tnoremap <silent> gt <C-\><C-n>:lua require("FTerm").toggle()<CR>
 
 " Force line wise paste
 nnoremap [p :let [content, type] =
@@ -292,6 +295,15 @@ let g:indent_blankline_filetype_exclude = ['help']
 let g:indent_blankline_show_current_context = v:true
 let g:indent_blankline_context_patterns = ['class', 'function', 'method', 'while', 'closure', 'for']
 let g:indent_blankline_viewport_buffer = 50
+" }}}
+
+" gitsigns.nvim {{{
+nnoremap <leader>hs :Gitsigns stage_hunk<CR>
+nnoremap <leader>hr :Gitsigns reset_hunk<CR>
+nnoremap <leader>hu :Gitsigns undo_stage_hunk<CR>
+nnoremap <leader>hp :Gitsigns preview_hunk<CR>
+nnoremap [c         :Gitsigns prev_hunk<CR>
+nnoremap ]c         :Gitsigns next_hunk<CR>
 " }}}
 
 " }}}1
