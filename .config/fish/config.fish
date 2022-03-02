@@ -97,7 +97,7 @@ fast_add_abbr cl 'cargo clippy'
 abbr g- 'git switch -'
 fast_add_abbr ga    'git add'
 fast_add_abbr gl    'git log'
-fast_add_abbr gb    'git branch'
+fast_add_abbr gb    'git branch --sort=-committerdate'
 fast_add_abbr gs    'git status'
 fast_add_abbr gc    'git commit -m'
 fast_add_abbr gd    'git diff'
@@ -151,6 +151,8 @@ set -x FZF_LEGACY_KEYBINDINGS 0
 # {+} expands to space seperated list of multi selected items or current item
 # use printf to properly quote selections "\'%s\'"
 set -x FZF_DEFAULT_OPTS '--bind "ctrl-x:execute-silent(printf \'%s \' {+} | xclip -selection clipboard)+abort" --height=20% --cycle'
+set -x FZF_FIND_FILE_OPTS '--preview "bat -f {}"'
+set -x FZF_FIND_FILE_COMMAND fd
 
 set -gx LESSHISTFILE "$HOME/.cache/.lesshist"
 
