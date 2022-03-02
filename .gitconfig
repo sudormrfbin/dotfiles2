@@ -3,7 +3,10 @@
 [init]
 	defaultBranch = master
 [alias]
+	s = stash
 	sl = stash list
-	sp = stash push "*" --include-untracked -m
+	sp = stash push
+	so = stash pop
+	ll = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=relative
 [commit]
 	verbose = true
