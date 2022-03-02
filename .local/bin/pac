@@ -9,6 +9,7 @@ Usage: $0 [-h|--help] [subcommand]
 Subcommands:
     install <url>   Install a plugin
     update          Update all plugins (default subcommand)
+    clean | purge   Delete all plugins
     help            Show this help
 
 Plugins are installed to '$PLUGIN_INSTALL_LOCATION'.
@@ -29,8 +30,12 @@ install-plugin() {
     printf "\r\e[0KInstalled $url"
 }
 
-update-plugins() {
+purge-plugins() {
     rm -rf "$PLUGIN_INSTALL_LOCATION"/*
+}
+
+update-plugins() {
+    purge-plugins
     readarray -t plugins < $PLUGIN_FILE
 
     for plugin in "${plugins[@]}"
@@ -51,6 +56,9 @@ case $subcommand in
     "help" | "--help" | "-h")
         display-help
         exit
+        ;;
+    "purge" | "clean")
+        purge-plugins
         ;;
     "install")
         [ -z "$2" ] && echo "No url supplied" && exit
