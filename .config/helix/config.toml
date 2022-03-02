@@ -15,9 +15,16 @@ theme = "onedark"
 
 [keys.insert]
 "j" = { "k" = "normal_mode" }
+"C-t" = "indent"
+"C-d" = "unindent"
 
 [editor]
 line-number = "relative"
 scrolloff = 3
-idle-timeout = 200
-# cursor-shape = { "insert" = "bar", "select" = "underline" }
+idle-timeout = 50
+# diff-symbols = ["▍", "▍", "▁", "▔"]
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
