@@ -1,1 +1,8 @@
+map f scroll full-down
+map b scroll full-up
+map <c-f> follow
+
+set guioptions 'svh'
 set scroll-step 200
+set scroll-full-overlap 0.15
+set show-hidden true
