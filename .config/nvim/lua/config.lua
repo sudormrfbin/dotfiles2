@@ -11,10 +11,11 @@ local on_attach = function(client, bufnr)
     local function buflspnkey(key, action, mode)
         if not mode then mode = "n" end
         action = "<cmd>lua vim.lsp." .. action .. "<CR>"
-        local opts = {noremap = true, silent = true}
+        local opts = { noremap = true, silent = true }
 
         vim.api.nvim_buf_set_keymap(bufnr, mode, key, action, opts)
     end
+
     -- }}}
 
     -- Mappings {{{
@@ -24,25 +25,27 @@ local on_attach = function(client, bufnr)
     -- buflspnkey("gi", "buf.implementation()")
     -- buflspnkey("gr", "buf.references()")
     -- buflspnkey("<leader>lq", "diagnostic.set_loclist()")
+    -- buflspnkey("gy", "buf.type_definition()")
+    buflspnkey("gm", "buf.code_action()")
     buflspnkey("K", "buf.hover()")
     buflspnkey("<C-a>", "buf.signature_help()", "i")
-    buflspnkey("gy", "buf.type_definition()")
-    buflspnkey("<leader>lr", "buf.rename()")
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.diagnostic.open_float()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", {noremap = true, silent = true})
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", {noremap = true, silent = true})
+    buflspnkey("<leader>r", "buf.rename()")
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true, silent = true })
 
     -- Set some keybinds conditional on server capabilities
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
         buflspnkey("<leader>lf", "buf.formatting()")
-    elseif client.resolved_capabilities.document_range_formatting then
+        -- buflspnkey("<leader>lf", "buf.format{ async = true }")
+    elseif client.server_capabilities.document_range_formatting then
         buflspnkey("<leader>lf", "buf.range_formatting()")
     end
     -- }}}
 
     -- Document highlight {{{
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
+    if client.server_capabilities.document_highlight then
         vim.api.nvim_exec([[
         hi LspReferenceRead gui=underline
         hi LspReferenceText gui=bold
@@ -99,24 +102,24 @@ vim.diagnostic.config({
     severity_sort = true,
 })
 
-local dhl = function (severity, color)
+local dhl = function(severity, color)
     -- default colors used in eg. diagnostics popup
     vim.cmd("hi clear DiagnosticDefault" .. severity)
     vim.cmd("hi DiagnosticDefault" .. severity .. " gui=bold guifg=" ..
-                color)
+        color)
     -- curly underlines for diagnostic like IDEs
     vim.cmd("hi clear DiagnosticUnderline" .. severity)
     vim.cmd(
         "hi DiagnosticUnderline" .. severity .. " gui=undercurl guisp=" ..
-            color)
+        color)
     -- colors for in text diagnostic
     vim.cmd("hi clear DiagnosticVirtualText" .. severity)
     vim.cmd("hi DiagnosticVirtualText" .. severity ..
-                " guibg=#3E4452 guifg=" .. color)
+        " guibg=#3E4452 guifg=" .. color)
 
     -- Color line numbers instead of showing icons in signcolumn
     vim.fn.sign_define("DiagnosticSign" .. severity,
-                       {text = "", numhl = "DiagnosticDefault" .. severity})
+        { text = "", numhl = "DiagnosticDefault" .. severity })
 end
 
 dhl("Error", colors.red)
@@ -136,7 +139,7 @@ function Toggle_diagnostics()
     end
 end
 
-vim.api.nvim_set_keymap("n", "yod", ":lua Toggle_diagnostics()<CR>",{noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "yod", ":lua Toggle_diagnostics()<CR>", { noremap = true, silent = true })
 
 -- }}}
 
@@ -144,7 +147,46 @@ vim.api.nvim_set_keymap("n", "yod", ":lua Toggle_diagnostics()<CR>",{noremap = t
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Rust LSP {{{
-nvim_lsp.rust_analyzer.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.rust_analyzer.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        ["rust-analyzer"] = {
+            completion = {
+                snippets = {
+                    ["Ok"] = {
+                        postfix = "ook",
+                        body = "Ok(${receiver})",
+                        description = "Wrap the expression in a `Result::Ok`",
+                        scope = "expr"
+                    },
+                    ["Err"] = {
+                        postfix = "err",
+                        body = "Err(${receiver})",
+                        description = "Wrap the expression in a `Result::Err`",
+                        scope = "expr"
+                    },
+                    ["Some"] = {
+                        postfix = "some",
+                        body = "Some(${receiver})",
+                        description = "Wrap the expression in an `Option::Some`",
+                        scope = "expr"
+                    },
+                    ["Option"] = {
+                        postfix = "opt",
+                        body = "Option<${receiver}>",
+                        description = "Wrap the expression in an `Option`",
+                        scope = "expr"
+                    },
+                    ["Vec::new()"] = {
+                        prefix = "ven",
+                        body = "Vec::new()",
+                    }
+                }
+            }
+        }
+    }
+})
 -- }}}
 
 -- Lua LSP {{{
@@ -182,27 +224,31 @@ local lsp_opts = {
         "/usr/share/lua-language-server/main.lua"
     },
     on_attach = on_attach, capabilities = capabilities,
-    settings = {Lua = lua_settings}
+    settings = { Lua = lua_settings }
 }
 
-local luadev = require("lua-dev").setup({lspconfig = lsp_opts})
+local luadev = require("lua-dev").setup({ lspconfig = lsp_opts })
 
 nvim_lsp.sumneko_lua.setup(luadev)
 -- }}}
 
 -- Python LSP {{{
-nvim_lsp.pyright.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.pyright.setup({cmd = {"/home/gokul/Projects/py-analyzer/target/debug/py-analyzer"}, on_attach = on_attach})
 vim.api.nvim_command(
-    "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()")
+"autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()")
 -- }}}
 
 -- Go LSP {{{
-nvim_lsp.gopls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
+-- }}}
+
+-- CSS {{{
+nvim_lsp.cssls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- }}}
 
 -- Java LSP {{{
-nvim_lsp.jdtls.setup({on_attach = on_attach, capabilities = capabilities})
+nvim_lsp.jdtls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- }}}
 
 -- -- EFM General LSP {{{
@@ -231,7 +277,7 @@ nvim_lsp.ccls.setup({
             threads = 0;
         };
         clang = {
-            excludeArgs = { "-frounding-math"} ;
+            excludeArgs = { "-frounding-math" };
         };
     }
 })
@@ -269,7 +315,7 @@ nvim_lsp.ccls.setup({
 -- -- }}}
 
 -- nvim-cmp {{{
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
     snippet = {
@@ -301,8 +347,8 @@ cmp.setup({
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
     }, {
-            { name = 'buffer' },
-        })
+        { name = 'buffer' },
+    })
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -325,8 +371,8 @@ cmp.setup.cmdline('/', {
 
 -- nvim-treesitter {{{
 require("nvim-treesitter.configs").setup({
-    indent = {enable = true},
-    highlight = {enable = true},
+    indent = { enable = true },
+    highlight = { enable = true },
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -379,9 +425,9 @@ require("nvim-treesitter.configs").setup({
 
 -- barbar.nvim {{{
 vim.api.nvim_set_keymap("n", "<C-P>", ":BufferPrevious<CR>",
-                        {noremap = true, silent = true})
+    { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-N>", ":BufferNext<CR>",
-                        {noremap = true, silent = true})
+    { noremap = true, silent = true })
 -- }}}
 
 -- feline {{{
@@ -420,7 +466,7 @@ local mode_color_fg = function()
     return val
 end
 
-local space_bg_sep = {str = " ", hl = {bg = colors.bg}}
+local space_bg_sep = { str = " ", hl = { bg = colors.bg } }
 
 -- Statusline components {{{
 
@@ -442,7 +488,7 @@ local ModeIndicator = {
 local FileName = {
     provider = "file_info",
     type = "unique",
-    hl = {bg = colors.bg, style = "italic"}
+    hl = { bg = colors.bg, style = "italic" }
 }
 
 local FileNameInactive = {
@@ -450,7 +496,7 @@ local FileNameInactive = {
     file_modified_icon = '[+]',
     icon = '',
     type = "unique",
-    hl = {bg = colors.white, fg = colors.black, style = "italic"}
+    hl = { bg = colors.white, fg = colors.black, style = "italic" }
 }
 
 local get_line_info = function(component)
@@ -469,52 +515,52 @@ local get_line_info = function(component)
     end
 
     return string.format(component.icon .. "%d:%-2d %3s ", lines, curcol,
-                         percent)
+        percent)
 end
 
 local LineInfo = {
     provider = get_line_info,
     icon = "  ",
     -- separator_highlight = {'NONE',colors.bg},
-    hl = {bg = colors.bg},
+    hl = { bg = colors.bg },
     left_sep = ' '
 }
 
 local LineInfoInactive = {
     provider = get_line_info,
     icon = '',
-    hl = {bg = colors.white, fg = colors.black},
-    left_sep = {str = ' ', hl = {bg = colors.white}}
+    hl = { bg = colors.white, fg = colors.black },
+    left_sep = { str = ' ', hl = { bg = colors.white } }
 }
 
-local ScrollBar = {provider = "scroll_bar", hl = mode_color_fg}
+local ScrollBar = { provider = "scroll_bar", hl = mode_color_fg }
 
 local DiagnosticError = {
     provider = "diagnostic_errors",
     enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.ERROR) end,
     icon = "  ",
-    hl = {fg = colors.red}
+    hl = { fg = colors.red }
 }
 
 local DiagnosticWarn = {
     provider = "diagnostic_warnings",
     enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.WARN) end,
     icon = "  ",
-    hl = {fg = colors.yellow}
+    hl = { fg = colors.yellow }
 }
 
 local DiagnosticHint = {
     provider = "diagnostic_hints",
     enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.HINT) end,
     icon = "  ",
-    hl = {fg = colors.green}
+    hl = { fg = colors.green }
 }
 
 local DiagnosticInfo = {
     provider = "diagnostic_info",
     enabled = function() return lsprovider.diagnostics_exist(vim.diagnostic.severity.INFO) end,
     icon = "  ",
-    hl = {fg = colors.blue}
+    hl = { fg = colors.blue }
 }
 
 -- local Separator = {
@@ -530,36 +576,36 @@ local DiagnosticInfo = {
 local LspServer = {
     provider = "  ",
     enabled = lsprovider.is_lsp_attached,
-    hl = {fg = colors.yellow, style = "bold"}
+    hl = { fg = colors.yellow, style = "bold" }
 }
 
 local GitBranch = {
     provider = "git_branch",
     icon = "  ",
-    hl = {fg = colors.blue}
+    hl = { fg = colors.blue }
 }
 
 local DiffAdd = {
     provider = "git_diff_added",
     icon = "  ",
-    hl = {fg = colors.green}
+    hl = { fg = colors.green }
 }
 
 local DiffModified = {
     provider = "git_diff_changed",
     icon = " 柳",
-    hl = {fg = colors.orange}
+    hl = { fg = colors.orange }
 }
 
 local DiffRemove = {
     provider = "git_diff_removed",
     icon = "  ",
-    hl = {fg = colors.red}
+    hl = { fg = colors.red }
 }
 
 local SeparatorInactive = {
     provider = '',
-    hl = {bg = colors.black, style = 'strikethrough'}
+    hl = { bg = colors.black, style = 'strikethrough' }
 }
 
 -- }}}
@@ -598,7 +644,7 @@ components.active[3] = { -- right
 -- LuaFormatter on
 
 local properties = {
-    force_inactive = {filetypes = {}, buftypes = {}, bufnames = {}}
+    force_inactive = { filetypes = {}, buftypes = {}, bufnames = {} }
 }
 
 require("feline").setup({
@@ -625,9 +671,11 @@ require("telescope").setup({
         },
         -- clean sharp corners: thick and thin styles
         -- borderchars = {"━", "┃", "━", "┃", "┏", "┓", "┛", "┗"}
-        borderchars = {"─", "│", "─", "│", "┌", "┐", "┘", "└"}
+        borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
     }
 })
+
+require("telescope").load_extension("ui-select")
 -- }}}
 
 -- autopairs {{{
@@ -635,7 +683,7 @@ require("nvim-autopairs").setup()
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 -- }}}
 
 -- gitsigns.nvim {{{
@@ -692,7 +740,7 @@ require('goto-preview').setup {
     height = 15; -- Height of the floating window
     default_mappings = true; -- Bind default mappings
     opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
-  }
+}
 ---- }}}
 
 -- treesitter-playground {{{
@@ -722,21 +770,6 @@ require "nvim-treesitter.configs".setup {
 require("octo").setup()
 -- }}}
 
--- nvim-tree.lua {{{
-require('nvim-tree').setup {
-    view = {
-        side = 'right',
-    },
-    ignore = { '.git', 'node_modules', '.cache' },
-    quit_on_open = true,
-    indent_markers = true,
-    hide_dotfiles = true,
-    disable_netrw = true,
-    hijack_netrw = true,
-    add_trailing = true,
-}
--- }}}
-
 -- focus.nvim {{{
 require('focus').setup()
 -- }}}
@@ -750,12 +783,12 @@ require('tabout').setup {
     enable_backwards = true, -- well ...
     completion = true, -- if the tabkey is used in a completion pum
     tabouts = {
-      {open = "'", close = "'"},
-      {open = '"', close = '"'},
-      {open = '`', close = '`'},
-      {open = '(', close = ')'},
-      {open = '[', close = ']'},
-      {open = '{', close = '}'}
+        { open = "'", close = "'" },
+        { open = '"', close = '"' },
+        { open = '`', close = '`' },
+        { open = '(', close = ')' },
+        { open = '[', close = ']' },
+        { open = '{', close = '}' }
     },
     ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
     exclude = {} -- tabout will ignore these filetypes
@@ -779,7 +812,7 @@ vim.notify = require("notify")
 require("autosave").setup({
     enabled = true,
     execution_message = "Autosaved.",
-    events = {"InsertLeave", "TextChanged"},
+    events = { "InsertLeave", "TextChanged" },
     conditions = {
         exists = true,
         filename_is_not = {},
@@ -791,6 +824,80 @@ require("autosave").setup({
     clean_command_line_interval = 0,
     debounce_delay = 135
 })
+-- }}}
+
+-- zk {{{
+require("zk").setup({
+    -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+    -- it's recommended to use "telescope" or "fzf"
+    picker = "telescope",
+
+    lsp = {
+        -- `config` is passed to `vim.lsp.start_client(config)`
+        config = {
+            -- cmd = { "zk", "lsp" },
+            -- name = "zk",
+            on_attach = on_attach,
+        },
+
+        -- automatically attach buffers in a zk notebook that match the given filetypes
+        auto_attach = {
+            enabled = true,
+            filetypes = { "markdown" },
+        },
+    },
+})
+-- }}}
+
+-- -- litee.nvim {{{
+-- require('litee.lib').setup({
+--     tree = {
+--         icon_set = "nerd"
+--     },
+--     panel = {
+--         orientation = "right",
+--         panel_size  = 30,
+--     }
+-- })
+-- -- }}}
+
+-- -- gh.nvim {{{
+-- require('litee.gh').setup({
+--     -- remap the arrow keys to resize any litee.nvim windows.
+--     map_resize_keys = true,
+--     -- defines keymaps in gh.nvim buffers.
+--     keymaps = {
+--         -- when inside a gh.nvim panel, this key will open a node if it has
+--         -- any futher functionality. for example, hitting <CR> on a commit node
+--         -- will open the commit's changed files in a new gh.nvim panel.
+--         open = "<CR>",
+--         -- when inside a gh.nvim panel, expand a collapsed node
+--         expand = "zo",
+--         -- when inside a gh.nvim panel, collpased and expanded node
+--         collapse = "zc",
+--         -- when cursor is over a "#1234" formatted issue or PR, open its details
+--         -- and comments in a new tab.
+--         goto_issue = "gd",
+--         -- show any details about a node, typically, this reveals commit messages
+--         -- and submitted review bodys.
+--         details = "d",
+--         -- inside a convo buffer, submit a comment
+--         submit_comment = "<C-s>",
+--         -- inside a convo buffer, when your cursor is ontop of a comment, open
+--         -- up a set of actions that can be performed.
+--         actions = "<C-a>",
+--         -- inside a thread convo buffer, resolve the thread.
+--         resolve_thread = "<C-r>",
+--         -- inside a gh.nvim panel, if possible, open the node's web URL in your
+--         -- browser. useful particularily for digging into external failed CI
+--         -- checks.
+--         goto_web = "gx"
+--     }
+-- })
+-- -- }}}
+
+-- gitlinker {{{
+require("gitlinker").setup()
 -- }}}
 
 -- Pretty print any object

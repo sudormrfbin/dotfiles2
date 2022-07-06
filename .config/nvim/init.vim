@@ -122,6 +122,8 @@ nnoremap ]Q :clast<CR>
 nnoremap <silent> gt :lua require("FTerm").toggle()<CR>
 tnoremap <silent> gt <C-\><C-n>:lua require("FTerm").toggle()<CR>
 
+nnoremap ga <c-^>
+
 " Force line wise paste
 nnoremap [p :let [content, type] =
     \ [getreg(v:register), getregtype(v:register)] \|
@@ -132,6 +134,8 @@ nnoremap ]p :let [content, type] =
     \ call setreg(v:register, content, "V")<CR>]p
     \:call setreg(v:register, content, type)<CR>
 
+nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
+
 " Telescope {{{
 nnoremap <BS> :Telescope find_files<CR>
 nnoremap g' :Telescope resume<CR>
@@ -140,9 +144,8 @@ nnoremap gr :Telescope lsp_references<CR>
 nnoremap gd :Telescope lsp_definitions<CR>
 nnoremap gi :Telescope lsp_implementations<CR>
 nnoremap gs :Telescope lsp_document_symbols<CR>
-nnoremap gm :Telescope lsp_code_actions<CR>
-vnoremap gm :<C-U>Telescope lsp_range_code_actions<CR>
-nnoremap gW :Telescope lsp_workspace_symbols<CR>
+nnoremap gy :Telescope lsp_type_definitons<CR>
+nnoremap gw :Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap gb :Telescope buffers<CR>
 nnoremap gh :Telescope live_grep<CR>
 nnoremap gx :Telescope quickfix<CR>
@@ -302,6 +305,7 @@ nnoremap <leader>hs :Gitsigns stage_hunk<CR>
 nnoremap <leader>hr :Gitsigns reset_hunk<CR>
 nnoremap <leader>hu :Gitsigns undo_stage_hunk<CR>
 nnoremap <leader>hp :Gitsigns preview_hunk<CR>
+nnoremap <leader>hb :Gitsigns blame_line<CR>
 nnoremap [c         :Gitsigns prev_hunk<CR>
 nnoremap ]c         :Gitsigns next_hunk<CR>
 " }}}

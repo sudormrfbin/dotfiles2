@@ -13,7 +13,6 @@ https://github.com/hrsh7th/cmp-vsnip
 https://github.com/hrsh7th/nvim-cmp
 https://github.com/hrsh7th/vim-vsnip
 https://github.com/junegunn/vim-easy-align
-https://github.com/knsh14/vim-github-link
 https://github.com/kyazdani42/nvim-tree.lua
 https://github.com/kyazdani42/nvim-web-devicons
 https://github.com/leafOfTree/vim-matchtag
@@ -48,3 +47,10 @@ https://github.com/windwp/nvim-autopairs
 https://github.com/rcarriga/nvim-notify
 https://github.com/joshdick/onedark.vim
 https://github.com/Pocco81/AutoSave.nvim
+https://github.com/ayu-theme/ayu-vim
+https://github.com/rakr/vim-one
+https://github.com/junegunn/goyo.vim
+https://github.com/junegunn/limelight.vim
+https://github.com/mickael-menu/zk-nvim
+https://github.com/nvim-telescope/telescope-ui-select.nvim/
+https://github.com/ruifm/gitlinker.nvim
