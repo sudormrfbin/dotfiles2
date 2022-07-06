@@ -2,13 +2,15 @@
 
 # Interactively stage modified dotfiles using yadm
 
-selfile="$(yadm diff --name-only | \
-    fzf --preview='yadm diff --color $HOME/{}' --height=100% --multi --prompt='Stage: ')"
+IFS=$'\n' selfile=( $(yadm diff --name-only | \
+    fzf --preview='yadm diff --color $HOME/{}' --height=100% --multi --prompt='Stage: ') )
 
-[ -z "$selfile" ] && exit
+[ ${#selfile[@]} -eq 0 ] && exit
 
-# paths are always relative to $HOME
-selfile="$HOME/$selfile"
+for f in "${selfile[@]}"; do
+    # paths are always relative to $HOME
+    abs_path="$HOME/$f"
+    yadm add "$abs_path"
+done
 
-yadm add "$selfile"
 yadm diff --name-status --cached
