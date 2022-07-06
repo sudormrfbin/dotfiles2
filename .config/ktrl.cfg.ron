@@ -59,7 +59,7 @@
             // KEY_RIGHTALT: TapHold(Key(KEY_RIGHTALT), ActivateProfile("meta")),
             // KEY_F1:  TapHold(Key(KEY_F1), ToggleLayerAlias("function_keys")),
             // KEY_F3:  TapHold(Key(KEY_F3), DeactivateAllProfiles),
-            KEY_SLASH: TapHold(Key(KEY_SLASH), Key(KEY_RIGHTSHIFT)),
+            // KEY_SLASH: TapHold(Key(KEY_SLASH), Key(KEY_RIGHTSHIFT)),
             KEY_SPACE: TapHold(Key(KEY_SPACE), Key(KEY_LEFTMETA)),
             KEY_C: TapHold(Key(KEY_C), MomentaryLayer(1)),
             KEY_M: TapHold(Key(KEY_M), MomentaryLayer(1)),
