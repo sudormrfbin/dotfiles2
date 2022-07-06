@@ -158,7 +158,7 @@ super + c
 	raise-or-run.sh cmus "alacritty --class Alacritty,cmus -e cmus" "hide_if_focused=true"
 
 super + comma
-	raise-or-run.sh editor "kitty --class editor"
+	raise-or-run.sh editor "kitty --class editor open-editor-in-project.sh"
 
 super + period
 	raise-or-run.sh terminal "kitty --class terminal"
