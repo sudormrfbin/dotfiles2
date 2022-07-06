@@ -28,17 +28,13 @@ super + v
 super + d
 	discord
 
-# browser
-super + b
-	raise-or-run.sh firefox firefox
-
 # editor
 super + z
 	raise-or-run.sh neovide neovide
 
 # music player
 super + c
-	raise-or-run.sh cmus "alacritty --class Alacritty,cmus -e cmus"
+	raise-or-run.sh cmus "alacritty --class Alacritty,cmus -e cmus" "hide_if_focused=true"
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -167,3 +163,20 @@ super + alt + shift + {h,j,k,l}
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node --move {-20 0,0 20,0 -20,20 0}
+
+#
+# dynamic window binding
+#
+
+super + comma
+	raise-or-run.sh editor "kitty --class editor"
+
+super + period
+	raise-or-run.sh terminal "kitty --class terminal"
+
+super + slash
+	raise-or-run.sh scratchpad "kitty --class scratchpad" "hide_if_focused=true"
+
+super + semicolon
+	raise-or-run.sh firefox firefox
+
