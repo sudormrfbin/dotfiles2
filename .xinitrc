@@ -34,7 +34,7 @@ fi
 
 redshift &
 start-pulseaudio-x11 &
-greenclip daemon &  # clipboard manager
+# greenclip daemon &  # clipboard manager
 libinput-gestures-setup start &
 # handled by ktrl
 # setxkbmap -option ctrl:swapcaps

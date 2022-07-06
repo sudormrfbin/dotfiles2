@@ -22,9 +22,25 @@ theme = "onedark"
 line-number = "relative"
 scrolloff = 3
 idle-timeout = 50
+rulers = [80]
+mouse = false
+completion-trigger-len = 1
+auto-completion = true
+cursorline = true
+indent-guides.render = true
 # diff-symbols = ["▍", "▍", "▁", "▔"]
+
 
 [editor.cursor-shape]
 normal = "block"
 insert = "bar"
 select = "underline"
+
+[editor.whitespace.render]
+newline = "all"
+
+[editor.lsp]
+display-messages = true
+
+# [editor.status-line]
+# left = ["file-name", "file-encoding", "file-type" ]

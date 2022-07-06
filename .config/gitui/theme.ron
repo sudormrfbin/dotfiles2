@@ -3,7 +3,7 @@
     command_fg: Rgb(171, 178, 191),
     selection_bg: Rgb(63, 73, 82),
     cmdbar_extra_lines_bg: Rgb(97, 175, 239),
-    disabled_fg: Rgb(40, 44, 52),
+    disabled_fg: Rgb(92, 99, 112),
     diff_line_add: Rgb(152, 195, 121),
     diff_line_delete: Rgb(224, 108, 117),
     diff_file_added: Rgb(152, 195, 121),

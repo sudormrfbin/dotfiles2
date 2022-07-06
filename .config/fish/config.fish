@@ -129,7 +129,7 @@ fast_add_abbr yc 'yadm commit -m'
 # Variables
 
 set -x EDITOR  "nvim"
-set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ ~/.local/share/gem/ruby/3.0.0/bin $PATH
+set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ ~/.pub-cache/bin/ ~/.local/share/gem/ruby/3.0.0/bin $PATH
 set -x BROWSER /usr/bin/firefox
 set -x VIM_CONFIG_PATH ~/.config/nvim/
 set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk/
@@ -147,12 +147,12 @@ set -x F_EXCLUDE '^/tmp/.+' '\.out$'
 set __done_exclude $__done_exclude zathura feh
 
 set -x Z_CMD "j"
-set -x FZF_LEGACY_KEYBINDINGS 0
+
+set -x ZK_NOTEBOOK_DIR ~/zetnotes/
+
 # {+} expands to space seperated list of multi selected items or current item
 # use printf to properly quote selections "\'%s\'"
 set -x FZF_DEFAULT_OPTS '--bind "ctrl-x:execute-silent(printf \'%s \' {+} | xclip -selection clipboard)+abort" --height=20% --cycle'
-set -x FZF_FIND_FILE_OPTS '--preview "bat -f {}"'
-set -x FZF_FIND_FILE_COMMAND fd
 
 set -gx LESSHISTFILE "$HOME/.cache/.lesshist"
 
@@ -177,5 +177,4 @@ end
 
 # Disable ^R for fzf; alt-3 already bound
 # These commands must be run after the fzf plugin is loaded
-bind -e \cr
-bind -M insert -e \cr
+fzf_configure_bindings --directory=\co
