@@ -7,8 +7,8 @@ super + Return
 	open-terminal-in-cwd.sh
 
 # open terminal in floating state
-super + shift + Return
-	bspc rule -a Alacritty -o state=floating layer=above && alacritty
+# super + shift + Return
+# 	bspc rule -a Alacritty -o state=floating layer=above && alacritty
 
 XF86WebCam
 	scrot -u /tmp/screenshot.png
@@ -20,21 +20,6 @@ super + a
 # window switcher
 super + shift + a
 	rofi -no-lazy-grab -show window
-
-super + v
-	rofi -no-lazy-grab -modi "clipboard:greenclip print" \
-		-show clipboard -run-command '{cmd}'
-
-super + d
-	discord
-
-# editor
-super + z
-	raise-or-run.sh neovide neovide
-
-# music player
-super + c
-	raise-or-run.sh cmus "alacritty --class Alacritty,cmus -e cmus" "hide_if_focused=true"
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -165,8 +150,12 @@ super + {Left,Down,Up,Right}
 	bspc node --move {-20 0,0 20,0 -20,20 0}
 
 #
-# dynamic window binding
+# special windows
 #
+
+# music player
+super + c
+	raise-or-run.sh cmus "alacritty --class Alacritty,cmus -e cmus" "hide_if_focused=true"
 
 super + comma
 	raise-or-run.sh editor "kitty --class editor"
