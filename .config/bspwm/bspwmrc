@@ -23,5 +23,3 @@ bspc rule -a cmus state=floating sticky=true \
     rectangle=1070x640+0+0 center=true border=off
 bspc rule -a scratchpad state=floating sticky=true \
     rectangle=1070x640+0+0 center=true
-
-export _JAVA_AWT_WM_NONREPARENTING=1

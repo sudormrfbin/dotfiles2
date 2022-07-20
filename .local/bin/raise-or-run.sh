@@ -14,7 +14,7 @@ is_focused=$?
 if [ $is_focused -eq 0 ] && [ "$3" == "hide_if_focused=true" ]; then
     # if window with CLASS has focus, hide it
     wmctrl -x -r "$1" -b add,hidden
-elif xdotool search --class "$1"; then
+elif xdotool search --limit 1 --class "$1"; then
     # else focus it
 
     # wmctrl
@@ -24,7 +24,18 @@ elif xdotool search --class "$1"; then
 
     # wmctrl -x -r "$1" -b remove,hidden
     # wmctrl -a "$1"
-    xdotool search --class "$1" windowstate --remove HIDDEN windowactivate
+    IFS='\n' window_ids=( $(xdotool search --class "$1") )
+    for wid in "${window_ids[@]}"; do
+        xdotool windowstate --remove HIDDEN "$wid"
+
+        # failed command does not return non-zero status code
+        # so grep for a fail string
+        xdotool windowactivate "$wid" 2>&1 | grep "failed"
+        if [ "$?" -ne 0 ]; then
+            break
+        fi
+    done
+    # xdotool search --class "$1" windowstate --remove HIDDEN windowactivate
 else
     # if there's no window with a matching CLASS, run SPAWN_CMD
     $2 &

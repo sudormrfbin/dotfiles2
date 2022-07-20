@@ -8,6 +8,14 @@ theme = "onedark"
 "g" = { "l" = "extend_to_line_end", "h" = "extend_to_line_start" }
 "ret" = ":write"
 "g" = { "l" = "extend_to_line_end", "h" = "extend_to_line_start" , "e"="goto_file_end" }
+"C-r" = ":reload"
+
+[keys.normal.space]
+"x" = ":buffer-close"
+
+[keys.normal.space.e]
+"e" = ":config-open"
+"r" = ":config-reload"
 
 [keys.select]
 # till eof in select mode, to beginning of last line in normal mode

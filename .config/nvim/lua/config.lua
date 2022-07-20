@@ -243,6 +243,15 @@ vim.api.nvim_command(
 nvim_lsp.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- }}}
 
+-- Arduino LSP {{{
+nvim_lsp.arduino_language_server.setup({ cmd = {
+        "arduino-language-server",
+        "-clangd", "clangd",
+        "-cli", "arduino-cli",
+        "-cli-config", "~/.arduino15/arduino-cli.yaml",
+    }, on_attach = on_attach, capabilities = capabilities })
+-- }}}
+
 -- CSS {{{
 nvim_lsp.cssls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- }}}

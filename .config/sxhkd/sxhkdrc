@@ -99,6 +99,9 @@ super + shift + {j,k}
 super + {bracketleft,bracketright}
 	bspc node @/ -R {-,+}90
 
+super + minus
+	bspc node @parent --rotate +90
+
 # focus the last node/desktop
 super + {Tab,grave}
 	bspc {node,desktop} --focus last
@@ -167,5 +170,7 @@ super + slash
 	raise-or-run.sh scratchpad "kitty --class scratchpad" "hide_if_focused=true"
 
 super + semicolon
-	raise-or-run.sh firefox firefox
+	# after some time querying for a "firefox" class returns multiple
+	# windows, so assign an explicit class name to differentiate them.
+	raise-or-run.sh firefox-main-window "firefox --class firefox-main-window"
 
