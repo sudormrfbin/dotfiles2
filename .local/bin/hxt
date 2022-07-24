@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Test helix build against simple rust project
+
+HELIX_PROJECT_DIR="$HOME/Projects/helix"
+HELIX_BINARY="$HELIX_PROJECT_DIR/target/debug/hx"
+TEST_PROJECT_DIR="$HOME/Projects/meh-testing"
+
+cd "$HELIX_PROJECT_DIR"
+cargo build
+
+cd "$TEST_PROJECT_DIR"
+"$HELIX_BINARY" src/main.rs
