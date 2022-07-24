@@ -137,18 +137,18 @@ nnoremap ]p :let [content, type] =
 nnoremap <leader>f :lua vim.lsp.buf.formatting()<CR>
 
 " Telescope {{{
-nnoremap <BS> :Telescope find_files<CR>
-nnoremap g' :Telescope resume<CR>
-nnoremap go :Telescope oldfiles<CR>
-nnoremap gr :Telescope lsp_references<CR>
-nnoremap gd :Telescope lsp_definitions<CR>
-nnoremap gi :Telescope lsp_implementations<CR>
-nnoremap gs :Telescope lsp_document_symbols<CR>
-nnoremap gy :Telescope lsp_type_definitons<CR>
-nnoremap gw :Telescope lsp_dynamic_workspace_symbols<CR>
-nnoremap gb :Telescope buffers<CR>
-nnoremap gh :Telescope live_grep<CR>
-nnoremap gx :Telescope quickfix<CR>
+nnoremap <silent> <BS> :Telescope find_files<CR>
+nnoremap <silent> g' :Telescope resume<CR>
+nnoremap <silent> go :Telescope diagnostics<CR>
+nnoremap <silent> gr :Telescope lsp_references<CR>
+nnoremap <silent> gd :Telescope lsp_definitions<CR>
+nnoremap <silent> gi :Telescope lsp_implementations<CR>
+nnoremap <silent> gs :Telescope lsp_document_symbols<CR>
+nnoremap <silent> gy :Telescope lsp_type_definitons<CR>
+nnoremap <silent> gw :Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap <silent> gb :Telescope buffers<CR>
+nnoremap <silent> gh :Telescope live_grep<CR>
+nnoremap <silent> gx :Telescope quickfix<CR>
 " }}}
 
 " Lines {{{
@@ -161,12 +161,12 @@ nnoremap gj mp:<c-u>put =repeat(nr2char(10), v:count1)<cr>`p
 " }}}
 
 " Search {{{
-nnoremap <expr> n  'Nn'[v:searchforward]
-xnoremap <expr> n  'Nn'[v:searchforward]
-onoremap <expr> n  'Nn'[v:searchforward]
-nnoremap <expr> N  'nN'[v:searchforward]
-xnoremap <expr> N  'nN'[v:searchforward]
-onoremap <expr> N  'nN'[v:searchforward]
+nnoremap <silent> <expr> n  'Nn'[v:searchforward]
+xnoremap <silent> <expr> n  'Nn'[v:searchforward]
+onoremap <silent> <expr> n  'Nn'[v:searchforward]
+nnoremap <silent> <expr> N  'nN'[v:searchforward]
+xnoremap <silent> <expr> N  'nN'[v:searchforward]
+onoremap <silent> <expr> N  'nN'[v:searchforward]
 " }}}
 
 " Swapped {{{
