@@ -2,10 +2,6 @@
 # wm independent hotkeys
 #
 
-# terminal emulator
-super + Return
-	open-terminal-in-cwd.sh
-
 # open terminal in floating state
 # super + shift + Return
 # 	bspc rule -a Alacritty -o state=floating layer=above && alacritty
@@ -156,6 +152,24 @@ super + {Left,Down,Up,Right}
 # special windows
 #
 
+# terminal emulator
+super + Return
+	kitty -d $(xcwd)
+	# jumpapp uses WM_CLASS only as a fallback in case there is no match
+	# with the command nameinstead of forcing it to be an exact match
+	# See https://github.com/mkropat/jumpapp/issues/63
+	# aim was to bind super+return to below command:
+	#	jumpapp -c "merminal" kitty -d $(xcwd) --class "merminal"
+	# so that supe+return will always focus this secondary terminal window
+	# with the primary one being super+period. super+shift+return will
+	# spawn additional secondary terminals as required. The problem
+	# is that since jumpapp prioritizes searching by command and falls
+	# back to the `-c` option value *only* if search by command fails,
+	# super+return will interfere with super+period.
+
+# super + shift + Return
+# 	kitty -d $(xcwd) --class "merminal"
+
 # music player
 super + c
 	raise-or-run.sh cmus "alacritty --class Alacritty,cmus -e cmus" "hide_if_focused=true"
@@ -165,12 +179,14 @@ super + comma
 
 super + period
 	raise-or-run.sh terminal "kitty --class terminal"
+	# jumpapp -c terminal kitty --class terminal
 
 super + slash
 	raise-or-run.sh scratchpad "kitty --class scratchpad" "hide_if_focused=true"
 
 super + semicolon
+	jumpapp firefox
 	# after some time querying for a "firefox" class returns multiple
 	# windows, so assign an explicit class name to differentiate them.
-	raise-or-run.sh firefox-main-window "firefox --class firefox-main-window"
+	# raise-or-run.sh firefox-main-window "firefox --class firefox-main-window"
 
