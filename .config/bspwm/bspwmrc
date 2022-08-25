@@ -23,3 +23,4 @@ bspc rule -a cmus state=floating sticky=true \
     rectangle=1070x640+0+0 center=true border=off
 bspc rule -a scratchpad state=floating sticky=true \
     rectangle=1070x640+0+0 center=true
+bspc rule -a *:*:Emulator layer=below state=pseudo_tiled

@@ -28,7 +28,7 @@
         "strings": true
     },
     "editor.rulers": [79, 85],
-    "editor.renderWhitespace": "selection",
+    "editor.renderWhitespace": "all",
     "editor.suggest.localityBonus": true,
 
     "explorer.confirmDragAndDrop": false,
@@ -94,7 +94,6 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "terminal.integrated.rendererType": "dom",
     "telemetry.enableTelemetry": false,
-    "workbench.colorTheme": "One Dark Pro",
     "rust-client.rustupPath": "~/.cargo/bin/rustup",
     "rust-client.updateOnStartup": true,
     "rust-client.engine": "rust-analyzer",
@@ -105,7 +104,6 @@
     "zenMode.fullScreen": false,
     "zenMode.hideStatusBar": false,
     "window.menuBarVisibility": "toggle",
-    "rust-analyzer.updates.channel": "nightly",
     "terminal.external.linuxExec": "alacritty",
     "python.languageServer": "Pylance",
     "workbench.editorAssociations": {
@@ -128,4 +126,8 @@
         "/usr/share/awesome/lib"
     ],
     "Lua.color.mode": "SemanticEnhanced",
+    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+    "editor.inlayHints.enabled": true,
+    "window.zoomLevel": 1,
+    "workbench.colorTheme": "Tokyo Night Storm",
 }
