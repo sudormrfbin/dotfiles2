@@ -50,5 +50,6 @@ feh --bg-fill $(find ~/Pictures/colors/ -type f | shuf -n1) &
 # ( sleep 5; s2sctl start ) &
 
 export _JAVA_AWT_WM_NONREPARENTING=1
+wmname LG3D
 
 exec bspwm

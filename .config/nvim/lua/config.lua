@@ -27,12 +27,16 @@ local on_attach = function(client, bufnr)
     -- buflspnkey("<leader>lq", "diagnostic.set_loclist()")
     -- buflspnkey("gy", "buf.type_definition()")
     buflspnkey("gm", "buf.code_action()")
+    buflspnkey("gm", "buf.range_code_action()", "v")
     buflspnkey("K", "buf.hover()")
     buflspnkey("<C-a>", "buf.signature_help()", "i")
     buflspnkey("<leader>r", "buf.rename()")
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", { noremap = true, silent = true })
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.diagnostic.open_float()<CR>",
+        { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>",
+        { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>",
+        { noremap = true, silent = true })
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.document_formatting then
@@ -236,7 +240,7 @@ nvim_lsp.sumneko_lua.setup(luadev)
 nvim_lsp.pyright.setup({ on_attach = on_attach, capabilities = capabilities })
 -- nvim_lsp.pyright.setup({cmd = {"/home/gokul/Projects/py-analyzer/target/debug/py-analyzer"}, on_attach = on_attach})
 vim.api.nvim_command(
-"autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()")
+    "autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync()")
 -- }}}
 
 -- Go LSP {{{
@@ -245,11 +249,11 @@ nvim_lsp.gopls.setup({ on_attach = on_attach, capabilities = capabilities })
 
 -- Arduino LSP {{{
 nvim_lsp.arduino_language_server.setup({ cmd = {
-        "arduino-language-server",
-        "-clangd", "clangd",
-        "-cli", "arduino-cli",
-        "-cli-config", "~/.arduino15/arduino-cli.yaml",
-    }, on_attach = on_attach, capabilities = capabilities })
+    "arduino-language-server",
+    "-clangd", "clangd",
+    "-cli", "arduino-cli",
+    "-cli-config", "~/.arduino15/arduino-cli.yaml",
+}, on_attach = on_attach, capabilities = capabilities })
 -- }}}
 
 -- CSS {{{
@@ -352,6 +356,8 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'vsnip' }, -- For vsnip users.
+        { name = "dictionary", keyword_length = 2 },
+        { name = "neorg" },
         -- { name = 'luasnip' }, -- For luasnip users.
         -- { name = 'ultisnips' }, -- For ultisnips users.
         -- { name = 'snippy' }, -- For snippy users.
@@ -691,7 +697,6 @@ require("telescope").load_extension("ui-select")
 require("nvim-autopairs").setup()
 -- If you want insert `(` after select function or method item
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-local cmp = require('cmp')
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 -- }}}
 
@@ -809,8 +814,15 @@ require("flutter-tools").setup({
     lsp = {
         on_attach = on_attach,
         capabilities = capabilities,
-    }
+    },
+    closing_tags = {
+        prefix = "» ",
+    },
+    -- widget_guides = {
+    --     enabled = true
+    -- },
 })
+require("telescope").load_extension("flutter")
 -- }}}
 
 -- nvim-notify {{{
@@ -909,7 +921,59 @@ require("zk").setup({
 require("gitlinker").setup()
 -- }}}
 
+-- cmp-dict {{{
+require("cmp_dictionary").setup {
+    dic = {
+        ["markdown"] = "/usr/share/dict/words",
+        ["norg"] = "/usr/share/dict/words"
+    }
+}
+-- }}}
+
+-- neorg {{{
+require('neorg').setup {
+    load = {
+        ["core.defaults"] = {},
+        ["core.norg.concealer"] = {},
+        ["core.norg.completion"] = {
+            config = {
+                engine = "nvim-cmp"
+            }
+        },
+        ["core.norg.dirman"] = {
+            config = {
+                workspaces = {
+                    example_gtd = "~/Work/gtd/.neorg-example-gtd/gtd/",
+                    gtd = "~/Work/gtd/"
+                },
+            },
+        },
+        ["core.gtd.base"] = {
+            config = {
+                workspace = "gtd",
+            },
+        },
+    }
+}
+-- }}}
+
 -- Pretty print any object
 function D(obj)
     print(vim.inspect(obj))
+end
+
+function Toggle_flutter_log()
+    local api = vim.api
+    local wins = api.nvim_list_wins()
+
+    for _, id in pairs(wins) do
+        local bufnr = api.nvim_win_get_buf(id)
+        if api.nvim_buf_get_name(bufnr):match '.*/([^/]+)$' == '__FLUTTER_DEV_LOG__' then
+            return vim.api.nvim_win_close(id, true)
+        end
+    end
+
+    pcall(function()
+        vim.api.nvim_command 'botright sb + __FLUTTER_DEV_LOG__ | resize 15'
+    end)
 end

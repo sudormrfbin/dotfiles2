@@ -331,4 +331,11 @@ augroup END
 " }}}
 
 nnoremap <leader>ww :e ~/Notes/life.md<CR>
+nnoremap <F5> :lua Toggle_flutter_log()<cr>
+nnoremap <C-F5> :FlutterRun<cr>
+nnoremap <S-F5> :FlutterRestart<cr>
+nnoremap <A-F5> :Telescope flutter commands<cr>
+nnoremap <leader>er :e ~/Work/gtd/index.norg<cr>
+nnoremap <C-s> <C-^>
 
+let g:neovide_scroll_animation_length = 0

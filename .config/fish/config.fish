@@ -132,7 +132,7 @@ set -x EDITOR  "nvim"
 set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ ~/.pub-cache/bin/ ~/.local/share/gem/ruby/3.0.0/bin $PATH
 set -x BROWSER /usr/bin/firefox
 set -x VIM_CONFIG_PATH ~/.config/nvim/
-set -x JAVA_HOME /usr/lib/jvm/java-8-openjdk/
+set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk/
 set -x ANDROID_SDK_ROOT /opt/android-sdk/
 set -x ANDROID_HOME $ANDROID_SDK_ROOT
 set -x PATH $ANDROID_HOME/emulator/ $ANDROID_HOME/platform-tools/ \
