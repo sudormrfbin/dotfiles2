@@ -1,0 +1,8 @@
+#!/bin/bash
+# Reboot to windows
+
+# https://askubuntu.com/questions/18170/how-to-reboot-into-windows-from-ubuntu
+# There's no need to set GRUB_DEFAULT=saved in /etc/default/grub
+
+sudo grub-reboot 2 # boot entry index in grub menu
+systemctl reboot
