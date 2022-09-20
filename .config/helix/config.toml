@@ -36,6 +36,8 @@ completion-trigger-len = 1
 auto-completion = true
 cursorline = true
 indent-guides.render = true
+# bufferline = "multiple"
+# color-modes = true
 # diff-symbols = ["▍", "▍", "▁", "▔"]
 
 

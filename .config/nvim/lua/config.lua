@@ -506,6 +506,12 @@ local FileName = {
     hl = { bg = colors.bg, style = "italic" }
 }
 
+local FileNameBlankSpace = {
+    provider = " ",
+    type = "unique",
+    hl = { bg = colors.bg, style = "italic" }
+}
+
 local FileNameInactive = {
     provider = "file_info",
     file_modified_icon = '[+]',
@@ -639,6 +645,7 @@ components.inactive[2] = { -- right
 components.active[1] = { -- left
     ModeIndicator,
     FileName,
+    FileNameBlankSpace,
     GitBranch,
     LspServer,
     DiagnosticError,
@@ -780,10 +787,6 @@ require "nvim-treesitter.configs".setup {
 }
 -- }}}
 
--- octo.nvim {{{
-require("octo").setup()
--- }}}
-
 -- focus.nvim {{{
 require('focus').setup()
 -- }}}
@@ -829,46 +832,28 @@ require("telescope").load_extension("flutter")
 vim.notify = require("notify")
 -- }}}
 
--- autosave.nvim {{{
-require("autosave").setup({
-    enabled = true,
-    execution_message = "Autosaved.",
-    events = { "InsertLeave", "TextChanged" },
-    conditions = {
-        exists = true,
-        filename_is_not = {},
-        filetype_is_not = {},
-        modifiable = true
-    },
-    write_all_buffers = false,
-    on_off_commands = true,
-    clean_command_line_interval = 0,
-    debounce_delay = 135
-})
--- }}}
+-- -- zk {{{
+-- require("zk").setup({
+--     -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+--     -- it's recommended to use "telescope" or "fzf"
+--     picker = "telescope",
 
--- zk {{{
-require("zk").setup({
-    -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-    -- it's recommended to use "telescope" or "fzf"
-    picker = "telescope",
+--     lsp = {
+--         -- `config` is passed to `vim.lsp.start_client(config)`
+--         config = {
+--             -- cmd = { "zk", "lsp" },
+--             -- name = "zk",
+--             on_attach = on_attach,
+--         },
 
-    lsp = {
-        -- `config` is passed to `vim.lsp.start_client(config)`
-        config = {
-            -- cmd = { "zk", "lsp" },
-            -- name = "zk",
-            on_attach = on_attach,
-        },
-
-        -- automatically attach buffers in a zk notebook that match the given filetypes
-        auto_attach = {
-            enabled = true,
-            filetypes = { "markdown" },
-        },
-    },
-})
--- }}}
+--         -- automatically attach buffers in a zk notebook that match the given filetypes
+--         auto_attach = {
+--             enabled = true,
+--             filetypes = { "markdown" },
+--         },
+--     },
+-- })
+-- -- }}}
 
 -- -- litee.nvim {{{
 -- require('litee.lib').setup({

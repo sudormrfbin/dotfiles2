@@ -1,6 +1,12 @@
 map f scroll full-down
 map b scroll full-up
-map <c-f> follow
+
+#unmap <PageDown>
+#unmap <PageUp>
+#map <Return> scroll half-down
+#map . scroll half-up
+
+#map <C-f> follow
 
 set guioptions 'svh'
 set scroll-step 200

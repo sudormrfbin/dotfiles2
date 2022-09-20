@@ -58,6 +58,7 @@ set backupskip=/tmp/*      " Do not back up temporary files.
 set list                   " Show special characters for tabs, tr  ailing whitespace, etc
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 set guifont=mononoki\ Nerd\ Font\ Mono:h11.5:w5.5
+set formatoptions+=r       " add comment leader on newline if already within a comment
 
 filetype plugin indent on
 syntax on
@@ -287,7 +288,7 @@ let g:workspace_autosave = 0
 
 " lsp-extensions {{{
 " Inlay hints for rust
-autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint", "TypeHint"} }
+" autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require'lsp_extensions'.inlay_hints{ prefix = ' » ', highlight = "NonText", enabled = {"ChainingHint", "TypeHint"} }
 " }}}
 
 " indent-blankline {{{
@@ -330,7 +331,6 @@ augroup YankHi
 augroup END
 " }}}
 
-nnoremap <leader>ww :e ~/Notes/life.md<CR>
 nnoremap <F5> :lua Toggle_flutter_log()<cr>
 nnoremap <C-F5> :FlutterRun<cr>
 nnoremap <S-F5> :FlutterRestart<cr>
@@ -339,3 +339,6 @@ nnoremap <leader>er :e ~/Work/gtd/index.norg<cr>
 nnoremap <C-s> <C-^>
 
 let g:neovide_scroll_animation_length = 0
+
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_silent = 1  " do not display the auto-save notification

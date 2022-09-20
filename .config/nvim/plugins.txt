@@ -17,7 +17,6 @@ https://github.com/lukas-reineke/indent-blankline.nvim
 https://github.com/machakann/vim-sandwich
 https://github.com/neovim/nvim-lspconfig
 https://github.com/norcalli/nvim-colorizer.lua
-https://github.com/nvim-lua/lsp_extensions.nvim
 https://github.com/nvim-lua/plenary.nvim
 https://github.com/nvim-lua/popup.nvim
 https://github.com/nvim-telescope/telescope.nvim
@@ -36,7 +35,6 @@ https://github.com/tpope/vim-commentary
 https://github.com/windwp/nvim-autopairs
 https://github.com/rcarriga/nvim-notify
 https://github.com/joshdick/onedark.vim
-https://github.com/Pocco81/AutoSave.nvim
 https://github.com/nvim-telescope/telescope-ui-select.nvim/
 https://github.com/ruifm/gitlinker.nvim
 https://github.com/uga-rosa/cmp-dictionary
@@ -44,3 +42,5 @@ https://github.com/nvim-neorg/neorg
 https://github.com/akinsho/flutter-tools.nvim
 https://github.com/folke/tokyonight.nvim
 https://github.com/dart-lang/dart-vim-plugin/
+https://github.com/abecodes/tabout.nvim
+https://github.com/907th/vim-auto-save
