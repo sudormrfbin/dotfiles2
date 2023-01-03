@@ -4,7 +4,7 @@
 
 # Usage: raise-or-run.sh CLASS SPAWN_CMD [hide_if_focused=true]
 #
-# CLASS           Class of the window (from xprop, second string in list)
+# CLASS           Class of the window (from xprop WM_CLASS)
 # SPAWN_CMD       Command to run if window is not found
 # hide_if_focused Whether to hide the window if it is already focused
 

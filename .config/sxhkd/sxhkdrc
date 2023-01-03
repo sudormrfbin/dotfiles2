@@ -190,3 +190,5 @@ super + semicolon
 	# windows, so assign an explicit class name to differentiate them.
 	# raise-or-run.sh firefox-main-window "firefox --class firefox-main-window"
 
+super + apostrophe
+	toggle-win-visible.sh emulator
