@@ -1,0 +1,7 @@
+#!/bin/sh
+
+trap "echo ^C; exit;" SIGINT SIGTERM
+
+while true; do
+	find lib/ -name '*.dart' | entr -d -p kill -USR1 $(cat /tmp/flutter.pid)
+done
