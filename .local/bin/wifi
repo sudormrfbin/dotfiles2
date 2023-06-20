@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Check if the user has provided a subcommand
+if [ $# -eq 0 ]; then
+    echo "Usage: wifi [on|off|home|phone]"
+    exit 1
+fi
+
+subcommand=$1
+
+# Handle different subcommands
+case $subcommand in
+    on)
+        nmcli radio wifi on
+        ;;
+    off)
+        nmcli radio wifi off
+        ;;
+    home)
+        nmcli connection up GNXS-85A2A0
+        ;;
+    phone)
+        nmcli connection up AndroidAP_1123
+        ;;
+    *)
+        echo "Invalid subcommand: $subcommand"
+        echo "Usage: wifi [on|off|home|phone]"
+        exit 1
+        ;;
+esac
+
+exit 0
+
