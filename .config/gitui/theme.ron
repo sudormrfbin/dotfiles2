@@ -1,33 +1,23 @@
 (
     selected_tab: Reset,
-    command_fg: Rgb(171, 178, 191),
-    selection_bg: Rgb(63, 73, 82),
-    cmdbar_extra_lines_bg: Rgb(97, 175, 239),
-    disabled_fg: Rgb(92, 99, 112),
-    diff_line_add: Rgb(152, 195, 121),
-    diff_line_delete: Rgb(224, 108, 117),
-    diff_file_added: Rgb(152, 195, 121),
-    diff_file_removed: Rgb(224, 108, 117),
-    diff_file_moved: Rgb(198, 120, 221),
-    diff_file_modified: Rgb(229, 192, 123),
-    commit_hash: Rgb(198, 120, 221),
-    commit_time: Rgb(86, 182, 194),
-    commit_author: Rgb(152, 195, 121),
-    danger_fg: Rgb(190, 80, 70),
-    push_gauge_bg: Rgb(97, 175, 239),
+    command_fg: Black,
+    selection_bg: Blue,
+    selection_fg: Black,
+    cmdbar_bg: Blue,
+    cmdbar_extra_lines_bg: Blue,
+    disabled_fg: DarkGray,
+    diff_line_add: Green,
+    diff_line_delete: Red,
+    diff_file_added: LightGreen,
+    diff_file_removed: LightRed,
+    diff_file_moved: LightMagenta,
+    diff_file_modified: Yellow,
+    commit_hash: Magenta,
+    commit_time: LightCyan,
+    commit_author: Green,
+    danger_fg: Red,
+    push_gauge_bg: Blue,
     push_gauge_fg: Reset,
+    tag_fg: LightMagenta,
+    branch_fg: LightYellow,
 )
-
-// black       "#282c34"  Rgb(40, 44, 52)
-// white       "#abb2bf"  Rgb(171, 178, 191)
-// red         "#e06c75"  Rgb(224, 108, 117)
-// maroon      "#be5046"  Rgb(190, 80, 70)
-// green       "#98c379"  Rgb(152, 195, 121)
-// yellow      "#e5c07b"  Rgb(229, 192, 123)
-// orange      "#d19a66"  Rgb(209, 154, 102)
-// blue        "#61afef"  Rgb(97, 175, 239)
-// magenta     "#c678dd"  Rgb(198, 120, 221)
-// cyan        "#56b6c2"  Rgb(86, 182, 194)
-// grey        "#5c6370"  Rgb(92, 99, 112)
-// gutter_grey "#3f4952"  Rgb(63, 73, 82)
-// light_grey  "#2C323C"  Rgb(44, 50, 60)
