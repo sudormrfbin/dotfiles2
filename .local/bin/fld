@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+flutter devices --machine | grep -q android || { echo 'Android emulator/device not running'; exit; }
+
+PID_FILE="/tmp/flutter.pid"
+
+kitty @ launch --keep-focus --tab-title 'gitui' --type tab gitui
+[ -f $PID_FILE ] && rm $PID_FILE
+kitty @ launch --keep-focus --tab-title 'run' --type tab flutter run --pid-file /tmp/flutter.pid
+kitty @ launch --keep-focus --tab-title 'hotreload' --type tab hot-reload-flutter
+
+if grep -q "build_runner" pubspec.yaml; then
+  kitty @ launch --keep-focus --tab-title 'buildrun' --type tab flutter pub run build_runner watch --delete-conflicting-outputs
+fi
+
+kitty @ set-tab-title editor
+kitty @ send-text hx lib/main.dart\\n

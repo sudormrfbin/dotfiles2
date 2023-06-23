@@ -1,7 +1,14 @@
 #!/bin/sh
 
+PID_FILE="/tmp/flutter.pid"
+
 trap "echo ^C; exit;" SIGINT SIGTERM
 
 while true; do
-	find lib/ -name '*.dart' | entr -d -p kill -USR1 $(cat /tmp/flutter.pid)
+	while [ ! -f $PID_FILE ]; do
+		sleep 1
+	done
+
+	echo "Found $PID_FILE"
+	find lib/ -name '*.dart' | entr -d -p kill -USR1 $(cat $PID_FILE)
 done
