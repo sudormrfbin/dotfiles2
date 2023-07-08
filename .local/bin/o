@@ -1,3 +1,5 @@
 #!/bin/sh
 
-xdg-open "$@" & disown
+for arg in "$@"; do
+  xdg-open "$arg" & disown
+done
