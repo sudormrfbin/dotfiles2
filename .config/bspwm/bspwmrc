@@ -16,6 +16,7 @@ bspc config single_monocle        true
 bspc config automatic_scheme      longest_side
 bspc config focus_follows_pointer true
 bspc config pointer_follows_focus true
+bspc config external_rules_command "$HOME/.local/bin/bspwm_ext_rules.sh"
 
 # Rules
 bspc rule -r '*'
@@ -23,4 +24,4 @@ bspc rule -a cmus state=floating sticky=true \
     rectangle=1070x640+0+0 center=true border=off
 bspc rule -a scratchpad state=floating sticky=true \
     rectangle=1070x640+0+0 center=true
-bspc rule -a *:*:Emulator layer=below state=pseudo_tiled
+# bspc rule -a *:*:Emulator layer=below state=pseudo_tiled

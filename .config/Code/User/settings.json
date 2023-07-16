@@ -1,15 +1,6 @@
 {
-    "atomKeymap.promptV3Features": true,
-
-    "bookmarks.saveBookmarksInProject": true,
 
     "breadcrumbs.enabled": true,
-
-    "bracket-pair-colorizer-2.colors": [
-        "Gold",
-        "Orchid",
-        "LightSkyBlue",
-    ],
 
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.fontSize": 20.5,
@@ -76,14 +67,7 @@
     "workbench.iconTheme": "material-icon-theme",
     "workbench.sideBar.location": "right",
     "workbench.commandPalette.preserveInput": true,
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#007ACC",
-        "statusBar.foreground": "#FFFFFF",
-        "statusBarItem.hoverBackground": "#4997eb",
-        "editor.background": "#161821ec",
-        "editor.lineHighlightBackground": "#101119be",
-        "editorHoverWidget.background": "#111111",
-    },
+
     "workbench.settings.editor": "json",
     "workbench.settings.openDefaultSettings": true,
     "workbench.settings.useSplitJSON": true,
@@ -127,7 +111,16 @@
     ],
     "Lua.color.mode": "SemanticEnhanced",
     "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
-    "editor.inlayHints.enabled": true,
     "window.zoomLevel": 1,
-    "workbench.colorTheme": "Tokyo Night Storm",
+    "workbench.colorTheme": "One Dark Pro",
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning",
+        "info"
+    ],
+    "editor.inlayHints.enabled": "off",
+    "arduino.useArduinoCli": true,
+    "workbench.preferredHighContrastColorTheme": "Default High Contrast Light",
+    "editor.inlineSuggest.enabled": true,
+    "dart.flutterHotReloadOnSave": "allIfDirty",
 }

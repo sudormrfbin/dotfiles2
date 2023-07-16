@@ -1,5 +1,5 @@
 [language-server]
-ltex-ls = { command = "ltex-ls" }
+# ltex-ls = { command = "ltex-ls" }
 typst-lsp = { command = "typst-lsp" }
 
 [[language]]
@@ -13,7 +13,7 @@ injection-regex = "^typ(st)?$"
 file-types = ["typ"]
 comment-token = "//"
 indent = { tab-width = 2, unit = "  " }
-language-servers = [ "typst-lsp" ]
+# language-servers = [ "typst-lsp" ]
 roots = []
 
 [language.auto-pairs]
@@ -28,7 +28,7 @@ roots = []
 name = "typst"
 source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "50915c5fefd6d6d2f48b3e6da7136cb0138b160a" }
 
-[[language]]
-name = "markdown"
-language-servers = [ "ltex-ls", "marksman" ]
+# [[language]]
+# name = "markdown"
+# language-servers = [ "ltex-ls", "marksman" ]
 

@@ -131,6 +131,7 @@ font-3 = "feather:size=18;4"
 ; modules-left = workspaces sep cpu memory filesystem github netspeed
 modules-left = workspaces sep cpu memory filesystem netspeed
 modules-center = day time month intent
+; modules-right = pomodoro network sep brightness volume sep battery
 modules-right = network sep brightness volume sep battery
 
 ; The separator will be inserted between the output of each module
@@ -1295,7 +1296,7 @@ label = " %notifications%"
 [module/pomodoro]
 type = custom/script
 
-exec = ~/.local/bin/polypomo
+exec = ~/.local/bin/polypomo --worktime 3000 --breaktime 1200
 tail = true
 
 label = %output%

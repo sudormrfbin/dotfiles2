@@ -256,6 +256,10 @@ nvim_lsp.arduino_language_server.setup({ cmd = {
 }, on_attach = on_attach, capabilities = capabilities })
 -- }}}
 
+-- Typescript LSP {{{
+nvim_lsp.tsserver.setup({ on_attach = on_attach, capabilities = capabilities })
+-- }}}
+
 -- CSS {{{
 nvim_lsp.cssls.setup({ on_attach = on_attach, capabilities = capabilities })
 -- }}}

@@ -1,17 +1,13 @@
-[user]
-	name = Gokul Soumya
-	email = gokulps15@gmail.com
-
 [push]
 	default = simple
 
 [core]
-    editor = nvim
+    editor = hx
     pager = delta --plus-color="#012800" --minus-color="#340001" --theme='OneHalfDark'
 
 [alias]
 	unstage = reset --
-	fixup = commit --amend --no-edit
+	; fixup = commit --amend --no-edit
 	stash-all = stash push --no-keep-index --include-untracked --all
 	stash-temp = stash push --no-keep-index --include-untracked --all -m temp
 

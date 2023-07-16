@@ -1,6 +1,9 @@
 map f scroll full-down
 map b scroll full-up
 
+map . navigate next
+map , navigate previous
+
 #unmap <PageDown>
 #unmap <PageUp>
 #map <Return> scroll half-down

@@ -145,7 +145,7 @@ nnoremap <silent> gr :Telescope lsp_references<CR>
 nnoremap <silent> gd :Telescope lsp_definitions<CR>
 nnoremap <silent> gi :Telescope lsp_implementations<CR>
 nnoremap <silent> gs :Telescope lsp_document_symbols<CR>
-nnoremap <silent> gy :Telescope lsp_type_definitons<CR>
+nnoremap <silent> gy :Telescope lsp_type_definitions<CR>
 nnoremap <silent> gw :Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <silent> gb :Telescope buffers<CR>
 nnoremap <silent> gh :Telescope live_grep<CR>

@@ -1,17 +1,23 @@
-theme = "onedark"
+theme = "catppuccin_mocha"
+# theme = "github_light_high_contrast"
+# icons = "nerdfonts"
 
 [keys.normal]
 # ";" = "command_mode"
 # ":" = "collapse_selection"
 "backspace" = "file_picker"
 "A-x" = ["extend_to_line_bounds", "trim_selections"]
-"g" = { "l" = "extend_to_line_end", "h" = "extend_to_line_start" }
 "ret" = ":write"
 "g" = { "l" = "extend_to_line_end", "h" = "extend_to_line_start" , "e"="goto_file_end" }
 "C-r" = ":reload"
+"C-n" = ":buffer-next"
+"C-p" = ":buffer-previous"
+"F5" = ":sh kill -USR2 $(cat /tmp/flutter.pid)"
 
 [keys.normal.space]
 "x" = ":buffer-close"
+"v" = ":reload-all"
+"i" = ":toggle-option lsp.display-inlay-hints"
 
 [keys.normal.space.e]
 "e" = ":config-open"
@@ -22,7 +28,7 @@ theme = "onedark"
 "g" = { "e" = "goto_file_end" }
 
 [keys.insert]
-"j" = { "k" = "normal_mode" }
+"j" = { "k" = ["normal_mode", ":write"] }
 "C-t" = "indent"
 "C-d" = "unindent"
 
@@ -31,13 +37,14 @@ line-number = "relative"
 scrolloff = 3
 idle-timeout = 50
 rulers = [80]
-mouse = false
 completion-trigger-len = 1
 auto-completion = true
 cursorline = true
 indent-guides.render = true
-# bufferline = "multiple"
-# color-modes = true
+bufferline = "multiple"
+color-modes = true
+gutters = ["diagnostics", "spacer", "diff", "line-numbers", "spacer"]
+# icons.enable = true
 # diff-symbols = ["▍", "▍", "▁", "▔"]
 
 
@@ -49,8 +56,15 @@ select = "underline"
 [editor.whitespace.render]
 newline = "all"
 
+[editor.whitespace.characters]
+newline = "¬"
+
 [editor.lsp]
 display-messages = true
+# display-inlay-hints = true
+
+# [editor.soft-wrap]
+# enable = true
 
 # [editor.status-line]
 # left = ["file-name", "file-encoding", "file-type" ]

@@ -9,6 +9,12 @@
 XF86WebCam
 	scrot -u /tmp/screenshot.png
 
+Print
+	capture_from_clipboard.sh clipboard
+
+shift + Print
+	capture_from_clipboard.sh primary
+
 # program launcher
 super + a
 	rofi -no-lazy-grab -show drun -modi drun
@@ -23,9 +29,6 @@ super + Escape
 
 XF86Audio{Raise,Lower}Volume
 	amixer -D pulse sset Master 5%{+,-}
-
-XF86AudioMute
-	amixer -D pulse set Master 1+ toggle
 
 XF86AudioPlay
 	playerctl play-pause
