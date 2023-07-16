@@ -62,6 +62,8 @@ bind -M insert \ck    kill-line
 bind -M insert \cq    'commandline -rt ""'
 
 # Abbreviations
+abbr -a icat 'kitty +kitten icat'
+abbr -a nnn 'nnn -P p' # run preview plugin on startup
 
 abbr -a -  'cd -'
 
@@ -159,7 +161,10 @@ set __done_exclude $__done_exclude zathura feh
 set -x Z_CMD "j"
 
 set -x ZK_NOTEBOOK_DIR ~/zetnotes/
-set -x NNN_OPTS "e"
+
+set -x NNN_FIFO /tmp/nnn.fifo
+set -x NNN_PLUG "p:preview-tui;P:preview-tabbed"
+set -x NNN_OPTS "ePp"
 
 # {+} expands to space seperated list of multi selected items or current item
 # use printf to properly quote selections "\'%s\'"
