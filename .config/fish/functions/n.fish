@@ -1,11 +1,17 @@
 function n
-    set -l selection (command ls ~/notes/ | fzf --print-query --preview="cat $HOME/notes/{}" --height=100%)
+    set -l NDIR "$HOME/Obsidian/"
+    set -l output (fd . --base-directory "$NDIR" | fzf --print-query --preview="bat {}")
+
     if test $status -eq 130
         return 1 # exit by esc or ctrl-c
     end
-    if test -n "$selection[2]" # file exists
-        nvim "$HOME/notes/$selection[2]"
+
+    set -l query "$output[1]"
+    set -l selected "$output[2]"
+
+    if test -n "$selected" # file exists
+        $EDITOR "$NDIR/$selected"
     else
-        nvim "$HOME/notes/$selection[1].md" # use query as filename
+        $EDITOR "$NDIR/$query.md" # use query as filename
     end
 end

@@ -63,81 +63,91 @@ bind -M insert \cq    'commandline -rt ""'
 
 # Abbreviations
 
-# A custom function is used instead of using `abbr` to speed up overall
-# load time by 50ms. Note that the custom function doesn't escape or
-# test the validness of abbr names. All abbrs are added in global scope.
-# See __fish_abbr_add
+abbr -a -  'cd -'
 
-# fast_add_abbr does _not_ escape non-alphanumeric characters in abbr names
-abbr -ag -  'cd -'
+abbr -a g   'git'
+abbr -a m   'man'
+abbr -a v   'hx'
+abbr -a py  'python3'
+abbr -a l ls
 
-fast_add_abbr g   'git'
-fast_add_abbr m   'man'
-fast_add_abbr v   'nvim'
-fast_add_abbr py  'python3'
+abbr -a x   'chmod +x'
+abbr -a vv  'sudoedit'
+abbr -a imd 'systemctl poweroff'
+abbr -a ins 'paru -S'
+abbr -a upd 'paru -Sy'
+abbr -a upg 'paru -Syu'
 
-fast_add_abbr x   'chmod +x'
-fast_add_abbr vv  'sudoedit'
-fast_add_abbr imd 'systemctl poweroff'
-fast_add_abbr ins 'yay -S'
-fast_add_abbr upd 'yay -Sy'
-fast_add_abbr upg 'yay -Syu'
+abbr -a rl 'exec fish'
 
-fast_add_abbr rl 'exec fish'
+abbr -a xo 'xdg-open'
+abbr -a xc 'xclip -sel clip'
 
-fast_add_abbr xo 'xdg-open'
-fast_add_abbr xc 'xclip -sel clip'
+abbr -a c  'cargo'
+abbr -a cf 'cargo fmt'
+abbr -a ch 'cargo check'
+abbr -a cr 'cargo run --'
+abbr -a cl 'cargo clippy'
 
-fast_add_abbr c  'cargo'
-fast_add_abbr cf 'cargo fmt'
-fast_add_abbr ch 'cargo check'
-fast_add_abbr cr 'cargo run --'
-fast_add_abbr cl 'cargo clippy'
+abbr -a g- 'git switch -'
+abbr -a ga    'git add'
+abbr -a gl    'git log'
+abbr -a gb    'git branch --sort=-committerdate'
+abbr -a gs    'git status'
+abbr -a gc    'git commit -m'
+abbr -a gd    'git diff'
+abbr -a g1    'git clone --depth=1'
+abbr -a gph   'git push'
+abbr -a gpl   'git pull'
+abbr -a gco   'git checkout'
+abbr -a gsp   'git stash pop'
+abbr -a gca   'git commit --amend'
+abbr -a gcaan 'git commit --amend --all --no-edit'
+abbr -a gss   'git stash push --include-untracked --message'
+abbr -a gcl   'git clone --depth=1'
+abbr -a gcam  'git commit -am'
+abbr -a gpum  'git pull upstream master'
+abbr -a gcls  'git clone --depth=1 --shallow-submodules --recursive'
 
-abbr g- 'git switch -'
-fast_add_abbr ga    'git add'
-fast_add_abbr gl    'git log'
-fast_add_abbr gb    'git branch --sort=-committerdate'
-fast_add_abbr gs    'git status'
-fast_add_abbr gc    'git commit -m'
-fast_add_abbr gd    'git diff'
-fast_add_abbr g1    'git clone --depth=1'
-fast_add_abbr gph   'git push'
-fast_add_abbr gpl   'git pull'
-fast_add_abbr gco   'git checkout'
-fast_add_abbr gsp   'git stash pop'
-fast_add_abbr gca   'git commit --amend'
-fast_add_abbr gcaan 'git commit --amend --all --no-edit'
-fast_add_abbr gss   'git stash push --include-untracked --message'
-fast_add_abbr gcl   'git clone --depth=1'
-fast_add_abbr gcam  'git commit -am'
-fast_add_abbr gpum  'git pull upstream master'
-fast_add_abbr gcls  'git clone --depth=1 --shallow-submodules --recursive'
+# abbr -a t  'todo'
+# abbr -a l  'todo list'
+# abbr -a ta 'task add'
+# abbr -a td 'task done'
+# abbr -a tl 'task ready'
 
-fast_add_abbr t  'todo'
-fast_add_abbr l  'todo list'
-# fast_add_abbr ta 'task add'
-# fast_add_abbr td 'task done'
-# fast_add_abbr tl 'task ready'
+abbr -a y  'yadm status'
+abbr -a ya 'yadm add'
+abbr -a yd 'yadm diff'
+abbr -a yp 'yadm push'
+abbr -a yc 'yadm commit -m'
 
-fast_add_abbr y  'yadm status'
-fast_add_abbr ya 'yadm add'
-fast_add_abbr yd 'yadm diff'
-fast_add_abbr yp 'yadm push'
-fast_add_abbr yc 'yadm commit -m'
+# typo correction
+abbr -a sl ls
 
 # Variables
 
-set -x EDITOR  "nvim"
-set -x PATH    ~/.local/bin/ ~/go/bin/ ~/.cargo/bin/ ~/.pub-cache/bin/ ~/.local/share/gem/ruby/3.0.0/bin $PATH
+set -x NOTES_DIR ~/Obsidian
+set -x CAPTURE_FILE "$NOTES_DIR/Captures.md"
+set -x TODO_FILE "$NOTES_DIR/todo.txt"
+
+set -x EDITOR  "hx"
+set -x PATH    ~/.local/bin/ ~/go/bin/ \
+    ~/.cargo/bin/ ~/.pub-cache/bin/ \
+    ~/.local/share/gem/ruby/3.0.0/bin \
+    ~/Flutter/flutter/bin/ \
+    $PATH
 set -x BROWSER /usr/bin/firefox
 set -x VIM_CONFIG_PATH ~/.config/nvim/
-set -x JAVA_HOME /usr/lib/jvm/java-11-openjdk/
-set -x ANDROID_SDK_ROOT /opt/android-sdk/
+set -x ANDROID_SDK_ROOT ~/Android
 set -x ANDROID_HOME $ANDROID_SDK_ROOT
-set -x PATH $ANDROID_HOME/emulator/ $ANDROID_HOME/platform-tools/ \
-            $ANDROID_HOME/tools/    $ANDROID_HOME/tools/bin/ \
-            $PATH
+set -x PATH \
+    $ANDROID_HOME/cmdline-tools/latest/bin/ \
+    $ANDROID_HOME/cmdline-tools/latest/ \
+    $ANDROID_HOME/cmdline-tools/ \
+    $ANDROID_HOME/emulator/ \
+    $ANDROID_HOME/platform-tools/ \
+    $ANDROID_HOME/kotlin-language-server/bin/ \
+    $PATH
 
 set -x RUST_BACKTRACE 1
 set -x SXHKD_SHELL "/bin/bash"
@@ -149,6 +159,7 @@ set __done_exclude $__done_exclude zathura feh
 set -x Z_CMD "j"
 
 set -x ZK_NOTEBOOK_DIR ~/zetnotes/
+set -x NNN_OPTS "e"
 
 # {+} expands to space seperated list of multi selected items or current item
 # use printf to properly quote selections "\'%s\'"
@@ -178,3 +189,10 @@ end
 # Disable ^R for fzf; alt-3 already bound
 # These commands must be run after the fzf plugin is loaded
 fzf_configure_bindings --directory=\co
+
+# pnpm
+set -gx PNPM_HOME "/home/gokul/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
