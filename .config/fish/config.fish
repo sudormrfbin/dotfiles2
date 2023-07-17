@@ -163,7 +163,9 @@ set -x Z_CMD "j"
 set -x ZK_NOTEBOOK_DIR ~/zetnotes/
 
 set -x NNN_FIFO /tmp/nnn.fifo
-set -x NNN_PLUG "p:preview-tui;P:preview-tabbed"
+# prepended with - to prevent directory refreshing after running plugin
+# appended with * to discard output (do not show press enter to continue prompt)
+set -x NNN_PLUG 'y:-!echo -n "$nnn" | xclip -sel clip*;p:preview-tui;P:preview-tabbed'
 set -x NNN_OPTS "ePp"
 
 # {+} expands to space seperated list of multi selected items or current item
