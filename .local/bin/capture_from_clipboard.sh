@@ -2,27 +2,26 @@
 # Get the current date and time in "9 Jul 12:06 pm" format
 datetime=$(date +"%-e %b %-l:%M %P")
 
-# Set the selection source based on the argument
+# Set the capture source based on the argument
 if [ "$1" = "clipboard" ]; then
-    selection="-selection clipboard"
+    content=$(xclip -selection clipboard -o)
     source="Clipboard"
 elif [ "$1" = "primary" ]; then
-    selection="-selection primary"
+    content=$(xclip -selection primary -o)
     source="Mouse Selection"
+elif [ "$1" = "manual" ]; then
+    content=$(zenity --entry --text 'Add capture')
+    source="Manual"
 else
-    echo "Invalid selection source. Please use either 'clipboard' or 'primary' as the argument."
+    echo "Invalid source. Usage: $0 manual|clipboard|primary"
     exit 1
 fi
 
-# Get the clipboard contents using xclip with the specified selection source
-clipboard=$(xclip $selection -o)
+[ "$content" = "" ] && notify-send -u low "Capture Not Saved" "Empty capture content" && exit
 
-content_with_datetime="\n$datetime\n\n$clipboard\n\n----"
+content_with_datetime="\n$datetime\n\n$content\n\n----"
 
-# Append clipboard contents with date and time to the Markdown file
 echo -ne "$content_with_datetime" >> "$CAPTURE_FILE" || notify-send -u critical "Capturing failed"
-
-# Send desktop notification with the captured contents
-notify-send "$source Capture" "$clipboard"
+notify-send "$source Capture" "$content"
 
 exit 0

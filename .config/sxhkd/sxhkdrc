@@ -9,11 +9,8 @@
 XF86WebCam
 	scrot -u /tmp/screenshot.png
 
-Print
-	capture_from_clipboard.sh clipboard
-
-shift + Print
-	capture_from_clipboard.sh primary
+{_, shift +, ctrl +} Print
+	capture_from_clipboard.sh {clipboard, primary, manual}
 
 # program launcher
 super + a
@@ -55,7 +52,7 @@ super + {_,shift + }x
 super + n
 	bspc desktop --layout next
 
-# send the newest marked node to the newest preselected node
+# send the current node to the newest preselected node
 super + y
 	bspc node newest.marked.local --to-node newest.!automatic.local
 
