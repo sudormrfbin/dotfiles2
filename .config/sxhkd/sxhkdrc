@@ -12,6 +12,9 @@ XF86WebCam
 {_, shift +, ctrl +} Print
 	capture_from_clipboard.sh {clipboard, primary, manual}
 
+ctrl + Insert
+	chey_todo.sh capture
+
 # program launcher
 super + a
 	rofi -no-lazy-grab -show drun -modi drun
