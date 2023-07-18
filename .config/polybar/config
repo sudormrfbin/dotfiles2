@@ -1149,11 +1149,16 @@ pin-workspaces = false
 
 ; Create click handler used to focus desktop
 ; Default: true
-enable-click = false
+enable-click = true
 
 ; Create scroll handlers used to cycle desktops
 ; Default: true
-enable-scroll = false
+enable-scroll = true
+
+; Reverse the scroll direction
+; Default: false
+; New in version 3.6.0
+reverse-scroll = true
 
 ; icon-[0-9]+ = <desktop-name>;<icon>
 ; NOTE: The desktop name needs to match the name configured by the WM
