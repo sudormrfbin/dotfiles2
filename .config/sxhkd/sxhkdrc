@@ -84,12 +84,15 @@ super + ctrl + {m,x,y,z}
 #
 
 # focus or swap the node in the given direction
-super + {_,shift + }{h,l}
-	bspc node --{focus,swap} {west,east}
+super + {h, l}
+	window_nav.sh {left, right} 
+
+super + shift + {h,l}
+	bspc node --swap {west,east}
 
 # cycle focus
-super + {j,k}
-	bspc node --focus {next,prev}.local.!hidden.window
+super + {j, k}
+	window_nav.sh {down, right} 
 
 # cycle swap node
 super + shift + {j,k}
