@@ -23,12 +23,12 @@ log() {
   notify-send -u normal -t 2000 "$1"
 }
 
-TERMINAL_CLASS="kitty"
+TERMINAL_CLASS="kitty|scratchpad"
 KITTY_LISTEN_FILE="/tmp/kitty"
 direction="$1"
 
 focused_window=$(xdotool getwindowfocus)
-xprop WM_CLASS -id "$focused_window" | grep "$TERMINAL_CLASS"
+xprop WM_CLASS -id "$focused_window" | grep -E "$TERMINAL_CLASS"
 term_is_focused=$?
 
 if [ $term_is_focused -eq 0 ]; then
