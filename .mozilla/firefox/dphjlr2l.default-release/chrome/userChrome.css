@@ -1,14 +1,16 @@
 #nav-bar {
   /* customize this value. */
-  --navbar-margin: -35px;
+  --navbar-margin: -40px;
 
   margin-top: var(--navbar-margin);
   margin-bottom: 0;
   z-index: -100;
-  transition: all 0.3s linear !important;
+  transition: all 0.1s linear !important;
   opacity: 0;
   /* background-color: rgba(0,0,0,1) !important; */
 }
+
+/* TODO: Force show bar when in customize mode */
 
 #navigator-toolbox:focus-within > #nav-bar,
 #navigator-toolbox:hover > #nav-bar

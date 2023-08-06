@@ -9,6 +9,8 @@ map , navigate previous
 #map <Return> scroll half-down
 #map . scroll half-up
 
+map <C-s> exec pdfimages -p -f $PAGE -l $PAGE -all "$FILE" images/
+
 #map <C-f> follow
 
 set guioptions 'svh'

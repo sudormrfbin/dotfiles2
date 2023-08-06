@@ -49,7 +49,7 @@ bind -M insert \cx    copy-to-clipboard
 bind -M insert \e/    toggle-comment
 bind -M insert -k f12 show-man-page
 bind -M insert "`"    power-key
-bind -M insert \e1    forward-word
+bind -M insert \cg    forward-bigword
 bind -M insert \e`    forward-bigword
 bind -M insert \cp    up-or-search
 bind -M insert \cn   down-or-search

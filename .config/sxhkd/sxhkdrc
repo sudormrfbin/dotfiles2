@@ -56,8 +56,8 @@ super + n
 	bspc desktop --layout next
 
 # send the current node to the newest preselected node
-super + y
-	bspc node newest.marked.local --to-node newest.!automatic.local
+super + b
+	bspc node -n 'last.!automatic.local'
 
 # swap the current node and the biggest window
 super + g
@@ -92,7 +92,7 @@ super + shift + {h,l}
 
 # cycle focus
 super + {j, k}
-	window_nav.sh {down, right} 
+	window_nav.sh {down, up} 
 
 # cycle swap node
 super + shift + {j,k}

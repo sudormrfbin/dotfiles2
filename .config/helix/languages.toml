@@ -32,3 +32,15 @@ source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "50915c
 # name = "markdown"
 # language-servers = [ "ltex-ls", "marksman" ]
 
+[[language]]
+name = "chey"
+scope = "source.chey"
+injection-regex = "chey"
+file-types = ["chey", "todo.txt"]
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }
+roots = []
+
+[[grammar]]
+name = "chey"
+source = { path = "/home/gokul/Projects/chey/tree-sitter" }

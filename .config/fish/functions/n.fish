@@ -1,6 +1,5 @@
 function n
-    set -l NDIR "$HOME/Obsidian/"
-    set -l output (fd . --base-directory "$NDIR" | fzf --print-query --preview="bat {}")
+    set -l output (fd . --base-directory "$NOTES_DIR" | fzf --print-query --preview="bat $NOTES_DIR/{}")
 
     if test $status -eq 130
         return 1 # exit by esc or ctrl-c
@@ -10,8 +9,8 @@ function n
     set -l selected "$output[2]"
 
     if test -n "$selected" # file exists
-        $EDITOR "$NDIR/$selected"
+        $EDITOR "$NOTES_DIR/$selected"
     else
-        $EDITOR "$NDIR/$query.md" # use query as filename
+        $EDITOR "$NOTES_DIR/$query.md" # use query as filename
     end
 end
