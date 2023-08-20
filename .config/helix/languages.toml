@@ -1,6 +1,7 @@
 [language-server]
 # ltex-ls = { command = "ltex-ls" }
 typst-lsp = { command = "typst-lsp" }
+beancount-language-server = { command = "beancount-language-server", args = ["--stdio"], config = { journal_file = "/home/gokul/.hledger.journal" } }
 
 [[language]]
 name = "python"
@@ -44,3 +45,7 @@ roots = []
 [[grammar]]
 name = "chey"
 source = { path = "/home/gokul/Projects/chey/tree-sitter" }
+
+[[language]]
+name = "beancount"
+language-servers = [ "beancount-language-server" ]

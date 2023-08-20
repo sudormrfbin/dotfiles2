@@ -5,6 +5,7 @@ PID_FILE="/tmp/flutter.pid"
 trap "echo ^C; exit;" SIGINT SIGTERM
 
 while true; do
+	echo "Waiting for pid file"
 	while [ ! -f $PID_FILE ]; do
 		sleep 1
 	done

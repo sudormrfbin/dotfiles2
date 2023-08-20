@@ -10,8 +10,8 @@ theme = "catppuccin_mocha"
 "ret" = ":write"
 "g" = { "l" = "extend_to_line_end", "h" = "extend_to_line_start" , "e"="goto_file_end" }
 "C-r" = ":reload"
-"C-n" = ":buffer-next"
-"C-p" = ":buffer-previous"
+"C-n" = ":buffer-previous"
+"C-m" = ":buffer-next"
 "F5" = ":sh kill -USR2 $(cat /tmp/flutter.pid)"
 
 [keys.normal.space]

@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-flutter devices --machine | grep -q android || { echo 'Android emulator/device not running'; exit; }
+device=${1:-android}
+flutter devices --machine | grep -q $device || { echo 'Android emulator/device not running'; exit; }
 
 PID_FILE="/tmp/flutter.pid"
 
 kitty-tab() {
-  kitty @ launch --cwd current --keep-focus --type tab --tab-title "$1" $2
+  kitty @ launch --hold --cwd current --keep-focus --type tab --tab-title "$1" $2
 }
 
 kitty-tab gitui gitui
