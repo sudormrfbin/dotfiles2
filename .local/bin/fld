@@ -5,18 +5,19 @@ flutter devices --machine | grep -q $device || { echo 'Android emulator/device n
 PID_FILE="/tmp/flutter.pid"
 
 kitty-tab() {
-  kitty @ launch --hold --cwd current --keep-focus --type tab --tab-title "$1" $2
+  kitty @ launch --cwd current --keep-focus --type tab --tab-title "$1" sh -c "$2; $SHELL"
 }
+
+kitty-tab editor "hx lib/main.dart"
 
 kitty-tab gitui gitui
 [ -f $PID_FILE ] && rm $PID_FILE
 
 kitty-tab run "flutter run --pid-file $PID_FILE"
-kitty-tab hotreload hot-reload-flutter
-
 if grep -q "build_runner" pubspec.yaml; then
   kitty-tab buildrun "flutter pub run build_runner watch --delete-conflicting-outputs"
 fi
 
-kitty @ set-tab-title editor
-kitty @ send-text hx lib/main.dart\\n
+kitty-tab hotreload hot-reload-flutter
+
+kitty @ set-tab-title term
