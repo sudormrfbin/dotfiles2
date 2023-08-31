@@ -69,7 +69,7 @@
             KEY_LEFTALT: Tap(Key(KEY_BACKSPACE)),
             KEY_BACKSPACE: Tap(Key(KEY_LEFTALT)),
             // KEY_CAPSLOCK: TapHold(Key(KEY_ESC), Key(KEY_LEFTCTRL)),
-            KEY_CAPSLOCK: Tap(Key(KEY_LEFTCTRL)),
+            KEY_CAPSLOCK: TapHold(Key(KEY_ESC), Key(KEY_LEFTCTRL)),
             KEY_LEFTCTRL: Tap(Key(KEY_CAPSLOCK)),
         },
         // num-and-symbols layer
