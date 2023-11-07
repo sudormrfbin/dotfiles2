@@ -454,11 +454,12 @@ ramp-headphones-0 = ${icon.headphone}
 [module/brightness]
 ;type = internal/xbacklight
 type = internal/backlight
+enable-scroll = true
 
 ; Use the following command to list available cards:
 ; $ ls -1 /sys/class/backlight/
 ;card = intel_backlight
-card = amdgpu_bl0
+card = amdgpu_bl1
 
 ; Available tags:
 ;   <label> (default)
