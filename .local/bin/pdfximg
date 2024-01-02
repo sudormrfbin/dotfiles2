@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Extract images from pdf files
+
+# Check if correct number of arguments are provided
+if [ "$#" -lt 3 ]; then
+    echo "Usage: $0 <pdf_file> <destination_directory> <page_number>"
+    exit 1
+fi
+
+pdf_file=$1
+destination_directory=$2
+page_number=$3
+
+# Create a temporary directory to store extracted images
+temp_dir=$(mktemp -d)
+echo "Temporary directory created: $temp_dir"
+
+# Extract images from PDF using pdfimages, save as png (-p)
+pdfimages -all -p -f "$page_number" -l "$page_number" "$pdf_file" "$temp_dir/image"
+
+# Interactive selection using fzf and image preview using kitty
+selected_images=$(find "$temp_dir" -type f | SHELL=/bin/sh fzf --multi --preview='kitty +kitten icat --clear --transfer-mode=memory --stdin=no --place=${FZF_PREVIEW_COLUMNS}x${FZF_PREVIEW_LINES}@0x0 {}')
+kitty icat --clear
+
+# Loop through selected images for renaming and copying
+for image_path in $selected_images; do
+    filename=$(basename "$image_path")
+    extension="${filename##*.}"
+    file_stem="${filename%.*}"  # Extracting file stem
+    
+    # Ask for renaming
+    kitty icat "$image_path"
+    read -p "Rename '$file_stem' (press ENTER to keep the same name): " new_stem
+    
+    # Check if input is not empty for renaming
+    if [ -n "$new_stem" ]; then
+        mv "$image_path" "$(dirname "$image_path")/$new_stem.$extension"
+        echo "Image renamed to: $new_stem.$extension"
+        image_path="$(dirname "$image_path")/$new_stem.$extension"  # Update image path with new name
+    fi
+    
+    # Copy the file to the destination directory
+    cp "$image_path" "$destination_directory/"
+done
+
+
+echo "Images copied to: $destination_directory"
+# Clean up temporary directory
+rm -r "$temp_dir"
+echo "Temporary directory removed: $temp_dir"
+
