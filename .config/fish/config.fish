@@ -71,6 +71,7 @@ abbr -a g   'git'
 abbr -a m   'man'
 abbr -a v   'hx'
 abbr -a py  'python3'
+abbr -a h   'hledger iadd'
 abbr -a l ls
 
 abbr -a x   'chmod +x'
@@ -129,6 +130,7 @@ abbr -a sl ls
 # Variables
 
 set -x NOTES_DIR ~/Obsidian
+set -x LEDGER_FILE "$NOTES_DIR/hledger.journal"
 set -x CAPTURE_FILE "$NOTES_DIR/Captures.md"
 set -x TODO_FILE "$NOTES_DIR/todo.txt"
 
@@ -137,11 +139,13 @@ set -x PATH    ~/.local/bin/ ~/go/bin/ \
     ~/.cargo/bin/ ~/.pub-cache/bin/ \
     ~/.local/share/gem/ruby/3.0.0/bin \
     ~/Flutter/flutter/bin/ \
+    ~/.bun/bin/ \
     $PATH
 set -x BROWSER /usr/bin/firefox
 set -x VIM_CONFIG_PATH ~/.config/nvim/
 set -x ANDROID_SDK_ROOT ~/Android
 set -x ANDROID_HOME $ANDROID_SDK_ROOT
+set -x NDK_HOME $ANDROID_HOME/ndk/26.1.10909125
 set -x PATH \
     $ANDROID_HOME/cmdline-tools/latest/bin/ \
     $ANDROID_HOME/cmdline-tools/latest/ \

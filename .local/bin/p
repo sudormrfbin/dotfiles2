@@ -1,4 +1,4 @@
 #!/bin/bash
-
-$EDITOR $CAPTURE_FILE
+d=$(date +"%Y-%m-%dT%H:%M:%S") # 2023-09-02T21:40:04
+$EDITOR "$NOTES_DIR/Captures/$d.md"
 

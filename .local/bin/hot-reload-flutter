@@ -1,5 +1,7 @@
 #!/bin/sh
 
+watchdir=${1:-lib}
+
 PID_FILE="/tmp/flutter.pid"
 
 trap "echo ^C; exit;" SIGINT SIGTERM
@@ -11,5 +13,8 @@ while true; do
 	done
 
 	echo "Found $PID_FILE"
-	find lib/ -name '*.dart' | entr -d -p kill -USR1 $(cat $PID_FILE)
+	# The kill command is executed in a bash shell so that if the contents
+	# of the PID file change, the new PID is used instead of
+	# using the PID present at the time of evaluation of the command.
+	find "$watchdir" -name '*.dart' | SHELL=bash entr -d -s "kill -USR1 \$(cat $PID_FILE)"
 done

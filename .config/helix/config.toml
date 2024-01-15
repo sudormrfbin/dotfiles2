@@ -5,7 +5,8 @@ theme = "catppuccin_mocha"
 [keys.normal]
 # ";" = "command_mode"
 # ":" = "collapse_selection"
-"backspace" = "file_picker"
+"S-backspace" = "file_picker"
+"backspace" = "file_picker_in_current_directory"
 "A-x" = ["extend_to_line_bounds", "trim_selections"]
 "ret" = ":write"
 "g" = { "l" = "extend_to_line_end", "h" = "extend_to_line_start" , "e"="goto_file_end" }
@@ -44,6 +45,8 @@ indent-guides.render = true
 bufferline = "multiple"
 color-modes = true
 gutters = ["diagnostics", "spacer", "diff", "line-numbers", "spacer"]
+insert-final-newline = false
+
 # icons.enable = true
 # diff-symbols = ["▍", "▍", "▁", "▔"]
 

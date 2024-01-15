@@ -1,21 +1,46 @@
-[language-server]
-# ltex-ls = { command = "ltex-ls" }
-typst-lsp = { command = "typst-lsp" }
-beancount-language-server = { command = "beancount-language-server", args = ["--stdio"], config = { journal_file = "/home/gokul/.hledger.journal" } }
+[language-server.beancount-language-server]
+command = "beancount-language-server"
+args = ["--stdio"]
+config = { journal_file = "/home/gokul/.hledger.journal" } 
+
+[language-server.typst-lsp]
+command = "typst-lsp"
+# config = { experimentalFormatterMode = "on" } 
+
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+[language-server.ruff]
+command = "ruff-lsp"
+config = { settings = { run = "onSave" } }
+
+[language-server.anakinls]
+command = "anakinls"
+
+[language-server.pyright-debug]
+command = "/home/gokul/Projects/pyright/packages/pyright/langserver.index.js"
+args = ["--stdio"]
+config = {}
+
+[language-server.word]
+command = "simple-completion-language-server"
 
 [[language]]
 name = "python"
 auto-format = true
+# language-servers = ["ruff", "pyright"]
+language-servers = ["ruff", "pyright-debug"]
+# language-servers = ["pyright-debug"]
 
 [[language]]
-name = "typst"
-scope = "source.typst"
-injection-regex = "^typ(st)?$"
-file-types = ["typ"]
-comment-token = "//"
-indent = { tab-width = 2, unit = "  " }
-# language-servers = [ "typst-lsp" ]
-roots = []
+name = "php"
+auto-format = true
+
+[[language]]
+name = "typescript"
+auto-format = true
+indent = { tab-width = 4, unit = "    " }
 
 [language.auto-pairs]
 '(' = ')'
@@ -25,9 +50,13 @@ roots = []
 '`' = '`'
 '$' = '$'
 
-[[grammar]]
+[[language]]
 name = "typst"
-source = { git = "https://github.com/frozolotl/tree-sitter-typst", rev = "50915c5fefd6d6d2f48b3e6da7136cb0138b160a" }
+auto-format = false
+# language-servers = ["typst-lsp", "word"]
+language-servers = ["word"]
+formatter = { command = "typstfmt", args = ["--output", "-"]}
+
 
 # [[language]]
 # name = "markdown"
@@ -49,3 +78,15 @@ source = { path = "/home/gokul/Projects/chey/tree-sitter" }
 [[language]]
 name = "beancount"
 language-servers = [ "beancount-language-server" ]
+
+[[language]]
+name = "javascript"
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "emmet-lsp"]
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "emmet-lsp" ]
