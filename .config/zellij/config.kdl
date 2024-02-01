@@ -1,0 +1,10 @@
+pane_frames false
+theme "catppuccin-mocha"
+
+keybinds {
+    normal {
+        bind "Ctrl /" { NewTab "locked"; }
+        bind "Ctrl ." { GoToNextTab; }
+        bind "Ctrl ," { GoToPreviousTab; }
+    }
+}
