@@ -1,0 +1,104 @@
+set ideajoin
+set clipboard+=unnamed
+set incsearch
+set ignorecase
+set scrolloff=3            " Show next 3 lines while scrolling.
+set relativenumber         " Show relative line numbers
+set showmode
+set hlsearch
+
+set matchit
+set surround
+set sneak
+set commentary
+set highlightedyank
+
+let mapleader=" "
+
+noremap Y y$
+nnoremap U <c-r>
+
+nnoremap <c-n> :bprev<cr>
+nnoremap <c-m> :bnext<cr>
+
+nmap <cr> <Action>(ReformatCode)
+nmap <leader>= <Action>(ReformatCode)
+nmap ]d mm`m<Action>(GotoNextError)
+nmap [d mm`m<Action>(GotoPreviousError)
+nmap gd mm`m<Action>(GotoDeclarationOnly)
+nmap gi mm`m<Action>(GotoImplementation)
+nmap gr mm`m<Action>(FindUsages)
+nmap gy mm`m<Action>(GotoTypeDeclaration)
+nmap ]g mm`m<Action>(VcsShowNextChangeMarker)
+nmap [g mm`m<Action>(VcsShowPrevChangeMarker)
+nmap <BS> mm`m<Action>(GotoFile)
+nmap <leader>f <Action>(GotoFile)
+nmap <c-p> mm`m<Action>(GotoAction)
+nmap <leader>b mm`m<Action>(RecentFiles)
+nmap <leader>a <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>r <Action>(RenameElement)
+nmap <leader>j <Action>(RecentLocations)
+
+nmap <c-c> <Action>(CommentByLineComment)
+xmap <c-c> <Action>(CommentByLineComment)
+
+nmap <a-o> <Action>(EditorSelectWord)
+xmap <a-o> <Action>(EditorSelectWord)
+nmap <a-i> <Action>(EditorUnSelectWord)
+xmap <a-i> <Action>(EditorUnSelectWord)
+
+nmap <c-w>v <Action>(SplitVertically)
+nmap <c-w>s <Action>(SplitHorizontally)
+
+nmap <c-w>w <Action>(NextWindow)
+nmap <leader>x <Action>(CloseContent)
+nmap <leader>q <Action>(HideAllWindows)
+
+nmap ]m <Action>(MethodDown)
+nmap [m <Action>(MethodUp)
+
+nmap gh 0
+nmap gs ^
+nmap gl $
+nmap ge G
+
+xmap gh 0
+xmap gs ^
+xmap gl $
+xmap ge G
+
+nmap <leader>S mm`m<Action>(GotoSymbol)
+nmap <leader>s mm`m<Action>(FileStructurePopup)
+nmap <leader>/ mm`m<Action>(FindInPath)
+
+nmap <leader>a <Action>(ShowIntentionActions)
+nmap <leader>p <Action>(PasteMultiple)
+nmap <leader>z <Action>(ChangeIdeScale)
+
+nmap <leader>g <Action>(Vcs.QuickListPopupAction)
+nmap <leader>b <Action>(RecentChangedFiles)
+nmap <leader>B <Action>(RecentFiles)
+nmap <leader><cr> :nohlsearch<CR>
+
+nmap <c-o> <Action>(Back)
+nmap <c-i> <Action>(Forward)
+
+nmap <s-k> <Action>(ExpressionTypeInfo)
+nmap <c-k> <Action>(ShowErrorDescription)
+nmap <leader>k <Action>(QuickJavaDoc)
+
+nmap <leader>i <Action>(ToggleInlayHintsGloballyAction)
+" nmap <leader>uw <Action>(EditorToggleShowWhitespaces)
+nmap <leader>y <Action>(CopyReferencePopupGroup)
+
+""" Running and Debugging
+nmap ,r <Action>(ContextRun)
+nmap ,c <Action>(RunClass)
+nmap ,f <Action>(ChooseRunConfiguration)
+nmap ,t <Action>(ActivateRunToolWindow)
+nmap ,u <Action>(Rerun)
+nmap ,f <Action>(RerunFailedTests)
+nmap ,b <Action>(ToggleLineBreakpoint)
+nmap ,d <Action>(ContextDebug)
+nmap ,n <Action>(ActivateDebugToolWindow)
+nmap ,p <Action>(XDebugger.AttachToProcess)
