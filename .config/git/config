@@ -3,7 +3,7 @@
 
 [core]
     editor = hx
-    pager = delta --plus-color="#012800" --minus-color="#340001" --theme='OneHalfDark'
+    pager = delta --side-by-side
 
 [alias]
 	unstage = reset --
@@ -13,13 +13,17 @@
 
 [interactive]
 	singleKey = true
-    diffFilter = delta --color-only --plus-color="#012800" --minus-color="#340001" --theme='OneHalfDark'
+    diffFilter = delta
+
+[include]
+	path = "/home/gokul/.config/git/catppuccin.gitconfig"
 
 [delta]
 	hyperlinks = true
+	features = catppuccin-mocha
 
 [diff]
 	colorMoved = default
 
 [pager]
-	blame = delta --plus-color="#012800" --minus-color="#340001" --theme='OneHalfDark'
+	blame = delta

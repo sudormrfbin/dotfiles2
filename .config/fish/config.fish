@@ -207,3 +207,6 @@ if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# For wezterm, see https://github.com/wez/wezterm/issues/2781
+set fish_vi_force_cursor 1

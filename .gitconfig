@@ -14,6 +14,7 @@
 	ll = log --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=relative
 [commit]
 	verbose = true
+	gpgSign = false
 [rerere]
 	enabled = true
 [safe]
@@ -23,3 +24,16 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[push]
+	autoSetupRemote = true
+	recurseSubmodules = check
+[pull]
+	rebase = false
+[gui]
+	pruneduringfetch = true
+[smartgit "submodule"]
+	fetchalways = false
+	update = true
+	initializenew = true
+[rebase]
+	updateRefs = true

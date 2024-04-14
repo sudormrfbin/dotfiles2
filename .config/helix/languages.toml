@@ -29,8 +29,8 @@ command = "simple-completion-language-server"
 [[language]]
 name = "python"
 auto-format = true
-# language-servers = ["ruff", "pyright"]
-language-servers = ["ruff", "pyright-debug"]
+language-servers = ["ruff", "pyright"]
+# language-servers = ["ruff", "pyright-debug"]
 # language-servers = ["pyright-debug"]
 
 [[language]]

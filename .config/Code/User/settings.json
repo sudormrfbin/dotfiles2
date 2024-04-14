@@ -65,7 +65,6 @@
 
     "workbench.editor.revealIfOpen": true,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.sideBar.location": "right",
     "workbench.commandPalette.preserveInput": true,
 
     "workbench.settings.editor": "json",
@@ -110,9 +109,8 @@
         "/usr/share/awesome/lib"
     ],
     "Lua.color.mode": "SemanticEnhanced",
-    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
-    "window.zoomLevel": 1,
-    "workbench.colorTheme": "One Dark Pro",
+//    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
+    "workbench.colorTheme": "One Dark Pro Darker",
     "errorLens.enabledDiagnosticLevels": [
         "error",
         "warning",
@@ -123,4 +121,6 @@
     "workbench.preferredHighContrastColorTheme": "Default High Contrast Light",
     "editor.inlineSuggest.enabled": true,
     "dart.flutterHotReloadOnSave": "allIfDirty",
+    "window.zoomLevel": 1,
+    "workbench.sideBar.location": "right",
 }
