@@ -10,13 +10,12 @@ kitty-tab() {
 
 kitty-tab editor "hx lib/main.dart"
 
-kitty-tab gitui gitui
+kitty-tab git lazygit
 [ -f $PID_FILE ] && rm $PID_FILE
 
 kitty-tab run "flutter run --pid-file $PID_FILE"
-if grep -q "build_runner" pubspec.yaml; then
-  kitty-tab buildrun "flutter pub run build_runner watch --delete-conflicting-outputs"
-fi
+
+kitty-tab buildrun build-runner-flutter
 
 kitty-tab hotreload hot-reload-flutter
 

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+trap "echo ^C; exit;" SIGINT SIGTERM
+
+if ! grep -q "build_runner" pubspec.yaml; then
+  echo "build_runner not in dependency, exiting."
+  exit 1
+fi
+
+while true; do
+	dart run build_runner watch --delete-conflicting-outputs
+	echo "Restarting..."
+done
+
