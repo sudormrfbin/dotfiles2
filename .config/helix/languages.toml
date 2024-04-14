@@ -23,8 +23,15 @@ command = "/home/gokul/Projects/pyright/packages/pyright/langserver.index.js"
 args = ["--stdio"]
 config = {}
 
-[language-server.word]
+[language-server.scls]
 command = "simple-completion-language-server"
+[language-server.scls.config]
+max_completion_items = 20     # set max completion results len for each group: words, snippets, unicode-input
+snippets_first = true         # completions will return before snippets by default
+feature_words = false          # enable completion by word
+feature_snippets = true       # enable snippets
+feature_unicode_input = false  # enable "unicode input"
+feature_paths = true          # enable path completion
 
 [[language]]
 name = "python"
@@ -53,8 +60,8 @@ indent = { tab-width = 4, unit = "    " }
 [[language]]
 name = "typst"
 auto-format = false
-# language-servers = ["typst-lsp", "word"]
-language-servers = ["word"]
+# language-servers = ["typst-lsp", "scls"]
+# language-servers = ["word"]
 formatter = { command = "typstfmt", args = ["--output", "-"]}
 
 
@@ -90,3 +97,7 @@ language-servers = ["vscode-html-language-server", "emmet-lsp"]
 [[language]]
 name = "css"
 language-servers = [ "vscode-css-language-server", "emmet-lsp" ]
+
+[[language]]
+name = "dart"
+language-servers = [ "dart", "scls" ]
