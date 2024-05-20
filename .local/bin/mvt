@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if ! command -v fzf &> /dev/null; then
+    echo "fzf could not be found, please install it first."
+    exit 1
+fi
+
+selected_files=$(find /tmp -maxdepth 1 -type f ! -name '.*' 2>/dev/null | fzf --multi)
+
+if [[ -z "$selected_files" ]]; then
+    echo "No files selected."
+    exit 0
+fi
+
+echo "$selected_files" | xargs -d "\n" mv -t .
+
