@@ -11,6 +11,11 @@ command = "typst-lsp"
 command = "emmet-language-server"
 args = ["--stdio"]
 
+[language-server.unocss-lsp]
+command = "unocss-language-server"
+args = ["--stdio"]
+roots = ["uno.config.ts"]
+
 [language-server.ruff]
 command = "ruff-lsp"
 config = { settings = { run = "onSave" } }
@@ -32,6 +37,16 @@ feature_words = false          # enable completion by word
 feature_snippets = true       # enable snippets
 feature_unicode_input = false  # enable "unicode input"
 feature_paths = true          # enable path completion
+
+[language-server.dart]
+command = "dart"
+args = ["language-server", "--client-id=helix"] 
+[language-server.dart.config]
+dart.completeFunctionCalls = true
+dart.includeDependenciesInWorkspaceSymbols = false
+
+[language-server.tinymist]
+command = "tinymist"
 
 [[language]]
 name = "python"
@@ -59,10 +74,10 @@ indent = { tab-width = 4, unit = "    " }
 
 [[language]]
 name = "typst"
-auto-format = false
-# language-servers = ["typst-lsp", "scls"]
-# language-servers = ["word"]
-formatter = { command = "typstfmt", args = ["--output", "-"]}
+auto-format = true
+language-servers = ["tinymist"]
+# language-servers = ["tinymist", "typst-lsp", "scls"]
+# formatter = { command = "typstfmt", args = ["--output", "-"]}
 
 
 # [[language]]
@@ -92,7 +107,7 @@ auto-format = true
 
 [[language]]
 name = "html"
-language-servers = ["vscode-html-language-server", "emmet-lsp"]
+language-servers = ["vscode-html-language-server", "emmet-lsp" ]
 
 [[language]]
 name = "css"
@@ -100,4 +115,10 @@ language-servers = [ "vscode-css-language-server", "emmet-lsp" ]
 
 [[language]]
 name = "dart"
-language-servers = [ "dart", "scls" ]
+# language-servers = [ "dart", "scls" ]
+language-servers = [ "dart" ]
+
+[[language]]
+name = "svelte"
+auto-format = true
+language-servers = [ "svelteserver"  ]

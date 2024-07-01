@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 device=${1:-android}
-flutter devices --machine | grep -q $device || { echo 'Android emulator/device not running'; exit; }
+# flutter devices --machine | grep -q $device || { echo 'Android emulator/device not running'; exit; }
 
 PID_FILE="/tmp/flutter.pid"
 

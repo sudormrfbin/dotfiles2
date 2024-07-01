@@ -18,8 +18,10 @@
         "comments": true,
         "strings": true
     },
-    "editor.rulers": [79, 85],
-    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        79,
+        85
+    ],
     "editor.suggest.localityBonus": true,
 
     "explorer.confirmDragAndDrop": false,
@@ -110,7 +112,7 @@
     ],
     "Lua.color.mode": "SemanticEnhanced",
 //    "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
-    "workbench.colorTheme": "One Dark Pro Darker",
+    "workbench.colorTheme": "Catppuccin Mocha",
     "errorLens.enabledDiagnosticLevels": [
         "error",
         "warning",
@@ -123,4 +125,6 @@
     "dart.flutterHotReloadOnSave": "allIfDirty",
     "window.zoomLevel": 1,
     "workbench.sideBar.location": "right",
+    "redhat.telemetry.enabled": false,
+    "editor.renderWhitespace": "trailing",
 }

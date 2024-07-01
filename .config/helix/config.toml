@@ -14,6 +14,8 @@ theme = "catppuccin_mocha"
 "C-n" = ":buffer-previous"
 "C-m" = ":buffer-next"
 "F5" = ":sh kill -USR2 $(cat /tmp/flutter.pid)"
+"F4" = ":sh pytest -q"
+"tab" = "goto_word"
 
 [keys.normal.space]
 "x" = ":buffer-close"

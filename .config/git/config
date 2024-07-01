@@ -3,7 +3,7 @@
 
 [core]
     editor = hx
-    pager = delta --side-by-side
+    pager = delta
 
 [alias]
 	unstage = reset --

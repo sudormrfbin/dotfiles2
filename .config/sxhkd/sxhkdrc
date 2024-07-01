@@ -39,6 +39,10 @@ XF86AudioPlay
 XF86Audio{Next,Prev}
 	playerctl {next,previous}
 
+
+XF86Audio{Rewind,Forward}
+	playerctl position 5{-,+}
+
 XF86MonBrightness{Up,Down}
 	light -{A,U} 5
 

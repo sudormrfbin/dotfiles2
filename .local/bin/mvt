@@ -5,7 +5,7 @@ if ! command -v fzf &> /dev/null; then
     exit 1
 fi
 
-selected_files=$(find /tmp -maxdepth 1 -type f ! -name '.*' 2>/dev/null | fzf --multi)
+selected_files=$(find /tmp/downloads -maxdepth 1 -type f ! -name '.*' 2>/dev/null | fzf --multi)
 
 if [[ -z "$selected_files" ]]; then
     echo "No files selected."
