@@ -33,12 +33,14 @@ super + e
 XF86Audio{Raise,Lower}Volume
 	amixer -D pulse sset Master 5%{+,-}
 
+XF86AudioMedia
+	notify-media
+
 XF86AudioPlay
 	playerctl play-pause
 
 XF86Audio{Next,Prev}
 	playerctl {next,previous}
-
 
 XF86Audio{Rewind,Forward}
 	playerctl position 5{-,+}

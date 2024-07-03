@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Get the current player status
+status=$(playerctl status)
+
+# Get the current song title
+title=$(playerctl metadata title)
+
+# Get the current song artist
+artist=$(playerctl metadata artist)
+
+# Get the artwork URL
+art_url=$(playerctl metadata artUrl)
+
+# Construct the notification title
+notification_title="$status: $title"
+
+# Send the notification
+notify-send -t 4000 -e -i "$art_url" "$notification_title" "$artist"
