@@ -5,7 +5,7 @@ device=${1:-android}
 PID_FILE="/tmp/flutter.pid"
 
 kitty-tab() {
-  kitty @ launch --cwd current --keep-focus --type tab --tab-title "$1" sh -c "$2; $SHELL"
+  kitty @ launch --cwd current --keep-focus --type tab --tab-title "$1" bash -c "$2; $SHELL"
 }
 
 kitty-tab editor "hx lib/main.dart"

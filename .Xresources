@@ -1,55 +1,7 @@
-Xcursor.theme: Qogir
-
-! Base16 OneDark
-
-/* #define base00 #282c34 */
-/* #define base01 #353b45 */
-/* #define base02 #3e4451 */
-/* #define base03 #545862 */
-/* #define base04 #565c64 */
-/* #define base05 #abb2bf */
-/* #define base06 #b6bdca */
-/* #define base07 #c8ccd4 */
-/* #define base08 #e06c75 */
-/* #define base09 #d19a66 */
-/* #define base0A #e5c07b */
-/* #define base0B #98c379 */
-/* #define base0C #56b6c2 */
-/* #define base0D #61afef */
-/* #define base0E #c678dd */
-/* #define base0F #be5046 */
-
-*foreground:   #abb2bf
-#ifdef background_opacity
-*background:   [background_opacity]#282c34
-#else
-*background:   #282c34
-#endif
-*cursorColor:  #abb2bf
-
-*color0:  #282c34
-*color1:  #e06c75
-*color2:  #98c379
-*color3:  #e5c07b
-*color4:  #61afef
-*color5:  #c678dd
-*color6:  #56b6c2
-*color7:  #abb2bf
-*color8:  #545862
-*color9:  #e06c75
-*color10: #98c379
-*color11: #e5c07b
-*color12: #61afef
-*color13: #c678dd
-*color14: #56b6c2
-*color15: #c8ccd4
-
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! Use 'shell' template to set these if necessary
-
-*color16: #d19a66
-*color17: #be5046
-*color18: #353b45
-*color19: #3e4451
-*color20: #565c64
-*color21: #b6bdca
+Xft.dpi:       96
+Xft.antialias: true
+Xft.hinting:   true
+Xft.autohint:  false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+Xft.rgba:      rgb

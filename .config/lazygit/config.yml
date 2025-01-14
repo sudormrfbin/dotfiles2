@@ -1,0 +1,35 @@
+gui:
+  nerdFontsVersion: "3"
+  # catpuccin mocha theme (rosewater variant)
+  # https://github.com/catppuccin/lazygit/blob/30bff2e6d14ca12a09d71e5ce4e6a086b3e48aa6/themes-mergable/mocha/rosewater.yml
+  theme:
+    activeBorderColor:
+      - '#f5e0dc'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    cherryPickedCommitFgColor:
+      - '#f5e0dc'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+    searchingActiveBorderColor:
+      - '#f9e2af'
+
+  authorColors:
+    'Gokul Soumya': '#f5e0dc'
+    '*': '#b4befe'
+
+git:
+  paging:
+    colorArg: never
+    pager: "delta --dark --paging=never --syntax-theme='OneHalfDark'"
+    # pager: "delta --dark --paging=never --plus-style='syntax #012800' --minus-style='normal #340001' --syntax-theme='OneHalfDark'"
+    # pager: dunk

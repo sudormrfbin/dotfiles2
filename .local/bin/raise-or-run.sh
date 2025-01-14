@@ -13,7 +13,8 @@ is_focused=$?
 
 if [ $is_focused -eq 0 ] && [ "$3" == "hide_if_focused=true" ]; then
     # if window with CLASS has focus, hide it
-    wmctrl -x -r "$1" -b add,hidden
+    xdotool windowminimize $(xdotool getwindowfocus)
+    # wmctrl -x -r "$1" -b add,hidden
 elif xdotool search --limit 1 --class "$1"; then
     # else focus it
 

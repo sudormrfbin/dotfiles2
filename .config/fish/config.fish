@@ -33,11 +33,11 @@ set fish_cursor_replace_one underscore
 # Add a way to switch from insert to normal (command) mode.
 # Note if we are paging, we want to stay in insert mode
 # See #2871 in fish-shell github issues
-bind -M insert -e \e
+# bind -M insert -e \e
 
 bind -M default : repeat-jump
 
-bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint-mode; end"
+# bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint-mode; end"
 bind -M insert \e\x7F backward-kill-word # alt-backspace
 bind -M insert \e\[P delete-char # delete key
 
@@ -57,7 +57,6 @@ bind -M insert \e3 __fzf_reverse_isearch
 bind -M insert \e- 'commandline -i ~/.config/'
 bind -M insert \e0 __fish_preview_current_file
 bind -M insert \e\> history-token-search-forward
-bind -M insert \ej task-id-insert
 bind -M insert \ck kill-line
 bind -M insert \cq 'commandline -rt ""'
 
@@ -156,6 +155,7 @@ set -x PATH \
     $ANDROID_HOME/kotlin-language-server/bin/ \
     $PATH
 
+set -x CARGO_TARGET_DIR "$HOME/.cache/cargo-target/"
 set -x RUST_BACKTRACE 1
 set -x SXHKD_SHELL /bin/bash
 
